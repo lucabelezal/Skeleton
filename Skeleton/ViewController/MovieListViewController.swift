@@ -21,6 +21,10 @@ public class MovieListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public override func loadView() {
+        self.view = MovieListView(frame: .zero)
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green

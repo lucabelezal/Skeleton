@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+public protocol MovieListViewModelProtocol {
+
+}
+
+public struct MovieListViewModel: MovieListViewModelProtocol {
+
+}
+
+extension MovieListViewModel {}

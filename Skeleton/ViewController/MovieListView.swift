@@ -13,9 +13,29 @@ public class MovieListView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension MovieListView: ViewCodable {
+
+    func configure() {
+        
+    }
+
+    func hierarchy() {
+
+    }
+
+    func constraints() {
+
+    }
+
+    func styles() {
+
     }
 }
