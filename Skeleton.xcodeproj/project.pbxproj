@@ -13,6 +13,7 @@
 		6E1A8B2B22C8370B0055B6D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */; };
 		6E1A8B2E22C8370B0055B6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2C22C8370B0055B6D8 /* LaunchScreen.storyboard */; };
 		6E1A8B3922C8370B0055B6D8 /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */; };
+		6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		6E1A8B3422C8370B0055B6D8 /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
 		6E1A8B3A22C8370B0055B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LayoutKit.framework; path = Carthage/Build/iOS/LayoutKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,7 @@
 				6E1A8B2222C837080055B6D8 /* Skeleton */,
 				6E1A8B3722C8370B0055B6D8 /* SkeletonTests */,
 				6E1A8B2122C837080055B6D8 /* Products */,
+				6E1A8B4522C83CEA0055B6D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +100,14 @@
 			path = SkeletonTests;
 			sourceTree = "<group>";
 		};
+		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E1A8B3D22C8370B0055B6D8 /* Build configuration list for PBXNativeTarget "Skeleton" */;
 			buildPhases = (
+				6E1A8B4422C83B580055B6D8 /* Lint */,
 				6E1A8B1C22C837080055B6D8 /* Sources */,
 				6E1A8B1D22C837080055B6D8 /* Frameworks */,
 				6E1A8B1E22C837080055B6D8 /* Resources */,
+				6E1A8B4322C83B3B0055B6D8 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -191,6 +205,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E1A8B4322C83B3B0055B6D8 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LayoutKit.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LayoutKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		6E1A8B4422C83B580055B6D8 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E1A8B1C22C837080055B6D8 /* Sources */ = {
@@ -361,6 +416,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Skeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,6 +437,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Skeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

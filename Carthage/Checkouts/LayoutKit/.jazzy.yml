@@ -1,0 +1,8 @@
+author: Vinicius França
+author_url: https://twitter.com/ 
+github_url: https://github.com/viniciusfranca/LayoutKit
+root_url: https://viniciusfranca.github.io/LayoutKit/
+module: LayoutKit
+output: docs
+theme: fullwidth
+xcodebuild_arguments: [-workspace, 'LayoutKit.xcworkspace', -scheme, 'LayoutKit-iOS']

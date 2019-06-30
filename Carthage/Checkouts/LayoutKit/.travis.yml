@@ -1,0 +1,63 @@
+language: objective-c
+osx_image: xcode10
+branches:
+  only:
+  - master
+  - develop
+  - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+cache:
+  directories:
+  - "$HOME/Library/Caches/org.carthage.CarthageKit/dependencies"
+  - Carthage
+  - vendor/bundle
+before_install:
+- bundle install --path vendor/bundle
+- gem install xcpretty
+- brew update
+- brew outdated carthage || brew upgrade carthage
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  - WORKSPACE=LayoutKit.xcworkspace
+  - IOS_FRAMEWORK_SCHEME="LayoutKit-iOS"
+  matrix:
+  - DESTINATION="OS=12.0,name=iPhone XS"                  SCHEME="$IOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES"
+  - DESTINATION="OS=11.4,name=iPhone X"                   SCHEME="$IOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES"
+  - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"            SCHEME="$IOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES"
+  - DESTINATION="OS=9.0,name=iPhone 6"                    SCHEME="$IOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES"
+before_script:
+- sh scripts/bootstrap
+script:
+- set -o pipefail
+- xcodebuild -version
+- xcodebuild -showsdks
+- if [ $RUN_TESTS == "YES" ]; then xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME"
+  -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES
+  test | xcpretty -c; else xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination
+  "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; fi
+- if [ $RUN_TESTS == "YES" ]; then xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME"
+  -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES
+  test | xcpretty -c; else xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination
+  "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c; fi
+jobs:
+  include:
+  - stage: Deploy Github
+    script: skip
+    before_deploy:
+    - carthage build --no-skip-current --cache-builds
+    - carthage archive LayoutKit
+    deploy:
+    - provider: releases
+      api_key:
+        secure: ZIFBzloz2+MCxcfs/t+LQxZHL5FjDItnSIE+j/wPGWfY8k94w2Y+Knh3AKQBho8WNhhzzXNtOvj8MQhoKzoqjhGK2Ajf1QGMAMf6DVnVq/z590X8UZK5X7wVHrD2V9LB29en04cfO5t6ifZ6RyMySFKWihYxF+E4qJNiAZxyHqkLgczzWu7AWmh8A1fqU4UrKA2Xrl8FOTZICEltvME2/gtSH74J/dWjm3WVZRZEsanxYVZwy0lD9g142t1zu6L+1t+Vcfi3p873DFFKiPxC3A7feZZJ3Ki2mpq6Dx0QGr5kTQpwNVd2QsttTPkURo6oAyD04Yyyt60cefptgsevd0QTraSYQz0W0jdSQ40Q7V5syltQDovLf80ZmzHStbBA+orFK/RfLiIgMyjjSxUDEUSl25D/vuylMBQyRUnto9l5TVLPGD3h0OoASnHexzu7dXG9/4IWThig+uqNq4dC4jaHv1aPDoTa62S04cYkSrqbysloz+yV/YQ674yhwNQf1SKUsnxoxLSkyuzjhrn51oN1W8yXqO6btjBwVy4neb133H5kTXYAyZqSdrY/hdaV5e+6CFmprauxZAQQmZ6Yqne+VsN6asPCBu06HuUw4hab3Rvwh7x6FGMT9PHu18/lDYiXs6h4pItIDHgIkzj7M83EDdq5UlJwImq9mvmQlGg=
+      file:
+      - LayoutKit.framework.zip
+      skip_cleanup: true
+      overwrite: true
+      on:
+        tags: true
+        repo: viniciusfranca/LayoutKit
+notifications:
+  slack:
+    secure: dpT6fFwnOPCjWNL3Q/GF68XP50zSHHEzONW412/96FkHQw2TFmY5GmdCPOsSY0GbktTvNcmB2E8oHRE/C+SYwjlXz1EEbSunJxyZb0oVAmQ1jH3pTxf02a1mcE1xKqZ/r3n405/oxGbWZt3Y2LId4ERQAgyszJ7RON6lGGVR6clglVhDijfezzdPJUXvg1lMxOIi99RK7oyGTz6HNaDmSWkqh9zoNJAtGuC98pfolnI1d5365Bp6/STMb84p1RPY3Arp2/ShjSDoceCjesVU7SWD2krupPi2Re7vdKpn1iFHZ9uxfcjxem7Of2VMrfDykXp0624F1ou6pr/oKLTk8PN/zJ990rQSEv/vyW40kOTHBkC0MlwQpdLX+JrneuDuSUCCeJsgbLC/oohgfI5jzSBgminSTKZXdXDUFUXsyZ1vppPM6EUzpGw+ANHqT8gvqkMFZ3zx9syOz84BL81oPb1Kvai2MWZ9w24SiwCXxSRpru9BisJ7zvgZXS8zyEt8r+4s/Hbx2h2H7PHGRKGPYfdXr0Plr+kpIkg9kvn7Fn775BVG/mZrrE693tWCgDuqHsZOw3UNBkFYNeDOFKWlHVGCdJzLEkBrF0z6S/1dfpv+XteMnwm3eVaqrKCkjyzTc6qmZMERqQjplJvmfOyFBzYPQoWgdGJjBAgRLV1b6q4=
