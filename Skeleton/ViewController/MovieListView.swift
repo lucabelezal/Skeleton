@@ -11,7 +11,7 @@ import UIKit
 
 public class MovieListView: UIView {
 
-    private let contentView: UIView
+    public let contentView: UIView
     private let tableView: UITableView
     private let dataSource: DataSource?
 
@@ -68,5 +68,7 @@ extension MovieListView: ViewCodable {
         }
     }
 
-    func styles() {}
+    func styles() {
+//        contentView.backgroundColor = .clear
+    }
 }

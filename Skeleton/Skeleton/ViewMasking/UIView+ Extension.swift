@@ -10,8 +10,7 @@ import UIKit
 
 public extension UIView {
 
-    func setMaskingViews(_ views: [UIView]) {
-
+    func setMaskingViews(_ views: [UIView]) { //_ views: UIView...
         let mutablePath = CGMutablePath()
 
         views.forEach { view in
@@ -23,7 +22,7 @@ public extension UIView {
             if view.layer.cornerRadius == view.frame.size.height / 2, view.layer.masksToBounds {
                 mutablePath.addEllipse(in: view.frame)
             } else {
-                 mutablePath.addRect(view.frame)
+                mutablePath.addRect(view.frame)
             }
         }
 

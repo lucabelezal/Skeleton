@@ -12,10 +12,10 @@ import UIKit
 
 public class MovieViewCell: UITableViewCell, Reusable {
 
-    var containerView: UIView
-    var posterImageView: UIImageView
-    var titleLabel: UILabel
-    var overviewLabel: UILabel
+    private var containerView: SkeletonView
+    private var posterImageView: UIImageView
+    private var titleLabel: UILabel
+    private var overviewLabel: UILabel
 
     public var viewModel: MovieCellViewModelProtocol? {
         didSet {
@@ -24,7 +24,7 @@ public class MovieViewCell: UITableViewCell, Reusable {
     }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        self.containerView = UIView()
+        self.containerView = SkeletonView(frame: .zero)
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
@@ -38,11 +38,44 @@ public class MovieViewCell: UITableViewCell, Reusable {
 
     public func update() {
         if let model = viewModel, let url = URL(string: model.path) {
-            posterImageView.kf.setImage(with: url)
-            titleLabel.text = model.title
-            overviewLabel.text = model.overview
+
+            if model.isLoading {
+                containerView.startAnimating()
+            } else {
+
+//                self.containerView.stopAnimating()
+//                self.containerView.layer.mask = nil
+//
+//                self.posterImageView.kf.setImage(with: url)
+//                self.titleLabel.text = model.title
+//                self.overviewLabel.text = model.overview
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.containerView.stopAnimating()
+                    self.containerView.layer.mask = nil
+
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.posterImageView.kf.setImage(with: url)
+                        self.titleLabel.text = model.title
+                        self.overviewLabel.text = model.overview
+                    })
+                }
+            }
         }
     }
+
+//    public func skeletonAnimation(_ animating: Bool) {
+//        containerView.startAnimating()
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+//            self.containerView.stopAnimating()
+//            self.containerView.layer.mask = nil
+//
+//            UIView.animate(withDuration: 0.3, animations: {
+//
+//            })
+//        }
+//    }
 }
 
 extension MovieViewCell: ViewCodable {
@@ -62,6 +95,9 @@ extension MovieViewCell: ViewCodable {
     func hierarchy() {
         containerView.addView(posterImageView, titleLabel, overviewLabel)
         addView(containerView)
+
+        let viewsShouldLoad = [posterImageView, titleLabel, overviewLabel]
+        containerView.setMaskingViews(viewsShouldLoad)
     }
 
     func constraints() {
