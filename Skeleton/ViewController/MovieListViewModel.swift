@@ -9,11 +9,21 @@
 import Foundation
 
 public protocol MovieListViewModelProtocol {
-
+    var data: [MovieCellViewModelProtocol] { get }
 }
 
 public struct MovieListViewModel: MovieListViewModelProtocol {
 
+    public var data: [MovieCellViewModelProtocol]
+
+    public init() {
+        self.data = []
+    }
 }
 
-extension MovieListViewModel {}
+public extension MovieListViewModel {
+
+    init(movies: [Movie]) {
+       self.data = movies.map { MovieCellViewModel(movie: $0) }
+    }
+}

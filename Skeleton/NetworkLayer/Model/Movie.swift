@@ -8,34 +8,7 @@
 
 import Foundation
 
-struct MovieApiResponse {
-    let page: Int
-    let numberOfResults: Int
-    let numberOfPages: Int
-    let movies: [Movie]
-}
-
-extension MovieApiResponse: Decodable {
-
-    private enum MovieApiResponseCodingKeys: String, CodingKey {
-        case page
-        case numberOfResults = "total_results"
-        case numberOfPages = "total_pages"
-        case movies = "results"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: MovieApiResponseCodingKeys.self)
-
-        page = try container.decode(Int.self, forKey: .page)
-        numberOfResults = try container.decode(Int.self, forKey: .numberOfResults)
-        numberOfPages = try container.decode(Int.self, forKey: .numberOfPages)
-        movies = try container.decode([Movie].self, forKey: .movies)
-
-    }
-}
-
-struct Movie {
+public struct Movie {
     let id: Int
     let posterPath: String
     let backdrop: String
@@ -47,7 +20,7 @@ struct Movie {
 
 extension Movie: Decodable {
 
-    enum MovieCodingKeys: String, CodingKey {
+    public enum MovieCodingKeys: String, CodingKey {
         case id
         case posterPath = "poster_path"
         case backdrop = "backdrop_path"
@@ -57,7 +30,7 @@ extension Movie: Decodable {
         case overview
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let movieContainer = try decoder.container(keyedBy: MovieCodingKeys.self)
 
         id = try movieContainer.decode(Int.self, forKey: .id)

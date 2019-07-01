@@ -15,34 +15,37 @@ public struct NetworkManager {
 
     let router = Router<MovieRouter>()
 
-    func getNewMovies(page: Int, completion: @escaping (_ movie: [Movie]?, _ error: String?) -> Void) {
+    func getNewMovies(page: Int, completion: @escaping (Result<[Movie]>) -> Void) {
 
         router.request(.newMovies(page: page)) { data, response, error in
 
             if error != nil {
-                completion(nil, "Please check your network connection.")
+                completion(.failure(NetworkResponse.connection))
             }
 
             if let response = response as? HTTPURLResponse {
                 let result = self.handleNetworkResponse(response)
-                switch result {
-                case .success:
-                    guard let responseData = data else {
-                        completion(nil, NetworkResponse.noData.rawValue)
-                        return
+
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success:
+                        guard let responseData = data else {
+                            completion(.failure(NetworkResponse.noData))
+                            return
+                        }
+                        do {
+                            print(responseData)
+                            let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
+                            print(jsonData)
+                            let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
+                            completion(.success(apiResponse.movies))
+                        } catch {
+                            print(error)
+                            completion(.failure(NetworkResponse.unableToDecode))
+                        }
+                    case .failure(let networkFailureError):
+                        completion(.failure(networkFailureError))
                     }
-                    do {
-                        print(responseData)
-                        let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                        print(jsonData)
-                        let apiResponse = try JSONDecoder().decode(MovieApiResponse.self, from: responseData)
-                        completion(apiResponse.movies, nil)
-                    } catch {
-                        print(error)
-                        completion(nil, NetworkResponse.unableToDecode.rawValue)
-                    }
-                case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
                 }
             }
         }
@@ -50,11 +53,11 @@ public struct NetworkManager {
 
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
         switch response.statusCode {
-        case 200...299: return .success
-        case 401...500: return .failure(NetworkResponse.authenticationError.rawValue)
-        case 501...599: return .failure(NetworkResponse.badRequest.rawValue)
-        case 600: return .failure(NetworkResponse.outdated.rawValue)
-        default: return .failure(NetworkResponse.failed.rawValue)
+        case 200...299: return .success(NetworkResponse.success.description)
+        case 401...500: return .failure(NetworkResponse.authenticationError)
+        case 501...599: return .failure(NetworkResponse.badRequest)
+        case 600: return .failure(NetworkResponse.outdated)
+        default: return .failure(NetworkResponse.failed)
         }
     }
 }

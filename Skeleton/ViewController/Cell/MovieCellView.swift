@@ -9,24 +9,38 @@
 import LayoutKit
 import UIKit
 
-public class MovieViewCell: UICollectionViewCell {
+public class MovieViewCell: UITableViewCell, Reusable {
 
     var containerView: UIView
-    var imageView: UIImageView
-    var captionLabel: UILabel
-    var commentLabel: UILabel
+    var posterImageView: UIImageView
+    var titleLabel: UILabel
+    var overviewLabel: UILabel
 
-    public override init(frame: CGRect) {
+    public var viewModel: MovieCellViewModelProtocol? {
+        didSet {
+            update()
+        }
+    }
+
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.containerView = UIView()
-        self.imageView = UIImageView()
-        self.captionLabel = UILabel()
-        self.commentLabel = UILabel()
-        super.init(frame: frame)
-        setupView()
+        self.posterImageView = UIImageView()
+        self.titleLabel = UILabel()
+        self.overviewLabel = UILabel()
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+         setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    public func update() {
+        if let model = viewModel {
+            posterImageView.image = model.image
+            titleLabel.text = model.title
+            overviewLabel.text = model.overview
+        }
     }
 }
 
@@ -36,12 +50,14 @@ extension MovieViewCell: ViewCodable {
         containerView.layer.cornerRadius = 6
         containerView.layer.masksToBounds = true
 
-        captionLabel.text = "Caption"
-        commentLabel.text = "Comment"
+        titleLabel.text = "Caption"
+        titleLabel.numberOfLines = 0
+        overviewLabel.text = "Comment"
+        overviewLabel.numberOfLines = 2
     }
 
     func hierarchy() {
-        containerView.addView(imageView, captionLabel, commentLabel)
+        containerView.addView(posterImageView, titleLabel, overviewLabel)
         addView(containerView)
     }
 
@@ -54,20 +70,21 @@ extension MovieViewCell: ViewCodable {
             make.right.equalTo(self.layout.right)
         }
 
-        imageView.layout.makeConstraints { make in
+        posterImageView.layout.makeConstraints { make in
             make.top.equalTo(containerView.layout.top)
-            make.bottom.equalTo(captionLabel.layout.bottom, constant: -8)
+            make.bottom.equalTo(titleLabel.layout.top)
+            make.left.equalTo(containerView.layout.left)
+            make.right.equalTo(containerView.layout.right)
+            make.height.equalTo(constant: 50)
+        }
+
+        titleLabel.layout.makeConstraints { make in
+            make.bottom.equalTo(overviewLabel.layout.top)
             make.left.equalTo(containerView.layout.left)
             make.right.equalTo(containerView.layout.right)
         }
 
-        captionLabel.layout.makeConstraints { make in
-            make.bottom.equalTo(commentLabel.layout.top)
-            make.left.equalTo(containerView.layout.left)
-            make.right.equalTo(containerView.layout.right)
-        }
-
-        commentLabel.layout.makeConstraints { make in
+        overviewLabel.layout.makeConstraints { make in
             make.bottom.equalTo(containerView.layout.bottom)
             make.left.equalTo(containerView.layout.left)
             make.right.equalTo(containerView.layout.right)
@@ -76,8 +93,8 @@ extension MovieViewCell: ViewCodable {
 
     func styles() {
         containerView.backgroundColor = .red
-        imageView.backgroundColor = .purple
-        captionLabel.backgroundColor = .green
-        commentLabel.backgroundColor = .yellow
+        posterImageView.backgroundColor = .purple
+        titleLabel.backgroundColor = .green
+        overviewLabel.backgroundColor = .yellow
     }
 }

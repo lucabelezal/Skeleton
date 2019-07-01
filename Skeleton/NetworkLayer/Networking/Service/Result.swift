@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Result<String> {
-    case success
-    case failure(String)
+public enum Result<Value> {
+    case success(Value)
+    case failure(NetworkResponse)
 }
