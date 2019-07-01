@@ -50,6 +50,18 @@ public class MovieListViewController: UIViewController {
         }
     }
 
+    private func loadImageData() {
+
+//        networkManager.getNewMovies(page: 1) { result in
+//            switch result {
+//            case .success(let data):
+//                self.data = data
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+    }
+
     private func updateView() {
 
         if let mainView = self.view as? MovieListView, let movies = data {

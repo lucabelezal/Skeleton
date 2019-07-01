@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol MovieCellViewModelProtocol {
-    var image: UIImage { get }
+    var path: String { get }
     var title: String { get }
     var overview: String { get }
     var didAction: (() -> Void)? { get }
@@ -17,13 +17,13 @@ public protocol MovieCellViewModelProtocol {
 
 public struct MovieCellViewModel: MovieCellViewModelProtocol {
 
-    public var image: UIImage
+    public var path: String
     public var title: String
     public var overview: String
     public var didAction: (() -> Void)?
 
     public init() {
-        self.image = UIImage()
+        self.path = String()
         self.title = String()
         self.overview = String()
     }
@@ -32,7 +32,7 @@ public struct MovieCellViewModel: MovieCellViewModelProtocol {
 public extension MovieCellViewModel {
 
     init(movie: Movie) {
-        self.image = UIImage()
+        self.path = "https://image.tmdb.org/t/p/w342/\(movie.posterPath)"
         self.title = movie.title
         self.overview = movie.overview
     }

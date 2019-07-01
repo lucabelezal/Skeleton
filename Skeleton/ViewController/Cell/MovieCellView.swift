@@ -6,6 +6,7 @@
 //  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
+import Kingfisher
 import LayoutKit
 import UIKit
 
@@ -36,8 +37,8 @@ public class MovieViewCell: UITableViewCell, Reusable {
     }
 
     public func update() {
-        if let model = viewModel {
-            posterImageView.image = model.image
+        if let model = viewModel, let url = URL(string: model.path) {
+            posterImageView.kf.setImage(with: url)
             titleLabel.text = model.title
             overviewLabel.text = model.overview
         }
@@ -49,6 +50,8 @@ extension MovieViewCell: ViewCodable {
     func configure() {
         containerView.layer.cornerRadius = 6
         containerView.layer.masksToBounds = true
+
+        posterImageView.contentMode = .scaleToFill
 
         titleLabel.text = "Caption"
         titleLabel.numberOfLines = 0
@@ -75,7 +78,7 @@ extension MovieViewCell: ViewCodable {
             make.bottom.equalTo(titleLabel.layout.top)
             make.left.equalTo(containerView.layout.left)
             make.right.equalTo(containerView.layout.right)
-            make.height.equalTo(constant: 50)
+            make.height.equalTo(constant: 320)
         }
 
         titleLabel.layout.makeConstraints { make in
@@ -93,7 +96,7 @@ extension MovieViewCell: ViewCodable {
 
     func styles() {
         containerView.backgroundColor = .red
-        posterImageView.backgroundColor = .purple
+        //posterImageView.backgroundColor = .purple
         titleLabel.backgroundColor = .green
         overviewLabel.backgroundColor = .yellow
     }
