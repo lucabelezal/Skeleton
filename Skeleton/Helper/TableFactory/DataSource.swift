@@ -38,7 +38,6 @@ public class DataSource: NSObject {
         self.sections.append(contentsOf: sections)
         self.tableView.insertSections(last, with: .fade)
     }
-
 }
 
 extension DataSource: UITableViewDataSource {
@@ -60,7 +59,6 @@ extension DataSource: UITableViewDataSource {
         let section = sections[section]
         return section.title
     }
-
 }
 
 extension DataSource: UITableViewDelegate {
@@ -81,16 +79,10 @@ extension DataSource: UITableViewDelegate {
         return section.headerHeight
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = sections[indexPath.section]
-        return section.rowHeight
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         section.didSelectRow(for: indexPath)
     }
-
 }
 
 extension DataSource: UIScrollViewDelegate {
@@ -98,5 +90,4 @@ extension DataSource: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
     }
-
 }

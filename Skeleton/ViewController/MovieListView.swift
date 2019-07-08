@@ -12,7 +12,7 @@ import UIKit
 public class MovieListView: UIView {
 
     public let contentView: UIView
-    private let tableView: UITableView
+    public let tableView: UITableView
     private let dataSource: DataSource?
 
     public var viewModel: MovieListViewModelProtocol? {
@@ -23,7 +23,7 @@ public class MovieListView: UIView {
 
     public override init(frame: CGRect) {
         self.contentView = UIView()
-        self.tableView = UITableView(frame: .zero)
+        self.tableView = UITableView()
         self.dataSource = DataSource(tableView: tableView)
         super.init(frame: frame)
         setupView()
@@ -36,15 +36,17 @@ public class MovieListView: UIView {
     // MARK: Private Methods
 
     private func update() {
-        if let model = viewModel {
-            dataSource?.sections = [MovieListSection(data: model.data)]
-        }
+        let model = viewModel.unsafelyUnwrapped
+        dataSource?.sections = [MovieListSection(data: model.data)]
     }
 }
 
 extension MovieListView: ViewCodable {
 
-    func configure() {}
+    func configure() {
+        tableView.estimatedRowHeight = 278
+        tableView.rowHeight = 278
+    }
 
     func hierarchy() {
         contentView.addView(tableView)
@@ -54,21 +56,19 @@ extension MovieListView: ViewCodable {
     func constraints() {
 
         contentView.layout.makeConstraints { make in
-            make.top.equalTo(self.layout.top)
-            make.bottom.equalTo(self.layout.bottom)
+            make.top.equalTo(self.layout.safeArea.top)
+            make.bottom.equalTo(self.layout.safeArea.bottom)
             make.left.equalTo(self.layout.left)
             make.right.equalTo(self.layout.right)
         }
 
         tableView.layout.makeConstraints { make in
-            make.top.equalTo(contentView.layout.safeArea.top)
-            make.bottom.equalTo(contentView.layout.safeArea.bottom)
+            make.top.equalTo(contentView.layout.top)
+            make.bottom.equalTo(contentView.layout.bottom)
             make.left.equalTo(contentView.layout.left)
             make.right.equalTo(contentView.layout.right)
         }
     }
 
-    func styles() {
-//        contentView.backgroundColor = .clear
-    }
+    func styles() {}
 }

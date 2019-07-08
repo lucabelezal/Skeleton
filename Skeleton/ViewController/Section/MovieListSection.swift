@@ -12,7 +12,6 @@ public struct MovieListSection: TableSection {
 
     private var data: [MovieCellViewModelProtocol]
     public var numberOfRows: Int
-    //public var rowHeight: CGFloat
 
     public var registerCell: (UITableView) -> Void = { tableView in
         tableView.register(cellType: MovieViewCell.self)
@@ -41,6 +40,5 @@ public extension MovieListSection {
     init(data: [MovieCellViewModelProtocol]) {
         self.data = data
         self.numberOfRows = data.count
-        //self.rowHeight = 120
     }
 }

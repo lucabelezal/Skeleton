@@ -17,7 +17,6 @@ public protocol TableSection {
     var numberOfRows: Int { get }
     var headerHeight: CGFloat { get }
     var headerFactory: HeaderFactory { get }
-    var rowHeight: CGFloat { get }
     var cellFactory: CellFactory { get }
     var registerCell: (UITableView) -> Void { get }
 
@@ -31,10 +30,6 @@ public extension TableSection {
 
     var title: String? {
         return nil
-    }
-
-    var rowHeight: CGFloat {
-        return UITableView.automaticDimension
     }
 
     var headerHeight: CGFloat {

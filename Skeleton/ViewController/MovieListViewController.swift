@@ -52,37 +52,19 @@ public class MovieListViewController: UIViewController {
 
     private func loadData() {
 
-        isLoading = true
-
-        networkManager.getNewMovies(page: 1) { result in
+        self.networkManager.getNewMovies(page: 1) { result in
             switch result {
             case .success(let data):
                 self.data = data
-                self.isLoading = false
             case .failure(let error):
-                self.isLoading = false
                 print(error)
             }
         }
     }
 
-    private func loadImageData() {
+    private func loadImageData() {}
 
-        //        networkManager.getNewMovies(page: 1) { result in
-        //            switch result {
-        //            case .success(let data):
-        //                self.data = data
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        }
-    }
-    
     private func updateView() {
-
         mainView.viewModel = MovieListViewModel(movies: data, isLoading: isLoading)
-        //        if let mainView = self.view as? MovieListView, let movies = data {
-        //            mainView.viewModel = MovieListViewModel(movies: movies, isLoading: isLoading)
-        //        }
     }
 }

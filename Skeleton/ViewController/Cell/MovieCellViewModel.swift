@@ -35,7 +35,7 @@ public struct MovieCellViewModel: MovieCellViewModelProtocol {
 public extension MovieCellViewModel {
 
     init(movie: Movie, isLoading: Bool) {
-        self.path = "https://image.tmdb.org/t/p/w342/\(movie.posterPath)"
+        self.path = "https://image.tmdb.org/t/p/w185/\(movie.posterPath)"
         self.title = movie.title
         self.overview = movie.overview
         self.isLoading = isLoading
