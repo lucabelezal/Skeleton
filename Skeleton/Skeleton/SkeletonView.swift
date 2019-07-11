@@ -1,40 +1,31 @@
+////
+////  SkeletonView.swift
+////  Skeleton
+////
+////  Created by Lucas Nascimento on 29/06/19.
+////  Copyright © 2019 Lucas Nascimento. All rights reserved.
+////
 //
-//  SkeletonView.swift
-//  Skeleton
-//
-//  Created by Lucas Nascimento on 29/06/19.
-//  Copyright © 2019 Lucas Nascimento. All rights reserved.
-//
+import UIKit
 
 import UIKit
 
-public class SkeletonView: UIView {
+class SkeletonView: UIView {
 
-    var startLocations: [NSNumber]
-    var endLocations: [NSNumber]
-    var gradientBackgroundColor: CGColor
-    var gradientMovingColor: CGColor
-    var movingAnimationDuration: CFTimeInterval
-    var delayBetweenAnimationLoops: CFTimeInterval
-    var gradientLayer: CAGradientLayer
+    var startLocations: [NSNumber] = [-1.0, -0.5, 0.0]
+    var endLocations: [NSNumber] = [1.0, 1.5, 2.0]
 
-    public override init(frame: CGRect) {
-        self.startLocations = [-1.0, -0.5, 0.0]
-        self.endLocations = [1.0, 1.5, 2.0]
-        self.gradientBackgroundColor = UIColor(white: 0.85, alpha: 1.0).cgColor
-        self.gradientMovingColor = UIColor(white: 0.75, alpha: 1.0).cgColor
-        self.movingAnimationDuration = 0.8
-        self.delayBetweenAnimationLoops = 1.0
-        self.gradientLayer = CAGradientLayer()
-        super.init(frame: frame)
-    }
+    var gradientBackgroundColor: CGColor = UIColor(white: 0.85, alpha: 1.0).cgColor
+    var gradientMovingColor: CGColor = UIColor(white: 0.75, alpha: 1.0).cgColor
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var movingAnimationDuration: CFTimeInterval = 0.8
+    var delayBetweenAnimationLoops: CFTimeInterval = 1.0
 
-    public override func draw(_ rect: CGRect) {
+    var gradientLayer: CAGradientLayer!
+
+    override func draw(_ rect: CGRect) {
         super.draw(rect)
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
@@ -49,7 +40,7 @@ public class SkeletonView: UIView {
         self.gradientLayer = gradientLayer
     }
 
-    public func startAnimating() {
+    func startAnimating() {
         let animation = CABasicAnimation(keyPath: "locations")
         animation.fromValue = self.startLocations
         animation.toValue = self.endLocations
@@ -63,8 +54,9 @@ public class SkeletonView: UIView {
         self.gradientLayer.add(animationGroup, forKey: animation.keyPath)
     }
 
-    public func stopAnimating() {
+    func stopAnimating() {
         self.gradientLayer.removeAllAnimations()
         self.gradientLayer.removeFromSuperlayer()
     }
+
 }

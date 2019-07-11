@@ -52,10 +52,13 @@ public class MovieListViewController: UIViewController {
 
     private func loadData() {
 
+        //isLoading = true
+
         self.networkManager.getNewMovies(page: 1) { result in
             switch result {
             case .success(let data):
                 self.data = data
+                //self.isLoading = false
             case .failure(let error):
                 print(error)
             }

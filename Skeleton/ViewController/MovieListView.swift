@@ -43,17 +43,17 @@ public class MovieListView: UIView {
 
 extension MovieListView: ViewCodable {
 
-    func configure() {
+    public func configure() {
         tableView.estimatedRowHeight = 278
         tableView.rowHeight = 278
     }
 
-    func hierarchy() {
+    public func hierarchy() {
         contentView.addView(tableView)
         addView(contentView)
     }
 
-    func constraints() {
+    public func constraints() {
 
         contentView.layout.makeConstraints { make in
             make.top.equalTo(self.layout.safeArea.top)
@@ -70,5 +70,5 @@ extension MovieListView: ViewCodable {
         }
     }
 
-    func styles() {}
+    public func styles() {}
 }
