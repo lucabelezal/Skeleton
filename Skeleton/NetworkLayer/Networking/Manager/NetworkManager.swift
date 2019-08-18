@@ -15,7 +15,7 @@ public struct NetworkManager {
 
     let router = Router<MovieRouter>()
 
-    func getNewMovies(page: Int, completion: @escaping (Result<[Movie]>) -> Void) {
+    func getNewMovies(page: Int, completion: @escaping (Result<PopularMovies>) -> Void) {
 
         router.request(.newMovies(page: page)) { data, response, error in
 
@@ -25,27 +25,24 @@ public struct NetworkManager {
 
             if let response = response as? HTTPURLResponse {
                 let result = self.handleNetworkResponse(response)
-
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success:
-                        guard let responseData = data else {
-                            completion(.failure(NetworkResponse.noData))
-                            return
-                        }
-                        do {
-                            print(responseData)
-                            let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                            print(jsonData)
-                            let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
-                            completion(.success(apiResponse.movies))
-                        } catch {
-                            print(error)
-                            completion(.failure(NetworkResponse.unableToDecode))
-                        }
-                    case .failure(let networkFailureError):
-                        completion(.failure(networkFailureError))
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(.failure(NetworkResponse.noData))
+                        return
                     }
+                    do {
+                        print(responseData)
+                        let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
+                        print(jsonData)
+                        let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
+                        completion(.success(apiResponse))
+                    } catch {
+                        print(error)
+                        completion(.failure(NetworkResponse.unableToDecode))
+                    }
+                case .failure(let networkFailureError):
+                    completion(.failure(networkFailureError))
                 }
             }
         }

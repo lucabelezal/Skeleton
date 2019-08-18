@@ -1,3 +1,3 @@
 github "lednascimento/LayoutKit" ~> 1.0.0
 github "onevcat/Kingfisher" ~> 5.0
-github "Juanpe/SkeletonView"
+github "Interactive-Studio/Windless" ~> 0.1.5

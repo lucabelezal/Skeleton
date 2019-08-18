@@ -15,14 +15,10 @@ public class MovieListViewController: UIViewController {
     }
 
     var networkManager: NetworkManager
+    var isFetchInProgress: Bool
+    var currentPage: Int
 
-    private var isLoading: Bool {
-        didSet {
-            updateView()
-        }
-    }
-
-    private var data: [Movie] {
+    private var movies: [Movie] {
         didSet {
             updateView()
         }
@@ -30,9 +26,11 @@ public class MovieListViewController: UIViewController {
 
     public init(networkManager: NetworkManager) {
         self.networkManager = networkManager
-        self.data = []
-        self.isLoading = false
+        self.movies = []
+        self.isFetchInProgress = false
+        self.currentPage = 0
         super.init(nibName: nil, bundle: nil)
+        self.loadData()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -45,22 +43,32 @@ public class MovieListViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     // MARK: Private Metthods
 
     private func loadData() {
 
-        //isLoading = true
+        guard !isFetchInProgress else {
+            return
+        }
 
+        isFetchInProgress = true
         self.networkManager.getNewMovies(page: 1) { result in
-            switch result {
-            case .success(let data):
-                self.data = data
-                //self.isLoading = false
-            case .failure(let error):
-                print(error)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                switch result {
+                case .success(let data):
+                    self.isFetchInProgress = false
+                    self.currentPage = data.page
+                    self.movies = data.movies
+                case .failure(let error):
+                    self.isFetchInProgress = false
+                    print(error)
+                }
             }
         }
     }
@@ -68,6 +76,6 @@ public class MovieListViewController: UIViewController {
     private func loadImageData() {}
 
     private func updateView() {
-        mainView.viewModel = MovieListViewModel(movies: data, isLoading: isLoading)
+        mainView.viewModel = MovieListViewModel(movies: movies)
     }
 }

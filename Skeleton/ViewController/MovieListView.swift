@@ -13,7 +13,7 @@ public class MovieListView: UIView {
 
     public let contentView: UIView
     public let tableView: UITableView
-    private let dataSource: DataSource?
+    private let dataSource: DataSource
 
     public var viewModel: MovieListViewModelProtocol? {
         didSet {
@@ -36,39 +36,41 @@ public class MovieListView: UIView {
     // MARK: Private Methods
 
     private func update() {
-        let model = viewModel.unsafelyUnwrapped
-        dataSource?.sections = [MovieListSection(data: model.data)]
+        let model = self.viewModel.unsafelyUnwrapped
+        self.dataSource.sections = [MovieListSection(data: model.data)]
     }
 }
 
 extension MovieListView: ViewCodable {
 
     public func configure() {
-        tableView.estimatedRowHeight = 278
-        tableView.rowHeight = 278
+        dataSource.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     public func hierarchy() {
-        contentView.addView(tableView)
-        addView(contentView)
+        addView(tableView)
     }
 
     public func constraints() {
 
-        contentView.layout.makeConstraints { make in
+        tableView.layout.makeConstraints { make in
             make.top.equalTo(self.layout.safeArea.top)
             make.bottom.equalTo(self.layout.safeArea.bottom)
             make.left.equalTo(self.layout.left)
             make.right.equalTo(self.layout.right)
         }
-
-        tableView.layout.makeConstraints { make in
-            make.top.equalTo(contentView.layout.top)
-            make.bottom.equalTo(contentView.layout.bottom)
-            make.left.equalTo(contentView.layout.left)
-            make.right.equalTo(contentView.layout.right)
-        }
     }
 
-    public func styles() {}
+    public func styles() {
+        backgroundColor = .lightGray
+        contentView.backgroundColor = .red
+    }
+}
+
+extension MovieListView: DataSourceDelegate {
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    }
 }

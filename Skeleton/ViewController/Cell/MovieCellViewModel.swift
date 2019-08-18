@@ -13,7 +13,6 @@ public protocol MovieCellViewModelProtocol {
     var title: String { get }
     var overview: String { get }
     var didAction: (() -> Void)? { get }
-    var isLoading: Bool { get }
 }
 
 public struct MovieCellViewModel: MovieCellViewModelProtocol {
@@ -21,23 +20,20 @@ public struct MovieCellViewModel: MovieCellViewModelProtocol {
     public var path: String
     public var title: String
     public var overview: String
-    public var isLoading: Bool
     public var didAction: (() -> Void)?
 
     public init() {
         self.path = String()
         self.title = String()
         self.overview = String()
-        self.isLoading = false
     }
 }
 
 public extension MovieCellViewModel {
 
-    init(movie: Movie, isLoading: Bool) {
+    init(movie: Movie) {
         self.path = "https://image.tmdb.org/t/p/w185/\(movie.posterPath)"
         self.title = movie.title
         self.overview = movie.overview
-        self.isLoading = isLoading
     }
 }

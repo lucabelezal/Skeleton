@@ -31,6 +31,7 @@ public class DataSource: NSObject {
         super.init()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.prefetchDataSource = self
     }
 
     public func appendSection(_ sections: [TableSection] ) {
@@ -89,5 +90,12 @@ extension DataSource: UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
+    }
+}
+
+extension DataSource: UITableViewDataSourcePrefetching {
+
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
     }
 }

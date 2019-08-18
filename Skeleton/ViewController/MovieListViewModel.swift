@@ -23,7 +23,7 @@ public struct MovieListViewModel: MovieListViewModelProtocol {
 
 public extension MovieListViewModel {
 
-    init(movies: [Movie], isLoading: Bool) {
-        self.data = movies.map { MovieCellViewModel(movie: $0, isLoading: isLoading) }
+    init(movies: [Movie]) {
+        self.data = movies.map { MovieCellViewModel(movie: $0) }
     }
 }
