@@ -7,33 +7,39 @@
 //
 
 import UIKit
+import Kingfisher
 
 public protocol MovieCellViewModelProtocol {
-    var path: String { get }
     var title: String { get }
     var overview: String { get }
+    var posterImage: ImageView { get }
     var didAction: (() -> Void)? { get }
 }
 
 public struct MovieCellViewModel: MovieCellViewModelProtocol {
 
-    public var path: String
     public var title: String
     public var overview: String
+    public var posterImage: ImageView
     public var didAction: (() -> Void)?
 
     public init() {
-        self.path = String()
         self.title = String()
         self.overview = String()
+        self.posterImage = ImageView()
     }
 }
 
 public extension MovieCellViewModel {
 
     init(movie: Movie) {
-        self.path = "https://image.tmdb.org/t/p/w185/\(movie.posterPath)"
+        self.init()
         self.title = movie.title
         self.overview = movie.overview
+        if let path = movie.posterPath {
+            if let url = URL(string: "https://image.tmdb.org/t/p/w185\(path)") {
+                self.posterImage.kf.setImage(with: url)
+            }
+        }
     }
 }

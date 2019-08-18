@@ -87,7 +87,7 @@
 		6E1A8B6522C862CA0055B6D8 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		6E1A8B6622C862CA0055B6D8 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		6E1A8B6722C862CA0055B6D8 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
-		6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../NetworkLayer/Networking/Manager/NetworkManager.swift; sourceTree = "<group>"; };
 		6E1A8B6B22C862CA0055B6D8 /* MovieRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
 		6E1A8B6E22C862CA0055B6D8 /* HttpTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTask.swift; sourceTree = "<group>"; };
 		6E1A8B6F22C862CA0055B6D8 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -224,6 +224,7 @@
 		6E1A8B4F22C84B570055B6D8 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 				6E075F4D22C9629700CBCC8D /* Section */,
 				6E1A8BAE22C872BD0055B6D8 /* Cell */,
 				6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */,
@@ -267,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				6E1A8B6022C85FFB0055B6D8 /* Key.swift */,
-				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";

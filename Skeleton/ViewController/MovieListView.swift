@@ -9,11 +9,18 @@
 import LayoutKit
 import UIKit
 
+public protocol MovieListViewDelegate: class {
+    func didReachToScrollBottom(is loading: Bool)
+    func didPushToRefresh(is loading: Bool)
+}
+
 public class MovieListView: UIView {
 
     public let contentView: UIView
     public let tableView: UITableView
     private let dataSource: DataSource
+
+    public weak var delegate: MovieListViewDelegate?
 
     public var viewModel: MovieListViewModelProtocol? {
         didSet {
@@ -38,6 +45,7 @@ public class MovieListView: UIView {
     private func update() {
         let model = self.viewModel.unsafelyUnwrapped
         self.dataSource.sections = [MovieListSection(data: model.data)]
+        self.tableView.reloadData()
     }
 }
 
@@ -69,6 +77,26 @@ extension MovieListView: ViewCodable {
 }
 
 extension MovieListView: DataSourceDelegate {
+
+    public func fetchNextPage() {
+         delegate?.didReachToScrollBottom(is: true)
+    }
+
+    public func cancelNextPage() {
+         delegate?.didReachToScrollBottom(is: false)
+    }
+
+    public func loadData(forItemAtIndex: Int) {
+
+    }
+
+    public func cancelLoading(forItemAtIndex: Int) {
+
+    }
+
+    public func loadData(loading: Bool) {
+        delegate?.didReachToScrollBottom(is: loading)
+    }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 

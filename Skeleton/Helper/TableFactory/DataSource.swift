@@ -10,6 +10,11 @@ import UIKit
 
 public protocol DataSourceDelegate: class {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func loadData(loading: Bool)
+    func loadData(forItemAtIndex: Int)
+    func cancelLoading(forItemAtIndex: Int)
+    func fetchNextPage()
+    func cancelNextPage()
 }
 
 public class DataSource: NSObject {
@@ -96,6 +101,14 @@ extension DataSource: UIScrollViewDelegate {
 extension DataSource: UITableViewDataSourcePrefetching {
 
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        
+
+        indexPaths.forEach { indexPath in
+
+            let count = tableView.numberOfRows(inSection: 0)
+
+            if indexPath.row == count - 5 {
+                delegate?.fetchNextPage()
+            }
+        }
     }
 }

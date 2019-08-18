@@ -14,12 +14,17 @@ public class MovieListViewController: UIViewController {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
     }
 
-    var networkManager: NetworkManager
-    var isFetchInProgress: Bool
-    var currentPage: Int
+    private var networkManager: NetworkManager
+    private var isFetchInProgress: Bool
+    private var isNextPage: Bool
+    private var isSearching: Bool
+    private var totalPages: Int
+    private var currentPage: Int
+    private var isLoading: Bool
 
     private var movies: [Movie] {
         didSet {
+            currentPage += 1
             updateView()
         }
     }
@@ -28,7 +33,11 @@ public class MovieListViewController: UIViewController {
         self.networkManager = networkManager
         self.movies = []
         self.isFetchInProgress = false
-        self.currentPage = 0
+        self.isNextPage = true
+        self.currentPage = 1
+        self.totalPages = 1
+        self.isLoading = false
+        self.isSearching = false
         super.init(nibName: nil, bundle: nil)
         self.loadData()
     }
@@ -43,6 +52,7 @@ public class MovieListViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        mainView.delegate = self
     }
 
     override public func viewDidAppear(_ animated: Bool) {
@@ -51,23 +61,29 @@ public class MovieListViewController: UIViewController {
 
     // MARK: Private Metthods
 
-    private func loadData() {
+    private func loadData(pagination loadMore: Bool = false) {
 
-        guard !isFetchInProgress else {
-            return
-        }
+        if currentPage <= totalPages {
 
-        isFetchInProgress = true
-        self.networkManager.getNewMovies(page: 1) { result in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                switch result {
-                case .success(let data):
-                    self.isFetchInProgress = false
-                    self.currentPage = data.page
-                    self.movies = data.movies
-                case .failure(let error):
-                    self.isFetchInProgress = false
-                    print(error)
+            guard !isFetchInProgress else {
+                return
+            }
+
+            isFetchInProgress = true
+
+            self.networkManager.getNewMovies(page: currentPage, flag: isNextPage) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let data):
+                        self.isFetchInProgress = false
+                        self.currentPage = data.page
+                        print("AQUI: - \(self.currentPage)")
+                        self.totalPages = data.totalPages
+                        self.movies.append(contentsOf: data.movies)
+                    case .failure(let error):
+                        self.isFetchInProgress = false
+                        print(error)
+                    }
                 }
             }
         }
@@ -77,5 +93,17 @@ public class MovieListViewController: UIViewController {
 
     private func updateView() {
         mainView.viewModel = MovieListViewModel(movies: movies)
+    }
+}
+
+extension MovieListViewController: MovieListViewDelegate {
+
+    public func didReachToScrollBottom(is loading: Bool) {
+        isNextPage = loading
+        loadData()
+    }
+
+    public func didPushToRefresh(is loading: Bool) {
+
     }
 }

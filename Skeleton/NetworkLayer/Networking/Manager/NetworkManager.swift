@@ -8,6 +8,7 @@
 
 import Foundation
 
+//CRIAR UM SERVICE QUE IMPLEMENT E CHAME service.router....
 public struct NetworkManager {
 
     static let environment: Environment = .production
@@ -15,8 +16,12 @@ public struct NetworkManager {
 
     let router = Router<MovieRouter>()
 
-    func getNewMovies(page: Int, completion: @escaping (Result<PopularMovies>) -> Void) {
+    func getNewMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
 
+        if flag == false {
+            return router.cancel()
+        }
+        
         router.request(.newMovies(page: page)) { data, response, error in
 
             if error != nil {

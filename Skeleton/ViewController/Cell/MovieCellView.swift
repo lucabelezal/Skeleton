@@ -6,7 +6,6 @@
 //  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
-import Kingfisher
 import LayoutKit
 import UIKit
 
@@ -37,11 +36,13 @@ public class MovieViewCell: UITableViewCell, Reusable {
     }
 
     public func update() {
-        let model = viewModel.unsafelyUnwrapped
-        let url = URL(string: model.path)
-        posterImageView.kf.setImage(with: url)
-        titleLabel.text = model.title
-        overviewLabel.text = model.overview
+        DispatchQueue.main.async {
+            if let model = self.viewModel {
+                self.titleLabel.text = model.title
+                self.overviewLabel.text = model.overview
+                self.posterImageView.image = model.posterImage.image
+            }
+        }
     }
 }
 
