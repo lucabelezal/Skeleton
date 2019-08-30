@@ -50,6 +50,8 @@
 		6E64A67422E9344500A87269 /* Windless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E64A67322E9344500A87269 /* Windless.framework */; };
 		6E64A67622E953C400A87269 /* SkeletonDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64A67522E953C400A87269 /* SkeletonDisplayable.swift */; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
+		B3DA0E932319ED900072BE09 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DA0E922319ED900072BE09 /* CachedImageView.swift */; };
+		B3DA0E952319EDB70072BE09 /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DA0E942319EDB70072BE09 /* DiscardableImageCacheItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		6E64A67322E9344500A87269 /* Windless.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Windless.framework; path = Carthage/Build/iOS/Windless.framework; sourceTree = "<group>"; };
 		6E64A67522E953C400A87269 /* SkeletonDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDisplayable.swift; sourceTree = "<group>"; };
 		6ECCA80F22D44752001B91F6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B3DA0E922319ED900072BE09 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		B3DA0E942319EDB70072BE09 /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,9 +228,9 @@
 		6E1A8B4F22C84B570055B6D8 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 				6E075F4D22C9629700CBCC8D /* Section */,
 				6E1A8BAE22C872BD0055B6D8 /* Cell */,
+				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 				6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */,
 				6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */,
 				6E1A8B5422C84B7F0055B6D8 /* MovieListView.swift */,
@@ -312,6 +316,8 @@
 				6E1A8B9D22C86C0F0055B6D8 /* Reusable */,
 				6E1A8BA422C86C0F0055B6D8 /* ViewCodable.swift */,
 				6E075F5222C9ABBE00CBCC8D /* UIImageView+ Extension.swift */,
+				B3DA0E922319ED900072BE09 /* CachedImageView.swift */,
+				B3DA0E942319EDB70072BE09 /* DiscardableImageCacheItem.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				6E1A8B9122C8682C0055B6D8 /* NetworkResponse.swift in Sources */,
 				6E1A8BA622C86C0F0055B6D8 /* UICollectionView+Reusable.swift in Sources */,
 				6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */,
+				B3DA0E932319ED900072BE09 /* CachedImageView.swift in Sources */,
 				6E1A8BA822C86C0F0055B6D8 /* UITableView+Reusable.swift in Sources */,
 				6E075F4A22C9605A00CBCC8D /* DataSource.swift in Sources */,
 				6E1A8B9322C868920055B6D8 /* Environment.swift in Sources */,
@@ -522,6 +529,7 @@
 				6E1A8B8122C862CA0055B6D8 /* MovieRouter.swift in Sources */,
 				6E1A8B8922C862CA0055B6D8 /* Movie.swift in Sources */,
 				6E1A8B8722C862CA0055B6D8 /* EndPointType.swift in Sources */,
+				B3DA0E952319EDB70072BE09 /* DiscardableImageCacheItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

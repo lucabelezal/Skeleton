@@ -41,8 +41,8 @@ extension SkeletonDisplayable where Self: UIViewController {
 
     func showSkeleton() {
         let skeletons = skeletonViews(in: view)
-        let backgroundColor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 1.0).cgColor
-        let highlightColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0).cgColor
+        let backgroundColor = UIColor(red: 210.0 / 255.0, green: 210.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0).cgColor
+        let highlightColor = UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0).cgColor
 
         let skeletonLayer = CALayer()
         skeletonLayer.backgroundColor = backgroundColor

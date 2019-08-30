@@ -21,7 +21,7 @@ public struct NetworkManager {
         if flag == false {
             return router.cancel()
         }
-        
+
         router.request(.newMovies(page: page)) { data, response, error in
 
             if error != nil {

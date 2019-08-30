@@ -12,7 +12,7 @@ import UIKit
 public class MovieViewCell: UITableViewCell, Reusable {
 
     private var contentsView: UIView
-    private var posterImageView: UIImageView
+    private var posterImageView: CachedImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
 
@@ -24,7 +24,7 @@ public class MovieViewCell: UITableViewCell, Reusable {
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.contentsView = UIView()
-        self.posterImageView = UIImageView()
+        self.posterImageView = CachedImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
         super.init(style: style, reuseIdentifier: reuseIdentifier)

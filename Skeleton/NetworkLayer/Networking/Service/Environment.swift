@@ -23,4 +23,8 @@ public enum Environment {
             return "https://staging.themoviedb.org/3/movie/"
         }
     }
+
+    public static var baseImageURL: String {
+        return "https://image.tmdb.org/t/p/w185"
+    }
 }
