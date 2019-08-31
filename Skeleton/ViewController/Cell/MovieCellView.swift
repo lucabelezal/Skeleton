@@ -8,6 +8,7 @@
 
 import LayoutKit
 import UIKit
+import SkeletonView
 
 public class MovieViewCell: UITableViewCell, Reusable {
 
@@ -41,6 +42,7 @@ public class MovieViewCell: UITableViewCell, Reusable {
                 self.titleLabel.text = model.title
                 self.overviewLabel.text = model.overview
                 self.posterImageView.image = model.posterImage.image
+                self.contentsView.showAnimatedGradientSkeleton()
             }
         }
     }
@@ -52,6 +54,10 @@ extension MovieViewCell: ViewCodable {
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.numberOfLines = 2
         overviewLabel.numberOfLines = 0
+
+        posterImageView.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {
@@ -92,9 +98,9 @@ extension MovieViewCell: ViewCodable {
 
     func styles() {
         backgroundColor = .white
-        contentsView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+        contentsView.backgroundColor = #colorLiteral(red: 0, green: 0.9810667634, blue: 0.5736914277, alpha: 1)
         posterImageView.backgroundColor = .purple
-        titleLabel.backgroundColor = .green
+        titleLabel.backgroundColor = .orange
         overviewLabel.backgroundColor = .yellow
     }
 }
