@@ -29,6 +29,7 @@ public class MovieListViewController: UIViewController {
         }
     }
 
+    var isAnimateStart: Bool = false
     public init(networkManager: NetworkManager) {
         self.networkManager = networkManager
         self.movies = []
@@ -57,6 +58,7 @@ public class MovieListViewController: UIViewController {
 
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        LoadingShimmer.startCovering(mainView.tableView)
     }
 
     // MARK: Private Metthods

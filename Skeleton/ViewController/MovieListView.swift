@@ -7,6 +7,7 @@
 //
 
 import LayoutKit
+//import SkeletonView
 import UIKit
 
 public protocol MovieListViewDelegate: class {
@@ -16,9 +17,10 @@ public protocol MovieListViewDelegate: class {
 
 public class MovieListView: UIView {
 
-    public let contentView: UIView
+    typealias Cell = TableViewCell<MovieCellView, MovieCellViewModelProtocol>
+
     public let tableView: UITableView
-    private let dataSource: DataSource
+    //private let dataSource: DataSource
 
     public weak var delegate: MovieListViewDelegate?
 
@@ -29,9 +31,8 @@ public class MovieListView: UIView {
     }
 
     public override init(frame: CGRect) {
-        self.contentView = UIView()
         self.tableView = UITableView()
-        self.dataSource = DataSource(tableView: tableView)
+        //self.dataSource = DataSource(tableView: tableView)
         super.init(frame: frame)
         setupView()
     }
@@ -43,17 +44,25 @@ public class MovieListView: UIView {
     // MARK: Private Methods
 
     private func update() {
-        let model = self.viewModel.unsafelyUnwrapped
-        self.dataSource.sections = [MovieListSection(data: model.data)]
-        self.tableView.reloadData()
+//        let model = self.viewModel.unsafelyUnwrapped
+//        self.dataSource.sections = [MovieListSection(data: model.data)]
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+//            self.subviews.map { $0.showAnimatedGradientSkeleton() }
+        }
     }
 }
 
 extension MovieListView: ViewCodable {
 
     public func configure() {
-        dataSource.delegate = self
+//        dataSource.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.rowHeight = UITableView.automaticDimension
+//        tableView.isSkeletonable = true
+        tableView.register(cellType: Cell.self)
     }
 
     public func hierarchy() {
@@ -72,7 +81,6 @@ extension MovieListView: ViewCodable {
 
     public func styles() {
         backgroundColor = .lightGray
-        contentView.backgroundColor = .red
     }
 }
 
@@ -100,5 +108,52 @@ extension MovieListView: DataSourceDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
+    }
+}
+
+extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+
+//    public func numSections(in collectionSkeletonView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    public func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel?.items ?? 0
+//    }
+//
+//    public func collectionSkeletonView(_ skeletonView: UITableView,
+//                                       cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//        return Cell.reuseIdentifier
+//    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.items ?? 0
+    }
+
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
+//        cell.isSkeletonable = true
+        cell.viewModel = viewModel?.data[indexPath.row]
+        return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+
+        indexPaths.forEach { indexPath in
+
+            let count = tableView.numberOfRows(inSection: 0)
+
+            if indexPath.row == count - 5 {
+                delegate?.didReachToScrollBottom(is: true)
+            }
+        }
     }
 }

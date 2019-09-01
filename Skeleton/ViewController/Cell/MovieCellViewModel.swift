@@ -6,8 +6,8 @@
 //  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 public protocol MovieCellViewModelProtocol {
     var title: String { get }

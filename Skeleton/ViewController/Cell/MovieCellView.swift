@@ -7,15 +7,16 @@
 //
 
 import LayoutKit
+//import SkeletonView
 import UIKit
-import SkeletonView
 
-public class MovieViewCell: UITableViewCell, Reusable {
+public class MovieCellView: UIView, ViewModelOwner {
 
-    private var contentsView: UIView
+    private var contentView: UIView
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
+    public var isSelected: Bool
 
     public var viewModel: MovieCellViewModelProtocol? {
         didSet {
@@ -23,12 +24,13 @@ public class MovieViewCell: UITableViewCell, Reusable {
         }
     }
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        self.contentsView = UIView()
+    override init(frame: CGRect) {
+        self.contentView = UIView()
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.isSelected = false
+        super.init(frame: frame)
         setupView()
     }
 
@@ -42,32 +44,39 @@ public class MovieViewCell: UITableViewCell, Reusable {
                 self.titleLabel.text = model.title
                 self.overviewLabel.text = model.overview
                 self.posterImageView.image = model.posterImage.image
-                self.contentsView.showAnimatedGradientSkeleton()
             }
         }
     }
 }
 
-extension MovieViewCell: ViewCodable {
+extension MovieCellView: ViewCodable {
 
     func configure() {
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.numberOfLines = 2
         overviewLabel.numberOfLines = 0
 
-        posterImageView.isSkeletonable = true
-        titleLabel.isSkeletonable = true
-        overviewLabel.isSkeletonable = true
+//        shimmerAnimation = true
+//        contentView.shimmerAnimation = true
+//        contentView.shimmerAnimation = true
+//        posterImageView.shimmerAnimation = true
+//        titleLabel.shimmerAnimation = true
+//        overviewLabel.shimmerAnimation = true
+//        contentView.isSkeletonable = true
+
+//        posterImageView.isSkeletonable = true
+//        titleLabel.isSkeletonable = true
+//        overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {
-        contentsView.addView(posterImageView, titleLabel, overviewLabel)
-        addView(contentsView)
+        contentView.addView(posterImageView, titleLabel, overviewLabel)
+        addView(contentView)
     }
 
     func constraints() {
 
-        contentsView.layout.makeConstraints { make in
+        contentView.layout.makeConstraints { make in
             make.top.equalTo(self.layout.top, constant: 16)
             make.bottom.equalTo(self.layout.bottom, constant: -16)
             make.left.equalTo(self.layout.left, constant: 16)
@@ -75,16 +84,16 @@ extension MovieViewCell: ViewCodable {
         }
 
         posterImageView.layout.makeConstraints { make in
-            make.top.equalTo(contentsView.layout.top, constant: 8)
-            make.bottom.equalTo(contentsView.layout.bottom, constant: -8)
-            make.left.equalTo(contentsView.layout.left, constant: 8)
+            make.top.equalTo(contentView.layout.top, constant: 8)
+            make.bottom.equalTo(contentView.layout.bottom, constant: -8)
+            make.left.equalTo(contentView.layout.left, constant: 8)
             make.width.equalTo(constant: 150)
             make.height.equalTo(constant: 180)
         }
 
         titleLabel.layout.makeConstraints { make in
             make.top.equalTo(posterImageView.layout.top)
-            make.right.equalTo(contentsView.layout.right, constant: -8)
+            make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
         }
 
@@ -97,8 +106,8 @@ extension MovieViewCell: ViewCodable {
     }
 
     func styles() {
-        backgroundColor = .white
-        contentsView.backgroundColor = #colorLiteral(red: 0, green: 0.9810667634, blue: 0.5736914277, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0, green: 0.9810667634, blue: 0.5736914277, alpha: 1)
         posterImageView.backgroundColor = .purple
         titleLabel.backgroundColor = .orange
         overviewLabel.backgroundColor = .yellow
