@@ -6,6 +6,7 @@
 //  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
+import SkeletonView
 import UIKit
 
 public class MovieListViewController: UIViewController {
@@ -40,7 +41,6 @@ public class MovieListViewController: UIViewController {
         self.isLoading = false
         self.isSearching = false
         super.init(nibName: nil, bundle: nil)
-        self.loadData()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -48,22 +48,24 @@ public class MovieListViewController: UIViewController {
     }
 
     public override func loadView() {
-        self.view = MovieListView(frame: .zero)
+        view = MovieListView(frame: .zero)
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        loadData()
     }
 
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        LoadingShimmer.startCovering(mainView.tableView)
     }
 
     // MARK: Private Metthods
 
     private func loadData(pagination loadMore: Bool = false) {
+
+        view.showAnimatedGradientSkeleton()
 
         if currentPage <= totalPages {
 
@@ -74,7 +76,7 @@ public class MovieListViewController: UIViewController {
             isFetchInProgress = true
 
             self.networkManager.getNewMovies(page: currentPage, flag: isNextPage) { result in
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
@@ -82,9 +84,14 @@ public class MovieListViewController: UIViewController {
                         print("AQUI: - \(self.currentPage)")
                         self.totalPages = data.totalPages
                         self.movies.append(contentsOf: data.movies)
+
+                        self.view.hideSkeleton()
+
                     case .failure(let error):
                         self.isFetchInProgress = false
                         print(error)
+
+                        self.view.hideSkeleton()
                     }
                 }
             }

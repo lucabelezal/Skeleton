@@ -8,8 +8,7 @@
 
 import UIKit
 
-//swiftlint:disable identifier_name
-private var _tableViewShimmerAssociateObjectValue: Int = 1
+private var _tableViewShimmerAssociateObjectValue: Int = 1 // swiftlint:disable:this identifier_name
 
 // Accessible Method
 extension UITableView {
@@ -50,7 +49,6 @@ extension UITableView {
     }
 }
 
-//UITableView Internal gestion method
 extension UITableView {
     private func endShimmerReloadData() {
         self.dataSource = self.tableViewShimmer?.dataSourceBeforeShimmer

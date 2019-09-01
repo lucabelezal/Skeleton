@@ -59,16 +59,14 @@ public class LoadingShimmer: NSObject {
             return
         }
 
-        for subview in view?.subviews ?? [] {
-            if subview.tag == 1127 {
-                return
-            }
+        for subview in view?.subviews ?? [] where subview.tag == 1127 {
+            return
         }
 
         let coverableCellsIds = ["Cell1", "Cell1", "Cell1", "Cell1", "Cell1"]
-        if type(of: view!) === UITableView.self {
-            for i in 0..<coverableCellsIds.count {
-                getTableViewPath(view, index: i, coverableCellsIds: coverableCellsIds)
+        if let value = view, type(of: value) === UITableView.self {
+            for item in 0..<coverableCellsIds.count {
+                getTableViewPath(view, index: item, coverableCellsIds: coverableCellsIds)
             }
             addCover(view)
             return
@@ -96,20 +94,24 @@ public class LoadingShimmer: NSObject {
 
     }
 
-    func getTableViewPath(_ view: UIView?, index i: Int, coverableCellsIds: [Any]?) {
+    func getTableViewPath(_ view: UIView?, index: Int, coverableCellsIds: [Any]?) {
 
         let tableView = view as? UITableView
 
-        let cell: UITableViewCell? = tableView?.dequeueReusableCell(withIdentifier: coverableCellsIds?[i] as? String ?? "")
+        let cell: UITableViewCell? = tableView?.dequeueReusableCell(withIdentifier: coverableCellsIds?[index] as? String ?? "")
         let headerOffset = getHeaderOffset()
 
-        cell?.frame = CGRect(x: 0, y: (cell?.frame.size.height ?? 0.0) * CGFloat(i) + CGFloat(headerOffset), width: cell?.frame.size.width ?? 0.0, height: cell?.frame.size.height ?? 0.0)
+        cell?.frame = CGRect(x: 0,
+                             y: (cell?.frame.size.height ?? 0.0) * CGFloat(index) + CGFloat(headerOffset),
+                             width: cell?.frame.size.width ?? 0.0,
+                             height: cell?.frame.size.height ?? 0.0)
 
         cell?.layoutIfNeeded()
         for cellSubview in cell?.contentView.subviews ?? [] {
-            let defaultCoverblePath = UIBezierPath(roundedRect: cellSubview.bounds, cornerRadius: cellSubview.frame.size.height / 2.0)
+            let defaultCoverblePath = UIBezierPath(roundedRect: cellSubview.bounds,
+                                                   cornerRadius: cellSubview.frame.size.height / 2.0)
             var offsetPoint: CGPoint = cellSubview.convert(cellSubview.bounds, to: tableView).origin
-            if i == 0 {
+            if index == 0 {
                 if offsetPoint.y > cellSubview.frame.origin.y {
                     addOffsetflag = true
                 }
@@ -118,7 +120,8 @@ public class LoadingShimmer: NSObject {
                 offsetPoint.y -= CGFloat(headerOffset)
             }
             cellSubview.layoutIfNeeded()
-            defaultCoverblePath.apply(CGAffineTransform(translationX: offsetPoint.x, y: offsetPoint.y + CGFloat(headerOffset)))
+            defaultCoverblePath.apply(CGAffineTransform(translationX: offsetPoint.x,
+                                                        y: offsetPoint.y + CGFloat(headerOffset)))
 
             totalCoverablePath?.append(defaultCoverblePath)
         }
@@ -126,51 +129,59 @@ public class LoadingShimmer: NSObject {
     }
 
     func addCover(_ view: UIView?) {
-        viewCover?.frame = CGRect(x: 0, y: 0, width: view?.frame.size.width ?? 0.0, height: view?.frame.size.height ?? 0.0)
-        view?.addSubview(viewCover!)
-        let colorLayer = CAGradientLayer()
-        colorLayer.frame = view?.bounds ?? CGRect.zero
 
-        colorLayer.startPoint = CGPoint(x: -1.4, y: 0)
-        colorLayer.endPoint = CGPoint(x: 1.4, y: 0)
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: view?.frame.size.width ?? 0.0,
+                           height: view?.frame.size.height ?? 0.0)
 
-        colorLayer.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.01).cgColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor,
-            UIColor(red: 1, green: 1, blue: 1, alpha: 0.009).cgColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.04).cgColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.02).cgColor,
-        ]
+        if ((viewCover?.frame = frame) != nil), let viewCover = viewCover {
 
-        colorLayer.locations = [
-            NSNumber(value: Double(colorLayer.startPoint.x)),
-            NSNumber(value: Double(colorLayer.startPoint.x)),
-            NSNumber(value: 0),
-            NSNumber(value: 0.2),
-            NSNumber(value: 1.2),
-        ]
+            view?.addSubview(viewCover)
 
-        viewCover?.layer.addSublayer(colorLayer)
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = totalCoverablePath?.cgPath
-        maskLayer.fillColor = UIColor.red.cgColor
+            let colorLayer = CAGradientLayer()
+            colorLayer.frame = view?.bounds ?? CGRect.zero
 
-        colorLayer.mask = maskLayer
+            colorLayer.startPoint = CGPoint(x: -1.4, y: 0)
+            colorLayer.endPoint = CGPoint(x: 1.4, y: 0)
 
-        if let targetBackgroundColor = viewCover?.backgroundColor?.cgColor {
-            colorLayer.backgroundColor = targetBackgroundColor
-        } else {
-            colorLayer.backgroundColor = UIColor.white.cgColor
+            colorLayer.colors = [
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.01).cgColor,
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor,
+                UIColor(red: 1, green: 1, blue: 1, alpha: 0.009).cgColor,
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.04).cgColor,
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.02).cgColor,
+            ]
+
+            colorLayer.locations = [
+                NSNumber(value: Double(colorLayer.startPoint.x)),
+                NSNumber(value: Double(colorLayer.startPoint.x)),
+                NSNumber(value: 0),
+                NSNumber(value: 0.2),
+                NSNumber(value: 1.2),
+            ]
+
+            viewCover.layer.addSublayer(colorLayer)
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = totalCoverablePath?.cgPath
+            maskLayer.fillColor = UIColor.red.cgColor
+
+            colorLayer.mask = maskLayer
+
+            if let targetBackgroundColor = viewCover.backgroundColor?.cgColor {
+                colorLayer.backgroundColor = targetBackgroundColor
+            } else {
+                colorLayer.backgroundColor = UIColor.white.cgColor
+            }
+
+            let animation = CABasicAnimation(keyPath: "locations")
+            animation.fromValue = colorLayer.locations
+            animation.toValue = [NSNumber(value: 0), NSNumber(value: 1), NSNumber(value: 1), NSNumber(value: 1.2), NSNumber(value: 1.2)]
+            animation.duration = 0.9
+            animation.repeatCount = HUGE
+            animation.isRemovedOnCompletion = false
+            colorLayer.add(animation, forKey: "locations-layer")
         }
-
-        let animation = CABasicAnimation(keyPath: "locations")
-        animation.fromValue = colorLayer.locations
-        animation.toValue = [NSNumber(value: 0), NSNumber(value: 1), NSNumber(value: 1), NSNumber(value: 1.2), NSNumber(value: 1.2)]
-        animation.duration = 0.9
-        animation.repeatCount = HUGE
-        animation.isRemovedOnCompletion = false
-        colorLayer.add(animation, forKey: "locations-layer")
-
     }
 
     func getHeaderOffset() -> CGFloat {
@@ -184,13 +195,17 @@ public class LoadingShimmer: NSObject {
     func currentViewController() -> UIViewController? {
         let keyWindow: UIWindow? = UIApplication.shared.keyWindow
         var vc: UIViewController? = keyWindow?.rootViewController
-        while ((vc?.presentedViewController) != nil) {
-            vc = vc?.presentedViewController
 
-            if (vc is UINavigationController) {
-                vc = (vc as? UINavigationController)?.visibleViewController
-            } else if (vc is UITabBarController) {
-                vc = (vc as? UITabBarController)?.selectedViewController
+        while vc?.presentedViewController != nil {
+            vc = vc?.presentedViewController
+            if vc is UINavigationController {
+                if let navigation = vc as? UINavigationController {
+                    vc = navigation.visibleViewController
+                }
+            } else if vc is UITabBarController {
+                if let tabBar = vc as? UITabBarController {
+                    vc = tabBar.selectedViewController
+                }
             }
         }
         return vc
@@ -199,5 +214,4 @@ public class LoadingShimmer: NSObject {
     func currentNavigationController() -> UINavigationController? {
         return currentViewController()?.navigationController
     }
-
 }

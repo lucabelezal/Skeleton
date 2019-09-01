@@ -8,7 +8,8 @@
 
 import UIKit
 
-private var _withShimmerAssociateObjectValue: Int = 0
+private var _withShimmerAssociateObjectValue: Int = 0 // swiftlint:disable:this identifier_name
+
 extension UIView {
 
     private static let shimmer_tag = 9194
@@ -21,7 +22,8 @@ extension UIView {
     private var _withShimmer: Bool {
         get { return objc_getAssociatedObject(self, &_withShimmerAssociateObjectValue) as? Bool ?? false }
         set { return objc_setAssociatedObject(self, &_withShimmerAssociateObjectValue,
-                                            newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
+                                              newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
     }
 
     @objc func startShimmerAnimation() {

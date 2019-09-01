@@ -7,7 +7,7 @@
 //
 
 import LayoutKit
-//import SkeletonView
+import SkeletonView
 import UIKit
 
 public class MovieCellView: UIView, ViewModelOwner {
@@ -56,17 +56,11 @@ extension MovieCellView: ViewCodable {
         titleLabel.numberOfLines = 2
         overviewLabel.numberOfLines = 0
 
-//        shimmerAnimation = true
-//        contentView.shimmerAnimation = true
-//        contentView.shimmerAnimation = true
-//        posterImageView.shimmerAnimation = true
-//        titleLabel.shimmerAnimation = true
-//        overviewLabel.shimmerAnimation = true
-//        contentView.isSkeletonable = true
-
-//        posterImageView.isSkeletonable = true
-//        titleLabel.isSkeletonable = true
-//        overviewLabel.isSkeletonable = true
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        posterImageView.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {

@@ -7,7 +7,7 @@
 //
 
 import LayoutKit
-//import SkeletonView
+import SkeletonView
 import UIKit
 
 public protocol MovieListViewDelegate: class {
@@ -20,7 +20,6 @@ public class MovieListView: UIView {
     typealias Cell = TableViewCell<MovieCellView, MovieCellViewModelProtocol>
 
     public let tableView: UITableView
-    //private let dataSource: DataSource
 
     public weak var delegate: MovieListViewDelegate?
 
@@ -32,7 +31,6 @@ public class MovieListView: UIView {
 
     public override init(frame: CGRect) {
         self.tableView = UITableView()
-        //self.dataSource = DataSource(tableView: tableView)
         super.init(frame: frame)
         setupView()
     }
@@ -44,11 +42,9 @@ public class MovieListView: UIView {
     // MARK: Private Methods
 
     private func update() {
-//        let model = self.viewModel.unsafelyUnwrapped
-//        self.dataSource.sections = [MovieListSection(data: model.data)]
         DispatchQueue.main.async {
             self.tableView.reloadData()
-//            self.subviews.map { $0.showAnimatedGradientSkeleton() }
+            self.layoutSkeletonIfNeeded()
         }
     }
 }
@@ -56,13 +52,13 @@ public class MovieListView: UIView {
 extension MovieListView: ViewCodable {
 
     public func configure() {
-//        dataSource.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
-        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.isSkeletonable = true
+        tableView.rowHeight = 228
         tableView.register(cellType: Cell.self)
+        isSkeletonable = true
+        tableView.isSkeletonable = true
     }
 
     public func hierarchy() {
@@ -111,32 +107,21 @@ extension MovieListView: DataSourceDelegate {
     }
 }
 
-extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+extension MovieListView: SkeletonTableViewDataSource, SkeletonTableViewDelegate, UITableViewDataSourcePrefetching {
 
-//    public func numSections(in collectionSkeletonView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    public func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel?.items ?? 0
-//    }
-//
-//    public func collectionSkeletonView(_ skeletonView: UITableView,
-//                                       cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-//        return Cell.reuseIdentifier
-//    }
+    public func collectionSkeletonView(_ skeletonView: UITableView,
+                                       cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return Cell.reuseIdentifier
+    }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.items ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
-//        cell.isSkeletonable = true
+        cell.isSkeletonable = true
+        cell.contentView.isSkeletonable = true
         cell.viewModel = viewModel?.data[indexPath.row]
         return cell
     }

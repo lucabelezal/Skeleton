@@ -8,13 +8,11 @@
 
 import UIKit
 
-//swiftlint:disable identifier_name
-private var _collectionViewShimmerAssociateObjectValue: Int = 2
+private var _collectionViewShimmerAssociateObjectValue: Int = 2 // swiftlint:disable:this identifier_name
 
-// Accessible Method
 extension UICollectionView {
     func startShimmerAnimation(withIdentifier: String, numberOfRows: Int? = 2, numberOfSections: Int? = 2) {
-        // Activate swizzle method !
+
         UICollectionView.swizzle()
 
         addCollectionViewKey(key: self.hash)
@@ -44,7 +42,6 @@ extension UICollectionView {
     }
 }
 
-//UICollectionView Internal gestion method
 extension UICollectionView {
     private func endShimmerReloadData() {
         self.dataSource = self.collectionViewShimmer?.dataSourceBeforeShimmer
@@ -74,7 +71,6 @@ extension UICollectionView {
     }
 }
 
-// Internal Variable
 extension UICollectionView {
     var collectionViewShimmer: CollectionViewShimmer? {
         get {
@@ -101,7 +97,6 @@ extension UICollectionView {
     }
 }
 
-// Internal Shimmer protocol ( Delegate / DataSource )
 internal protocol CollectionViewShimmerDelegate: UICollectionViewDelegate, UICollectionViewDataSource { }
 
 internal class CollectionViewShimmer: NSObject {
@@ -125,7 +120,6 @@ internal class CollectionViewShimmer: NSObject {
     }
 }
 
-// MARK: - Collection Shimmer delegate 
 extension CollectionViewShimmer: CollectionViewShimmerDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfRows
@@ -141,7 +135,6 @@ extension CollectionViewShimmer: CollectionViewShimmerDelegate {
     }
 }
 
-// MARK: - Intercepte Cell instantiation
 private func swizzle(_ vc: UICollectionView.Type) {
     [
         (#selector(vc.dequeueReusableCell(withReuseIdentifier:for:)), #selector(vc.ksr_dequeueReusableCell(withReuseIdentifier:for:))),
@@ -166,7 +159,6 @@ private func swizzle(_ vc: UICollectionView.Type) {
     }
 }
 
-// MARK: - swizzle method : Intercept all cell initialisation
 private var hasSwizzled = false
 extension UICollectionView {
     private final class func swizzle() {
