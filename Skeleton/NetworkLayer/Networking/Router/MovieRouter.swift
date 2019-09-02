@@ -18,7 +18,9 @@ public enum MovieRouter {
 extension MovieRouter: EndPointType {
 
     public var baseURL: URL {
-        guard let url = URL(string: Environment.baseURL) else { fatalError("baseURL could not be configured.") }
+        guard let base = NetworkManager.baseURL, let url = URL(string: base) else {
+                fatalError("baseURL could not be configured.")
+        }
         return url
     }
 
@@ -46,7 +48,7 @@ extension MovieRouter: EndPointType {
                                       bodyEncoding: .urlEncoding,
                                       urlParameters: [
                                         "page": page,
-                                        "api_key": NetworkManager.MovieAPIKey,
+                                        "api_key": ConstantApi.apiKey,
                 ])
         default:
             return .request

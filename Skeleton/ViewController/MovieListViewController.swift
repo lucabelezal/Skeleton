@@ -15,7 +15,7 @@ public class MovieListViewController: UIViewController {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
     }
 
-    private var networkManager: NetworkManager
+    private var service: MovieServiceProtocol
     private var isFetchInProgress: Bool
     private var isNextPage: Bool
     private var isSearching: Bool
@@ -31,8 +31,8 @@ public class MovieListViewController: UIViewController {
     }
 
     var isAnimateStart: Bool = false
-    public init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
+    public init(service: MovieServiceProtocol) {
+        self.service = service
         self.movies = []
         self.isFetchInProgress = false
         self.isNextPage = true
@@ -75,7 +75,7 @@ public class MovieListViewController: UIViewController {
 
             isFetchInProgress = true
 
-            self.networkManager.getNewMovies(page: currentPage, flag: isNextPage) { result in
+            self.service.getNewMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     switch result {
                     case .success(let data):

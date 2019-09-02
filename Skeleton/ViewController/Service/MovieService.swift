@@ -1,23 +1,24 @@
 //
-//  NetworkManager.swift
-//  NetworkLayer
+//  MovieService.swift
+//  Skeleton
 //
-//  Created by Malcolm Kumwenda on 2018/03/11.
-//  Copyright © 2018 Malcolm Kumwenda. All rights reserved.
+//  Created by Lucas Nascimento on 01/09/19.
+//  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
 import Foundation
 
-//CRIAR UM SERVICE QUE IMPLEMENT E CHAME service.router....
-public struct NetworkManager {
+public class MovieService: MovieServiceProtocol {
 
-    static let environment: Environment = .production
-    static let MovieAPIKey = Key.apiKey
+    var networkManager: NetworkManagerProtocol
+    var router: Router<MovieRouter>
 
-    let router = Router<MovieRouter>()
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
+        self.router = Router<MovieRouter>()
+    }
 
-    func getNewMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
-
+    public func getNewMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
         if flag == false {
             return router.cancel()
         }
@@ -29,7 +30,7 @@ public struct NetworkManager {
             }
 
             if let response = response as? HTTPURLResponse {
-                let result = self.handleNetworkResponse(response)
+                let result = self.networkManager.handleNetworkResponse(response)
                 switch result {
                 case .success:
                     guard let responseData = data else {
@@ -50,16 +51,6 @@ public struct NetworkManager {
                     completion(.failure(networkFailureError))
                 }
             }
-        }
-    }
-
-    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
-        switch response.statusCode {
-        case 200...299: return .success(NetworkResponse.success.description)
-        case 401...500: return .failure(NetworkResponse.authenticationError)
-        case 501...599: return .failure(NetworkResponse.badRequest)
-        case 600: return .failure(NetworkResponse.outdated)
-        default: return .failure(NetworkResponse.failed)
         }
     }
 }
