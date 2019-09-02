@@ -44,7 +44,6 @@ public class MovieListView: UIView {
     private func update() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.layoutSkeletonIfNeeded()
         }
     }
 }
@@ -108,6 +107,14 @@ extension MovieListView: DataSourceDelegate {
 }
 
 extension MovieListView: SkeletonTableViewDataSource, SkeletonTableViewDelegate, UITableViewDataSourcePrefetching {
+
+    public func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return tableView.numberOfSections
+    }
+
+    public func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.items ?? 0
+    }
 
     public func collectionSkeletonView(_ skeletonView: UITableView,
                                        cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {

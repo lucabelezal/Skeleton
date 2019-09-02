@@ -65,8 +65,6 @@ public class MovieListViewController: UIViewController {
 
     private func loadData(pagination loadMore: Bool = false) {
 
-        view.showAnimatedGradientSkeleton()
-
         if currentPage <= totalPages {
 
             guard !isFetchInProgress else {
@@ -74,9 +72,10 @@ public class MovieListViewController: UIViewController {
             }
 
             isFetchInProgress = true
+            view.showAnimatedGradientSkeleton()
 
             self.service.getNewMovies(page: currentPage, flag: isNextPage) { result in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
