@@ -25,4 +25,8 @@ internal final class ConstantApi {
     static var stagingUrl: String {
         return "https://api.themoviedb.org/3/movie/"
     }
+
+    static var baseImageURL: String {
+        return "https://image.tmdb.org/t/p/w185"
+    }
 }

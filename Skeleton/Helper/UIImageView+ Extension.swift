@@ -1,35 +1,38 @@
-////
-////  UIImageView+ Extension.swift
-////  Skeleton
-////
-////  Created by Lucas Nascimento on 30/06/19.
-////  Copyright © 2019 Lucas Nascimento. All rights reserved.
-////
 //
+//  UIImageView+ Extension.swift
+//  Skeleton
+//
+//  Created by Lucas Nascimento on 30/06/19.
+//  Copyright © 2019 Lucas Nascimento. All rights reserved.
+//
+
 //import UIKit
-//
-//let imageCache = NSCache<AnyObject, AnyObject>()
+
+//let imageCache = NSCache<NSString, UIImage>()
 //
 //extension UIImageView {
 //
 //    func cacheImage(urlString: String) {
-//        let url = URL(string: urlString)
 //
-//        image = nil
-//
-//        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-//            self.image = imageFromCache
+//        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
+//            self.image = cachedImage
 //            return
 //        }
 //
-//        URLSession.shared.dataTask(with: url!) { data, _, error in
-//            if data != nil {
-//                DispatchQueue.main.async {
-//                    let imageToCache = UIImage(data: data!)
-//                    imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
-//                    self.image = imageToCache
+//        if let url = URL(string: urlString) {
+//            URLSession.shared.dataTask(with: url) { (data, _, error) in
+//
+//                if error != nil {
+//                    return
 //                }
-//            }
-//        }.resume()
+//
+//                DispatchQueue.main.async {
+//                    if let value = data, let downloadedImage = UIImage(data: value) {
+//                        imageCache.setObject(downloadedImage, forKey: urlString as NSString)
+//                        self.image = downloadedImage
+//                    }
+//                }
+//            }.resume()
+//        }
 //    }
 //}
