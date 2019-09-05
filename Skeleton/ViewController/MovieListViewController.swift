@@ -53,6 +53,7 @@ public class MovieListViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        title = "Filmes populares"
         mainView.delegate = self
         loadData()
     }
@@ -74,7 +75,7 @@ public class MovieListViewController: UIViewController {
             isFetchInProgress = true
             view.showAnimatedGradientSkeleton()
 
-            self.service.getNewMovies(page: currentPage, flag: isNextPage) { result in
+            self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):

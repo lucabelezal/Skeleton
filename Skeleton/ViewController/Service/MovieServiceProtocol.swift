@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol MovieServiceProtocol: class {
-    func getNewMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void)
+    func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void)
 }

@@ -12,7 +12,7 @@ import UIKit
 
 public class MovieCellView: UIView, ViewModelOwner {
 
-    private var contentView: UIView
+    private var contentView: CardView
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
@@ -25,7 +25,7 @@ public class MovieCellView: UIView, ViewModelOwner {
     }
 
     override init(frame: CGRect) {
-        self.contentView = UIView()
+        self.contentView = CardView()
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
@@ -50,7 +50,7 @@ public class MovieCellView: UIView, ViewModelOwner {
 extension MovieCellView: ViewCodable {
 
     func configure() {
-        posterImageView.contentMode = .scaleAspectFit
+        posterImageView.contentMode = .scaleAspectFill
         titleLabel.numberOfLines = 0
         overviewLabel.numberOfLines = 0
 
@@ -76,16 +76,16 @@ extension MovieCellView: ViewCodable {
         }
 
         posterImageView.layout.makeConstraints { make in
-            make.top.equalTo(contentView.layout.top, constant: 8)
-            make.bottom.equalTo(contentView.layout.bottom, constant: -8)
-            make.left.equalTo(contentView.layout.left, constant: 8)
-            make.width.equalTo(constant: 120)
+            make.top.equalTo(contentView.layout.top)
+            make.bottom.equalTo(contentView.layout.bottom)
+            make.left.equalTo(contentView.layout.left)
+            make.width.equalTo(constant: 160)
         }
 
         titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         titleLabel.layout.makeConstraints { make in
-            make.top.equalTo(posterImageView.layout.top)
+            make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
         }
@@ -94,17 +94,15 @@ extension MovieCellView: ViewCodable {
         overviewLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         overviewLabel.layout.makeConstraints { make in
             make.top.equalTo(titleLabel.layout.bottom, constant: 8)
-            make.bottom.equalTo(posterImageView.layout.bottom)
+            make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(titleLabel.layout.left)
             make.right.equalTo(titleLabel.layout.right)
         }
     }
 
     func styles() {
-        backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        contentView.backgroundColor = #colorLiteral(red: 0, green: 0.9810667634, blue: 0.5736914277, alpha: 1)
-        posterImageView.backgroundColor = .purple
-        titleLabel.backgroundColor = .orange
-        overviewLabel.backgroundColor = .yellow
+        backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
+        overviewLabel.textColor = .darkGray
     }
 }

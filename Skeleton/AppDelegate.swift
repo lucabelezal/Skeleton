@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         let networkManager = NetworkManager(environment: .production)
         let controller = MovieListViewController(service: MovieService(networkManager: networkManager))
-        window?.rootViewController = UINavigationController(rootViewController: controller)
+        let navigation = UINavigationController(rootViewController: controller)
+        navigation.navigationBar.prefersLargeTitles = true
+        window?.rootViewController = navigation
         return true
     }
 
