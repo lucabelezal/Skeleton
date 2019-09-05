@@ -39,12 +39,10 @@ public class MovieCellView: UIView, ViewModelOwner {
     }
 
     public func update() {
-        DispatchQueue.main.async {
-            if let model = self.viewModel {
-                self.titleLabel.text = model.title
-                self.overviewLabel.text = model.overview
-                self.posterImageView.image = model.posterImage.image
-            }
+        if let model = self.viewModel {
+            self.titleLabel.text = model.title
+            self.overviewLabel.text = model.overview
+            self.posterImageView.image = model.posterImage.image
         }
     }
 }
@@ -53,7 +51,7 @@ extension MovieCellView: ViewCodable {
 
     func configure() {
         posterImageView.contentMode = .scaleAspectFit
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 0
         overviewLabel.numberOfLines = 0
 
         isSkeletonable = true
@@ -81,19 +79,22 @@ extension MovieCellView: ViewCodable {
             make.top.equalTo(contentView.layout.top, constant: 8)
             make.bottom.equalTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(contentView.layout.left, constant: 8)
-            make.width.equalTo(constant: 150)
-            make.height.equalTo(constant: 180)
+            make.width.equalTo(constant: 120)
         }
 
+        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         titleLabel.layout.makeConstraints { make in
             make.top.equalTo(posterImageView.layout.top)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
         }
 
+        overviewLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        overviewLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         overviewLabel.layout.makeConstraints { make in
             make.top.equalTo(titleLabel.layout.bottom, constant: 8)
-            make.bottom.lessThanOrEqualTo(posterImageView.layout.bottom)
+            make.bottom.equalTo(posterImageView.layout.bottom)
             make.left.equalTo(titleLabel.layout.left)
             make.right.equalTo(titleLabel.layout.right)
         }

@@ -12,7 +12,6 @@
 		6E075F4F22C962B300CBCC8D /* MovieListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E075F4E22C962B300CBCC8D /* MovieListSection.swift */; };
 		6E075F5122C9675200CBCC8D /* PopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E075F5022C9675200CBCC8D /* PopularMovies.swift */; };
 		6E075F5322C9ABBE00CBCC8D /* UIImageView+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E075F5222C9ABBE00CBCC8D /* UIImageView+ Extension.swift */; };
-		6E075F5522C9C1EF00CBCC8D /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E075F5422C9C1EF00CBCC8D /* Kingfisher.framework */; };
 		6E0FCE7D231AF75600E85079 /* ViewModelOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0FCE7C231AF75600E85079 /* ViewModelOwner.swift */; };
 		6E0FCE7F231AF77700E85079 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0FCE7E231AF77700E85079 /* TableViewCell.swift */; };
 		6E0FCE86231B054F00E85079 /* ShimmerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0FCE81231B054F00E85079 /* ShimmerOptions.swift */; };
@@ -148,7 +147,6 @@
 				6E86481A2314D6270031B3F1 /* ShimmerSwift.framework in Frameworks */,
 				6E86481B2314D6270031B3F1 /* SkeletonView.framework in Frameworks */,
 				6E64A67422E9344500A87269 /* Windless.framework in Frameworks */,
-				6E075F5522C9C1EF00CBCC8D /* Kingfisher.framework in Frameworks */,
 				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +271,6 @@
 				6E8D0E1E231C7479002A6861 /* Service */,
 				6E075F4D22C9629700CBCC8D /* Section */,
 				6E1A8BAE22C872BD0055B6D8 /* Cell */,
-				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 				6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */,
 				6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */,
 				6E1A8B5422C84B7F0055B6D8 /* MovieListView.swift */,
@@ -522,7 +519,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/LayoutKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Windless.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ShimmerSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SkeletonView.framework",
@@ -532,7 +528,6 @@
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LayoutKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Kingfisher.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Windless.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShimmerSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SkeletonView.framework",

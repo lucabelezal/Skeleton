@@ -1,5 +1,4 @@
 github "lednascimento/LayoutKit" ~> 1.0.0
-github "onevcat/Kingfisher" ~> 5.0
 github "Interactive-Studio/Windless" ~> 0.1.5
 github "BeauNouvelle/ShimmerSwift"
 github "Juanpe/SkeletonView"
