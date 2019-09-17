@@ -33,9 +33,9 @@ jobs:
          CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
          destination: ${{ matrix.destination }}
         run: |
-          set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2'
+          set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=12.2'
           #set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
-          curl -s https://codecov.io/bash -J 'Skeleton' -t $CODECOV_TOKEN | bash
+          #curl -s https://codecov.io/bash -J 'Skeleton' -t $CODECOV_TOKEN | bash
       - name: Sonar Scanner
         run: |
           sonar-scanner \
