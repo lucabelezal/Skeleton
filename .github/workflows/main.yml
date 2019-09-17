@@ -6,8 +6,11 @@ on:
     - develop
     - release/*
 jobs:
-  setup:
+  test:
     runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=12.4,name=iPhone XR']
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -25,15 +28,6 @@ jobs:
           rm $HOME/.sonar/sonar-scanner.zip
           export PATH=$SONAR_SCANNER_HOME/bin:$PATH
           export SONAR_SCANNER_OPTS="-server" 
-  test:
-    needs: setup
-    runs-on: macOS-latest
-    strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,OS=12.4,name=iPhone XR']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
       - name: Clean, Build and Test
         env: 
          CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
@@ -49,5 +43,6 @@ jobs:
             -Dsonar.sources=. \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=8d0dad983b28eba254572bb2daeb8a2254b28354
+
 
 
