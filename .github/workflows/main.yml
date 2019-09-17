@@ -1,12 +1,30 @@
 name: CI      
-on: #pull_request
+on:
   push:
     branches:
     - master
     - develop
     - release/*
 jobs:
+  setup:
+    runs-on: macOS-latest
+    steps:
+      - name: Carthage
+        run: |
+          set -o pipefail && carthage update --platform iOS --no-use-binaries
+      - name: Scanner
+        run: |  
+          export SONAR_SCANNER_VERSION=4.0.0.1744
+          export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-macosx
+          rm -rf $SONAR_SCANNER_HOME
+          mkdir -p $SONAR_SCANNER_HOME
+          curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-macosx.zip
+          unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+          rm $HOME/.sonar/sonar-scanner.zip
+          export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+          export SONAR_SCANNER_OPTS="-server" 
   test:
+    needs: setup
     runs-on: macOS-latest
     strategy:
         matrix:
@@ -20,3 +38,15 @@ jobs:
           bash <(curl -s https://codecov.io/bash)
         env: 
          destination: ${{ matrix.destination }}
+  scanner:
+    needs: [setup, test]
+    runs-on: macOS-latest
+    steps:
+      - name: Sonar Scanner
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=lucabelezal_Skeleton \
+            -Dsonar.organization=skeleton \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=6f2f5950b1a412d55a3c3c4841ada5ce941407d4
