@@ -9,9 +9,10 @@ jobs:
   setup:
     runs-on: macOS-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@master
       - name: Carthage
         run: |
-          cd Skeleton
           set -o pipefail && carthage update --platform iOS --no-use-binaries
       - name: Scanner
         run: |  
