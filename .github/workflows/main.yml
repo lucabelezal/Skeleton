@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Carthage
         run: |
+          cd Skeleton
           set -o pipefail && carthage update --platform iOS --no-use-binaries
       - name: Scanner
         run: |  
