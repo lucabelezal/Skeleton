@@ -41,10 +41,6 @@ jobs:
         run: |
           set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
           curl -s https://codecov.io/bash -J 'Skeleton' -t $CODECOV_TOKEN | bash
-  scanner:
-    needs: [setup, test]
-    runs-on: macOS-latest
-    steps:
       - name: Sonar Scanner
         run: |
           sonar-scanner \
@@ -52,4 +48,6 @@ jobs:
             -Dsonar.organization=skeleton \
             -Dsonar.sources=. \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=6f2f5950b1a412d55a3c3c4841ada5ce941407d4
+            -Dsonar.login=8d0dad983b28eba254572bb2daeb8a2254b28354
+
+
