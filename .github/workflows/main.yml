@@ -17,6 +17,28 @@ jobs:
       - name: Carthage
         run: |
           set -o pipefail && carthage update --platform iOS --no-use-binaries
+      - name: Sonar   
+        run: |   
+          brew install sonar
+          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+      - name: Sonar-scanner   
+        run: |   
+          brew install sonar-scanner 
+      - name: Xctool  
+        run: |   
+          brew install xctool
+      - name: OCLint  
+        run: |   
+          brew tap oclint/formulae
+          brew install oclint
+      - name: Gcovr  
+        run: |   
+          brew install gcovr
+      - name: Set environment variables for Sonar Home
+        run: |
+          export SONAR_HOME=/usr/local/Cellar/sonar-runner/2.4/libexec
+          export SONAR=$SONAR_HOME/bin
+          export PATH=$SONAR:$PATH
       - name: Scanner
         run: |  
           export SONAR_SCANNER_VERSION=4.0.0.1744
