@@ -1,4 +1,4 @@
 # Skeleton
 
-![](https://github.com/lucabelezal/Skeleton/workflows/CI/badge.svg)
+![](https://github.com/lucabelezal/Skeleton/workflows/GitHub Actions/badge.svg)
 
