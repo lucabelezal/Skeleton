@@ -8,9 +8,6 @@ on:
 jobs:
   setup:
     runs-on: macOS-latest
-    strategy:
-         matrix:
-           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
     steps:       
       - name: Install Lint
         run: |
@@ -20,6 +17,10 @@ jobs:
           set -o pipefail && carthage update --platform iOS --no-use-binaries
   build:
     needs: setup
+    runs-on: macOS-latest
+    strategy:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -31,6 +32,10 @@ jobs:
           set -o pipefail && xcodebuild clean build -scheme Skeleton -destination "${destination}" | xcpretty
   test:
     needs: [setup, build]
+    runs-on: macOS-latest
+    strategy:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
     steps:
       - name: Checkout
         uses: actions/checkout@master
