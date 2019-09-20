@@ -6,66 +6,36 @@ on:
     - develop
     - release/*
 jobs:
-  test:
+  setup:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator,OS=12.2,name=iPhone Xʀ']
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
+      - name: Install Lint
+        run: |
+          set -o pipefail && brew install swiftlint
+      - name: Install Carthage
+        run: |
+          set -o pipefail && carthage update --platform iOS --no-use-binaries
+  build:
+    needs: setup
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Carthage
-        run: |
-          set -o pipefail && carthage update --platform iOS --no-use-binaries
-      - name: Sonar   
-        run: |   
-          brew install sonar
-          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
-      - name: Sonar-scanner   
-        run: |   
-          brew install sonar-scanner 
-      - name: Xctool  
-        run: |   
-          brew install xctool
-      - name: OCLint  
-        run: |   
-          brew tap oclint/formulae
-          brew install oclint
-      - name: Gcovr  
-        run: |   
-          brew install gcovr
-      - name: Set environment variables for Sonar Home
-        run: |
-          export SONAR_HOME=/usr/local/Cellar/sonar-runner/2.4/libexec
-          export SONAR=$SONAR_HOME/bin
-          export PATH=$SONAR:$PATH
-      - name: Scanner
-        run: |  
-          export SONAR_SCANNER_VERSION=4.0.0.1744
-          export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-macosx
-          rm -rf $SONAR_SCANNER_HOME
-          mkdir -p $SONAR_SCANNER_HOME
-          curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-macosx.zip
-          unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-          rm $HOME/.sonar/sonar-scanner.zip
-          export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-          export SONAR_SCANNER_OPTS="-server" 
-      - name: Clean, Build and Test
+      - name: Build
         env: 
          CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
          destination: ${{ matrix.destination }}
         run: |
-          set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=12.2'
-          #set -o pipefail && xcodebuild clean build test -project Skeleton.xcodeproj -scheme Skeleton -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
-          #curl -s https://codecov.io/bash -J 'Skeleton' -t $CODECOV_TOKEN | bash
-      - name: Sonar Scanner
+          set -o pipefail && xcodebuild clean build -scheme Skeleton -destination "${destination}" | xcpretty
+  test:
+    needs: [setup, build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Test
+        env: 
+         destination: ${{ matrix.destination }}
         run: |
-          sonar-scanner \
-            -Dsonar.projectKey=lucabelezal_Skeleton \
-            -Dsonar.organization=skeleton \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=8d0dad983b28eba254572bb2daeb8a2254b28354
-
-
+          set -o pipefail && xcodebuild test -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
 
