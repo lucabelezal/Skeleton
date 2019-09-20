@@ -5,11 +5,13 @@ on:
     - master
     - develop
     - release/*
-jobs:
-  setup:
-    name: Install dependencies
+jobs:  
+  test:
     runs-on: macOS-latest
-    steps:       
+    strategy:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
+    steps:
       - name: Install Lint
         run: |
           set -o pipefail && brew install swiftlint
@@ -21,32 +23,12 @@ jobs:
       - name: Run Carthage
         run: |
           set -o pipefail && carthage update --platform iOS --no-use-binaries
-  build:
-    name: Run Build
-    needs: setup
-    runs-on: macOS-latest
-    strategy:
-         matrix:
-           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
       - name: Build
         env: 
           CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
           destination: ${{ matrix.destination }}
         run: |
           set -o pipefail && xcodebuild clean build -scheme Skeleton -destination "${destination}" | xcpretty
-  test:
-    name: Run Test
-    needs: [setup, build]
-    runs-on: macOS-latest
-    strategy:
-         matrix:
-           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
       - name: Test
         env: 
          destination: ${{ matrix.destination }}
