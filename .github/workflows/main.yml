@@ -5,13 +5,10 @@ on:
     - master
     - develop
     - release/*
-jobs:  
-  test:
+jobs:
+  setup:
     runs-on: macOS-latest
-    strategy:
-         matrix:
-           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
-    steps:
+    steps:       
       - name: Install Lint
         run: |
           set -o pipefail && brew install swiftlint
