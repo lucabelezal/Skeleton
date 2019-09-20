@@ -6,8 +6,11 @@ on:
     - develop
     - release/*
 jobs:
-  setup:
+  test:
     runs-on: macOS-latest
+    strategy:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
     steps:       
       - name: Install Lint
         run: |
@@ -20,13 +23,13 @@ jobs:
       - name: Run Carthage
         run: |
           set -o pipefail && carthage update --platform iOS --no-use-binaries
-      - name: Build
+      - name: Run Build
         env: 
           CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
           destination: ${{ matrix.destination }}
         run: |
           set -o pipefail && xcodebuild clean build -scheme Skeleton -destination "${destination}" | xcpretty
-      - name: Test
+      - name: Run Test
         env: 
          destination: ${{ matrix.destination }}
         run: |
