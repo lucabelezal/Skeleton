@@ -7,6 +7,7 @@ on:
     - release/*
 jobs:
   setup:
+    name: Install dependencies
     runs-on: macOS-latest
     steps:       
       - name: Install Lint
@@ -21,6 +22,7 @@ jobs:
         run: |
           set -o pipefail && carthage update --platform iOS --no-use-binaries
   build:
+    name: Run Build
     needs: setup
     runs-on: macOS-latest
     strategy:
@@ -36,6 +38,7 @@ jobs:
         run: |
           set -o pipefail && xcodebuild clean build -scheme Skeleton -destination "${destination}" | xcpretty
   test:
+    name: Run Test
     needs: [setup, build]
     runs-on: macOS-latest
     strategy:
