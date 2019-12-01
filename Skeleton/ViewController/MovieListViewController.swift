@@ -39,7 +39,6 @@ public class MovieListViewController: UIViewController {
         self.isLoading = false
         self.isSearching = false
         super.init(nibName: nil, bundle: nil)
-        self.loadData()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -53,6 +52,7 @@ public class MovieListViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        loadData()
     }
 
     override public func viewDidAppear(_ animated: Bool) {
