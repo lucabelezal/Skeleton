@@ -1,9 +1,9 @@
 //
 //  NetworkManager.swift
-//  NetworkLayer
+//  Skeleton
 //
-//  Created by Malcolm Kumwenda on 2018/03/11.
-//  Copyright © 2018 Malcolm Kumwenda. All rights reserved.
+//  Created by Lucas Nascimento on 29/06/19.
+//  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
 import Foundation

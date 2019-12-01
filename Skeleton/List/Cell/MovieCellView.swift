@@ -10,31 +10,31 @@ import LayoutKit
 import UIKit
 
 public class MovieViewCell: UITableViewCell, Reusable {
-
-    private var contentsView: UIView
+    
+    private var contentsView: GradientView
     private var posterImageView: CachedImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
-
+    
     public var viewModel: MovieCellViewModelProtocol? {
         didSet {
             update()
         }
     }
-
+    
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        self.contentsView = UIView()
+        self.contentsView = GradientView()
         self.posterImageView = CachedImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     public func update() {
         DispatchQueue.main.async {
             if let model = self.viewModel {
@@ -47,27 +47,27 @@ public class MovieViewCell: UITableViewCell, Reusable {
 }
 
 extension MovieViewCell: ViewCodable {
-
+    
     func configure() {
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.numberOfLines = 2
         overviewLabel.numberOfLines = 0
     }
-
+    
     func hierarchy() {
         contentsView.addView(posterImageView, titleLabel, overviewLabel)
         addView(contentsView)
     }
-
+    
     func constraints() {
-
+        
         contentsView.layout.makeConstraints { make in
             make.top.equalTo(self.layout.top, constant: 16)
             make.bottom.equalTo(self.layout.bottom, constant: -16)
             make.left.equalTo(self.layout.left, constant: 16)
             make.right.equalTo(self.layout.right, constant: -16)
         }
-
+        
         posterImageView.layout.makeConstraints { make in
             make.top.equalTo(contentsView.layout.top, constant: 8)
             make.bottom.equalTo(contentsView.layout.bottom, constant: -8)
@@ -75,13 +75,13 @@ extension MovieViewCell: ViewCodable {
             make.width.equalTo(constant: 150)
             make.height.equalTo(constant: 180)
         }
-
+        
         titleLabel.layout.makeConstraints { make in
             make.top.equalTo(posterImageView.layout.top)
             make.right.equalTo(contentsView.layout.right, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
         }
-
+        
         overviewLabel.layout.makeConstraints { make in
             make.top.equalTo(titleLabel.layout.bottom, constant: 8)
             make.bottom.lessThanOrEqualTo(posterImageView.layout.bottom)
@@ -89,12 +89,18 @@ extension MovieViewCell: ViewCodable {
             make.right.equalTo(titleLabel.layout.right)
         }
     }
-
+    
     func styles() {
         backgroundColor = .white
         contentsView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
         posterImageView.backgroundColor = .purple
         titleLabel.backgroundColor = .green
         overviewLabel.backgroundColor = .yellow
+    }
+}
+
+extension MovieViewCell: GradientsOwner {
+    public var gradientLayers: [CAGradientLayer] {
+        return [contentsView.gradientLayer]
     }
 }

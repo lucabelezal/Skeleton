@@ -1,9 +1,9 @@
 //
 //  NetworkLogger.swift
-//  NetworkLayer
+//  Skeleton
 //
 //  Created by Malcolm Kumwenda on 2018/03/11.
-//  Copyright © 2018 Malcolm Kumwenda. All rights reserved.
+//  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
 import Foundation

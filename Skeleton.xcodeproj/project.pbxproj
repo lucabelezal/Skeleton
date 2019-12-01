@@ -81,7 +81,7 @@
 		6E1A8B6522C862CA0055B6D8 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		6E1A8B6622C862CA0055B6D8 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		6E1A8B6722C862CA0055B6D8 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
-		6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../NetworkLayer/Networking/Manager/NetworkManager.swift; sourceTree = "<group>"; };
+		6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6E1A8B6B22C862CA0055B6D8 /* MovieRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
 		6E1A8B6E22C862CA0055B6D8 /* HttpTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTask.swift; sourceTree = "<group>"; };
 		6E1A8B6F22C862CA0055B6D8 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -167,10 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				6E1A8B2322C837080055B6D8 /* AppDelegate.swift */,
-				6E1A8B9A22C86BA30055B6D8 /* Helper */,
-				6E1A8B4F22C84B570055B6D8 /* ViewController */,
-				6E1A8B6222C862CA0055B6D8 /* NetworkLayer */,
+				6E1A8B4F22C84B570055B6D8 /* List */,
 				6E1A8B4922C83DD60055B6D8 /* Skeleton */,
+				6E1A8B6222C862CA0055B6D8 /* NetworkLayer */,
+				6E1A8B9A22C86BA30055B6D8 /* Helper */,
 				6E1A8B4822C83DA30055B6D8 /* Resoures */,
 			);
 			path = Skeleton;
@@ -212,17 +212,17 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
-		6E1A8B4F22C84B570055B6D8 /* ViewController */ = {
+		6E1A8B4F22C84B570055B6D8 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				6E252DEC239458B700FA5851 /* Service */,
 				6E075F4D22C9629700CBCC8D /* Section */,
 				6E1A8BAE22C872BD0055B6D8 /* Cell */,
-				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
 				6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */,
 				6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */,
 				6E1A8B5422C84B7F0055B6D8 /* MovieListView.swift */,
 			);
-			path = ViewController;
+			path = List;
 			sourceTree = "<group>";
 		};
 		6E1A8B6222C862CA0055B6D8 /* NetworkLayer */ = {
@@ -328,6 +328,14 @@
 				6ECCA80F22D44752001B91F6 /* CardView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E252DEC239458B700FA5851 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6E1A8B6922C862CA0055B6D8 /* NetworkManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
