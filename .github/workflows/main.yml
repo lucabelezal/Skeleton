@@ -10,7 +10,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
          matrix:
-           destination: ['platform=iOS Simulator,OS=latest,name=iPhone Xʀ']
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
     steps:       
       - name: Install Lint
         run: |
