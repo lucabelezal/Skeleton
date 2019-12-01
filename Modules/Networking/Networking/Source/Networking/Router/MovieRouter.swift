@@ -9,10 +9,10 @@
 import Foundation
 
 public enum MovieRouter {
-    case recommended(id:Int)
-    case popular(page:Int)
-    case newMovies(page:Int)
-    case video(id:Int)
+    case recommended(id: Int)
+    case popular(page: Int)
+    case newMovies(page: Int)
+    case video(id: Int)
 }
 
 extension MovieRouter: EndPointType {

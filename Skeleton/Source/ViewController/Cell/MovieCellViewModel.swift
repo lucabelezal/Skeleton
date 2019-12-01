@@ -6,7 +6,6 @@
 //  Copyright © 2019 Lucas Nascimento. All rights reserved.
 //
 
-import Kingfisher
 import Networking
 import UIKit
 
