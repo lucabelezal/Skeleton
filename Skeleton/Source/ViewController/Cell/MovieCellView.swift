@@ -54,11 +54,13 @@ extension MovieCellView: ViewCodable {
         titleLabel.numberOfLines = 0
         overviewLabel.numberOfLines = 0
 
-        //shimmerAnimation = true
-        //contentView.shimmerAnimation = true
-        posterImageView.shimmerAnimation = true
-        titleLabel.shimmerAnimation = true
-        overviewLabel.shimmerAnimation = true
+//        posterImageView.shimmerAnimation = true
+//        titleLabel.shimmerAnimation = true
+//        overviewLabel.shimmerAnimation = true
+        
+        posterImageView.withShimmer = true
+        titleLabel.withShimmer = true
+        overviewLabel.withShimmer = true
 
         //isSkeletonable = true
         //contentView.isSkeletonable = true

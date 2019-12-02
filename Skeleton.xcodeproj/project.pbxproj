@@ -31,9 +31,11 @@
 		6E252DEF23946E9600FA5851 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DEE23946E9600FA5851 /* ViewController+Extension.swift */; };
 		6E252DF323947A3D00FA5851 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DF223947A3D00FA5851 /* UIImageView+Extension.swift */; };
 		6E252DF523948F9D00FA5851 /* UIImageView+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */; };
-		6E64A67422E9344500A87269 /* Windless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E64A67322E9344500A87269 /* Windless.framework */; };
-		6E86481A2314D6270031B3F1 /* ShimmerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8648182314D6270031B3F1 /* ShimmerSwift.framework */; };
-		6E86481B2314D6270031B3F1 /* SkeletonView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8648192314D6270031B3F1 /* SkeletonView.framework */; };
+		6E252E0823949D4800FA5851 /* UIView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */; };
+		6E252E0923949D4800FA5851 /* UICollectionView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */; };
+		6E252E0A23949D4800FA5851 /* ShimmerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */; };
+		6E252E0B23949D4800FA5851 /* UITableView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */; };
+		6E252E0C23949D4800FA5851 /* ShimmerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0723949D4700FA5851 /* ShimmerOptions.swift */; };
 		6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */; };
 		6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E21231C74D4002A6861 /* MovieService.swift */; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
@@ -96,6 +98,11 @@
 		6E252DEE23946E9600FA5851 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		6E252DF223947A3D00FA5851 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Cache.swift"; sourceTree = "<group>"; };
+		6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmer.swift"; sourceTree = "<group>"; };
+		6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Shimmer.swift"; sourceTree = "<group>"; };
+		6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerAnimation.swift; sourceTree = "<group>"; };
+		6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Shimmer.swift"; sourceTree = "<group>"; };
+		6E252E0723949D4700FA5851 /* ShimmerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerOptions.swift; sourceTree = "<group>"; };
 		6E64A67322E9344500A87269 /* Windless.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Windless.framework; path = Carthage/Build/iOS/Windless.framework; sourceTree = "<group>"; };
 		6E8648182314D6270031B3F1 /* ShimmerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShimmerSwift.framework; path = Carthage/Build/iOS/ShimmerSwift.framework; sourceTree = "<group>"; };
 		6E8648192314D6270031B3F1 /* SkeletonView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkeletonView.framework; path = Carthage/Build/iOS/SkeletonView.framework; sourceTree = "<group>"; };
@@ -110,10 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E86481A2314D6270031B3F1 /* ShimmerSwift.framework in Frameworks */,
-				6E86481B2314D6270031B3F1 /* SkeletonView.framework in Frameworks */,
 				B37AAB5E2322105D001A310D /* Networking.framework in Frameworks */,
-				6E64A67422E9344500A87269 /* Windless.framework in Frameworks */,
 				B37AAB5D2322104A001A310D /* Networking.framework in Frameworks */,
 				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
@@ -208,6 +212,7 @@
 		6E1A8B4922C83DD60055B6D8 /* Skeleton */ = {
 			isa = PBXGroup;
 			children = (
+				6E252DF8239494A300FA5851 /* SimpleShimmer */,
 				6E252DEE23946E9600FA5851 /* ViewController+Extension.swift */,
 			);
 			path = Skeleton;
@@ -260,6 +265,18 @@
 				6E1A8BB122C873110055B6D8 /* MovieCellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E252DF8239494A300FA5851 /* SimpleShimmer */ = {
+			isa = PBXGroup;
+			children = (
+				6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */,
+				6E252E0723949D4700FA5851 /* ShimmerOptions.swift */,
+				6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */,
+				6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */,
+				6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */,
+			);
+			path = SimpleShimmer;
 			sourceTree = "<group>";
 		};
 		6E8D0E1A231C5B4A002A6861 /* Views */ = {
@@ -399,18 +416,12 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/LayoutKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Windless.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ShimmerSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SkeletonView.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LayoutKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Windless.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShimmerSwift.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SkeletonView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -449,11 +460,13 @@
 				6E075F4A22C9605A00CBCC8D /* DataSource.swift in Sources */,
 				6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */,
 				6E075F4C22C9608100CBCC8D /* TableSection.swift in Sources */,
+				6E252E0823949D4800FA5851 /* UIView+Shimmer.swift in Sources */,
 				6E1A8BAC22C86C0F0055B6D8 /* ViewCodable.swift in Sources */,
 				6E252DF523948F9D00FA5851 /* UIImageView+Cache.swift in Sources */,
 				6E1A8BA922C86C0F0055B6D8 /* NibLoadable.swift in Sources */,
 				6E1A8BB222C873110055B6D8 /* MovieCellViewModel.swift in Sources */,
 				6E252DEF23946E9600FA5851 /* ViewController+Extension.swift in Sources */,
+				6E252E0A23949D4800FA5851 /* ShimmerAnimation.swift in Sources */,
 				6E0FCE7D231AF75600E85079 /* ViewModelOwner.swift in Sources */,
 				6E1A8BA722C86C0F0055B6D8 /* Reusable.swift in Sources */,
 				6ECCA81022D44752001B91F6 /* CardView.swift in Sources */,
@@ -461,6 +474,9 @@
 				6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */,
 				6E1A8BAA22C86C0F0055B6D8 /* NibOwnerLoadable.swift in Sources */,
 				6E1A8B5322C84B770055B6D8 /* MovieListViewModel.swift in Sources */,
+				6E252E0B23949D4800FA5851 /* UITableView+Shimmer.swift in Sources */,
+				6E252E0923949D4800FA5851 /* UICollectionView+Shimmer.swift in Sources */,
+				6E252E0C23949D4800FA5851 /* ShimmerOptions.swift in Sources */,
 				6E1A8BB422C8731E0055B6D8 /* MovieCellView.swift in Sources */,
 				6E075F4F22C962B300CBCC8D /* MovieListSection.swift in Sources */,
 				6E1A8B5522C84B7F0055B6D8 /* MovieListView.swift in Sources */,

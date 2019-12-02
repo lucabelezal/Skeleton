@@ -75,14 +75,16 @@ class MovieListViewController: UIViewController {
 
             isFetchInProgress = true
             //view.showAnimatedGradientSkeleton()
-            self.startAnimation()
+            //self.startAnimation()
+            
+            startShimmerAnimation()
 
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
-                        self.stopAnimation()
+                        //self.stopAnimation()
                         self.currentPage = data.page
                         print("AQUI: - \(self.currentPage)")
                         self.totalPages = data.totalPages
@@ -92,7 +94,7 @@ class MovieListViewController: UIViewController {
 
                     case .failure(let error):
                         self.isFetchInProgress = false
-                        self.stopAnimation()
+                        //self.stopAnimation()
                         print(error)
                         //self.view.hideSkeleton()
                     }
