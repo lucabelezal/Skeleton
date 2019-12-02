@@ -8,7 +8,7 @@
 
 import Networking
 
-public class MovieService: MovieServiceProtocol {
+class MovieService: MovieServiceProtocol {
 
     var networkManager: NetworkManagerProtocol
     var router: Router<MovieRouter>
@@ -18,7 +18,7 @@ public class MovieService: MovieServiceProtocol {
         self.router = Router<MovieRouter>()
     }
 
-    public func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
+    func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
         if flag == false {
             return router.cancel()
         }

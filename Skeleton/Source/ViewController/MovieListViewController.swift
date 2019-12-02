@@ -7,12 +7,12 @@
 //
 
 import Networking
-import SkeletonView
+//import SkeletonView
 import UIKit
 
-public class MovieListViewController: UIViewController {
+class MovieListViewController: UIViewController {
 
-    public var mainView: MovieListView {
+    var mainView: MovieListView {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
     }
 
@@ -32,7 +32,7 @@ public class MovieListViewController: UIViewController {
     }
 
     var isAnimateStart: Bool = false
-    public init(service: MovieServiceProtocol) {
+    init(service: MovieServiceProtocol) {
         self.service = service
         self.movies = []
         self.isFetchInProgress = false
@@ -44,22 +44,22 @@ public class MovieListViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func loadView() {
+    override func loadView() {
         view = MovieListView(frame: .zero)
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         title = "Filmes populares"
         mainView.delegate = self
         loadData()
     }
 
-    override public func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
@@ -74,25 +74,27 @@ public class MovieListViewController: UIViewController {
             }
 
             isFetchInProgress = true
-            view.showAnimatedGradientSkeleton()
+            //view.showAnimatedGradientSkeleton()
+            self.startAnimation()
 
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
+                        self.stopAnimation()
                         self.currentPage = data.page
                         print("AQUI: - \(self.currentPage)")
                         self.totalPages = data.totalPages
                         self.movies.append(contentsOf: data.movies)
 
-                        self.view.hideSkeleton()
+                        //self.view.hideSkeleton()
 
                     case .failure(let error):
                         self.isFetchInProgress = false
+                        self.stopAnimation()
                         print(error)
-
-                        self.view.hideSkeleton()
+                        //self.view.hideSkeleton()
                     }
                 }
             }
@@ -108,12 +110,12 @@ public class MovieListViewController: UIViewController {
 
 extension MovieListViewController: MovieListViewDelegate {
 
-    public func didReachToScrollBottom(is loading: Bool) {
+    func didReachToScrollBottom(is loading: Bool) {
         isNextPage = loading
         loadData()
     }
 
-    public func didPushToRefresh(is loading: Bool) {
+    func didPushToRefresh(is loading: Bool) {
 
     }
 }

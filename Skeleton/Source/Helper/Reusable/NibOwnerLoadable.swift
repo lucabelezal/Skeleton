@@ -8,18 +8,18 @@
 
 import UIKit
 
-public protocol NibOwnerLoadable: class {
+protocol NibOwnerLoadable: class {
     /// The nib file to use to load a new instance of the View designed in a XIB
     static var nib: UINib { get }
 }
 
-public extension NibOwnerLoadable {
+extension NibOwnerLoadable {
     static var nib: UINib {
         return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
     }
 }
 
-public extension NibOwnerLoadable where Self: UIView {
+extension NibOwnerLoadable where Self: UIView {
 
     func loadNibContent() {
         let layoutAttributes: [NSLayoutConstraint.Attribute] = [.top, .leading, .bottom, .trailing]

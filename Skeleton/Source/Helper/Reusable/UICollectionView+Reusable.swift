@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: Reusable support for UICollectionView
-public extension UICollectionView {
+extension UICollectionView {
 
     final func register<T: UICollectionViewCell>(cellType: T.Type)
         where T: Reusable & NibLoadable {

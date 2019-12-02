@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol TableSection {
+protocol TableSection {
 
     typealias HeaderFactory = (UITableView) -> UIView?
     typealias CellFactory = ((UITableView, IndexPath) -> UITableViewCell)
@@ -24,7 +24,7 @@ public protocol TableSection {
     func didSelectRow(for indexPath: IndexPath)
 }
 
-public extension TableSection {
+extension TableSection {
 
     // MARK: Option Properties
 

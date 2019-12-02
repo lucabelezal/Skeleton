@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class CardView: UIView {
+class CardView: UIView {
 
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         layer.cornerRadius = 0
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)

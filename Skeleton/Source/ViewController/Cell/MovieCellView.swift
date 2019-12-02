@@ -7,18 +7,18 @@
 //
 
 import LayoutKit
-import SkeletonView
+//import SkeletonView
 import UIKit
 
-public class MovieCellView: UIView, ViewModelOwner {
+class MovieCellView: UIView, ViewModelOwner {
 
     private var contentView: CardView
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
-    public var isSelected: Bool
+    var isSelected: Bool
 
-    public var viewModel: MovieCellViewModelProtocol? {
+    var viewModel: MovieCellViewModelProtocol? {
         didSet {
             update()
         }
@@ -38,7 +38,7 @@ public class MovieCellView: UIView, ViewModelOwner {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func update() {
+    func update() {
         if let model = self.viewModel {
             self.titleLabel.text = model.title
             self.overviewLabel.text = model.overview
@@ -54,11 +54,17 @@ extension MovieCellView: ViewCodable {
         titleLabel.numberOfLines = 0
         overviewLabel.numberOfLines = 0
 
-        isSkeletonable = true
-        contentView.isSkeletonable = true
-        posterImageView.isSkeletonable = true
-        titleLabel.isSkeletonable = true
-        overviewLabel.isSkeletonable = true
+        //shimmerAnimation = true
+        //contentView.shimmerAnimation = true
+        posterImageView.shimmerAnimation = true
+        titleLabel.shimmerAnimation = true
+        overviewLabel.shimmerAnimation = true
+
+        //isSkeletonable = true
+        //contentView.isSkeletonable = true
+        //posterImageView.isSkeletonable = true
+        //titleLabel.isSkeletonable = true
+        //overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {

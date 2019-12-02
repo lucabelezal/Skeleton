@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol DataSourceDelegate: class {
+protocol DataSourceDelegate: class {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func loadData(loading: Bool)
     func loadData(forItemAtIndex: Int)
@@ -17,20 +17,20 @@ public protocol DataSourceDelegate: class {
     func cancelNextPage()
 }
 
-public class DataSource: NSObject {
+class DataSource: NSObject {
 
     private let tableView: UITableView
 
-    public weak var delegate: DataSourceDelegate?
+    weak var delegate: DataSourceDelegate?
 
-    public var sections: [TableSection] {
+    var sections: [TableSection] {
         didSet {
             sections.forEach { $0.registerCell(tableView) }
             tableView.reloadData()
         }
     }
 
-    public init(tableView: UITableView) {
+    init(tableView: UITableView) {
         self.sections = []
         self.tableView = tableView
         super.init()
@@ -39,7 +39,7 @@ public class DataSource: NSObject {
         self.tableView.prefetchDataSource = self
     }
 
-    public func appendSection(_ sections: [TableSection] ) {
+    func appendSection(_ sections: [TableSection] ) {
         let last = IndexSet(integer: self.sections.count - 1)
         self.sections.append(contentsOf: sections)
         self.tableView.insertSections(last, with: .fade)
@@ -48,20 +48,20 @@ public class DataSource: NSObject {
 
 extension DataSource: UITableViewDataSource {
 
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].numberOfRows
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         return section.cellFactory(tableView, indexPath)
     }
 
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = sections[section]
         return section.title
     }
@@ -69,23 +69,23 @@ extension DataSource: UITableViewDataSource {
 
 extension DataSource: UITableViewDelegate {
 
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         cell.separatorInset = section.separatorInset(for: indexPath)
         cell.selectionStyle = .none
     }
 
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section]
         return section.headerFactory(tableView)
     }
 
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = sections[section]
         return section.headerHeight
     }
 
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         section.didSelectRow(for: indexPath)
     }
@@ -93,14 +93,14 @@ extension DataSource: UITableViewDelegate {
 
 extension DataSource: UIScrollViewDelegate {
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
     }
 }
 
 extension DataSource: UITableViewDataSourcePrefetching {
 
-    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 
         indexPaths.forEach { indexPath in
 

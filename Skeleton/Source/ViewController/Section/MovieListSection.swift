@@ -8,18 +8,18 @@
 
 import UIKit
 
-public struct MovieListSection: TableSection {
+struct MovieListSection: TableSection {
 
     typealias Cell = TableViewCell<MovieCellView, MovieCellViewModelProtocol>
 
     private var data: [MovieCellViewModelProtocol]
-    public var numberOfRows: Int
+    var numberOfRows: Int
 
-    public var registerCell: (UITableView) -> Void = { tableView in
+    var registerCell: (UITableView) -> Void = { tableView in
         tableView.register(cellType: Cell.self)
     }
 
-    public var cellFactory: CellFactory {
+    var cellFactory: CellFactory {
         return { tableView, indexPath in
             let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
             cell.viewModel = self.data[indexPath.row]
@@ -27,7 +27,7 @@ public struct MovieListSection: TableSection {
         }
     }
 
-    public func didSelectRow(for indexPath: IndexPath) {
+    func didSelectRow(for indexPath: IndexPath) {
         let model = self.data[indexPath.row]
         model.didAction?()
     }
@@ -37,7 +37,7 @@ public struct MovieListSection: TableSection {
     private func renderCell(view: MovieCellView) {}
 }
 
-public extension MovieListSection {
+extension MovieListSection {
 
     init(data: [MovieCellViewModelProtocol]) {
         self.data = data

@@ -8,23 +8,15 @@
 
 import Networking
 
-public protocol MovieListViewModelProtocol {
+protocol MovieListViewModelProtocol {
     var items: Int { get }
     var data: [MovieCellViewModelProtocol] { get }
 }
 
-public struct MovieListViewModel: MovieListViewModelProtocol {
+struct MovieListViewModel: MovieListViewModelProtocol {
 
-    public var items: Int
-    public var data: [MovieCellViewModelProtocol]
-
-    public init() {
-        self.items = 0
-        self.data = []
-    }
-}
-
-public extension MovieListViewModel {
+    var items: Int
+    var data: [MovieCellViewModelProtocol]
 
     init(movies: [Movie]) {
         self.items = movies.count

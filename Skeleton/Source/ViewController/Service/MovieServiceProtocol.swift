@@ -8,6 +8,6 @@
 
 import Networking
 
-public protocol MovieServiceProtocol: class {
+protocol MovieServiceProtocol: class {
     func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void)
 }

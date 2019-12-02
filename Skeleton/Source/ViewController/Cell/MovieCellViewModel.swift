@@ -9,36 +9,28 @@
 import Networking
 import UIKit
 
-public protocol MovieCellViewModelProtocol {
+protocol MovieCellViewModelProtocol {
     var title: String { get }
     var overview: String { get }
-    var posterImage: CachedImageView { get }
+    var posterImage: UIImageView { get }
     var didAction: (() -> Void)? { get }
 }
 
-public struct MovieCellViewModel: MovieCellViewModelProtocol {
+struct MovieCellViewModel: MovieCellViewModelProtocol {
 
-    public var title: String
-    public var overview: String
-    public var posterImage: CachedImageView
-    public var didAction: (() -> Void)?
-
-    public init() {
-        self.title = String()
-        self.overview = String()
-        self.posterImage = CachedImageView()
-    }
-}
-
-public extension MovieCellViewModel {
+    var title: String
+    var overview: String
+    var posterImage: UIImageView
+    var didAction: (() -> Void)?
 
     init(movie: Movie) {
-        self.init()
         self.title = movie.title
         self.overview = movie.overview
-        if let path = movie.posterPath {
-            let url = "\(ConstantApi.baseImageURL)\(path)"
-            self.posterImage.loadImage(urlString: url)
+        self.posterImage = UIImageView()
+
+        if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
+            self.posterImage.load(url: url, placeholder: self.posterImage.image)
+            //self.posterImage.loadImage(fromURL: "\(ConstantApi.baseImageURL)\(path)")
         }
     }
 }

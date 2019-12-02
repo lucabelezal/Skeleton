@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UITableView {
+extension UITableView {
 
     final func register<T: UITableViewCell>(cellType: T.Type)
         where T: Reusable & NibLoadable {
