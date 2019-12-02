@@ -57,7 +57,7 @@ extension MovieCellView: ViewCodable {
 //        posterImageView.shimmerAnimation = true
 //        titleLabel.shimmerAnimation = true
 //        overviewLabel.shimmerAnimation = true
-        
+
         posterImageView.withShimmer = true
         titleLabel.withShimmer = true
         overviewLabel.withShimmer = true

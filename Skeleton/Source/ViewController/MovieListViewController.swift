@@ -76,7 +76,7 @@ class MovieListViewController: UIViewController {
             isFetchInProgress = true
             //view.showAnimatedGradientSkeleton()
             //self.startAnimation()
-            
+
             startShimmerAnimation()
 
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in

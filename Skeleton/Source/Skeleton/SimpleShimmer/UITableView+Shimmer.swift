@@ -12,28 +12,28 @@ private var _tableViewShimmerAssociateObjectValue: Int = 1
 
 // Accessible Method
 extension UITableView {
-    
+
     func startShimmerAnimation(withIdentifier: String, numberOfRows: Int? = 2, numberOfSections: Int? = 2) {
         // Activate Swizzle method !
         UITableView.Swizzle()
-        
+
         addTableViewKey(key: self.hash)
-        
+
         tableViewShimmer?.numberOfRows = numberOfRows ?? 2
         tableViewShimmer?.numberOfSections = numberOfSections ?? 2
         tableViewShimmer?.identifierCell = withIdentifier
         tableViewShimmer?.delegateBeforeShimmer = self.delegate
         tableViewShimmer?.dataSourceBeforeShimmer = self.dataSource
-        
+
         self.dataSource = tableViewShimmer
         self.delegate = tableViewShimmer
-        
+
         UIView.transition(with: self,
                           duration: 0.35,
                           options: .transitionCrossDissolve,
                           animations: { self.reloadData() })
     }
-    
+
     override func stopShimmerAnimation(animated: Bool = true) {
         removeTableViewKey(key: self.hash)
         if animated {
@@ -56,23 +56,23 @@ extension UITableView {
         self.delegate = self.tableViewShimmer?.delegateBeforeShimmer
         self.reloadData()
     }
-    
+
     private func addTableViewKey(key: Int) {
         var findedKey = false
         if let tableViewShimmer = tableViewShimmer {
-            for oldKey in tableViewShimmer.shimmerStartedKey where oldKey == key  {
+            for oldKey in tableViewShimmer.shimmerStartedKey where oldKey == key {
                 findedKey = true
             }
-            
+
             if !findedKey {
                 tableViewShimmer.shimmerStartedKey.append(key)
             }
         }
     }
-    
+
     private func removeTableViewKey(key: Int) {
         if let tableViewShimmer = tableViewShimmer {
-            for (index, oldKey) in tableViewShimmer.shimmerStartedKey.enumerated() where oldKey == key  {
+            for (index, oldKey) in tableViewShimmer.shimmerStartedKey.enumerated() where oldKey == key {
                 tableViewShimmer.shimmerStartedKey.remove(at: index)
             }
         }
@@ -116,11 +116,11 @@ internal class TableViewShimmer: NSObject {
     var identifierCell = ""
     var delegateBeforeShimmer: UITableViewDelegate?
     var dataSourceBeforeShimmer: UITableViewDataSource?
-    
+
     var shimmerStartedKey = [Int]()
 
     override init() { }
-    
+
     internal func shimmerStarted(_forKey key: Int) -> Bool {
         var finded = false
         for oldKey in shimmerStartedKey where oldKey == key {
@@ -149,7 +149,7 @@ extension TableViewShimmer: TableViewShimmerDelegate {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 28))
         view.withShimmer = true
         shimmerStarted(_forKey: tableView.hash) ? view.startShimmerAnimation() : view.stopShimmerAnimation(animated: false)
-        
+
         return view
     }
 }
@@ -159,15 +159,15 @@ private func swizzle(_ vc: UITableView.Type) {
     [
         (#selector(vc.dequeueReusableCell(withIdentifier:)), #selector(vc.ksr_dequeueReusableCell(withIdentifier:))),
         ].forEach { original, swizzled in
-            
+
             guard let originalMethod = class_getInstanceMethod(vc, original),
                 let swizzledMethod = class_getInstanceMethod(vc, swizzled) else { return }
-            
+
             let didAddViewDidLoadMethod = class_addMethod(vc,
                                                           original,
                                                           method_getImplementation(swizzledMethod),
                                                           method_getTypeEncoding(swizzledMethod))
-            
+
             if didAddViewDidLoadMethod {
                 class_replaceMethod(vc,
                                     swizzled,
@@ -189,7 +189,7 @@ extension UITableView {
 
     @objc func ksr_dequeueReusableCell(withIdentifier identifier: String ) -> UITableViewCell? {
         let cell = self.ksr_dequeueReusableCell(withIdentifier: identifier)
-        
+
         if tableViewShimmer?.shimmerStarted(_forKey: hash) ?? false {
             cell?.stopShimmerAnimation(animated: false)
             cell?.startShimmerAnimation()

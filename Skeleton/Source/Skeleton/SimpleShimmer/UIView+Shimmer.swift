@@ -10,9 +10,9 @@ import UIKit
 
 private var _withShimmerAssociateObjectValue: Int = 0
 extension UIView {
-    
+
     private static let shimmer_tag = 9194
-    
+
     @IBInspectable var withShimmer: Bool {
         get { return _withShimmer }
         set { self._withShimmer = newValue }
@@ -56,26 +56,26 @@ extension UIView {
      */
     private func addShimmerView(_ view: UIView) {
         let rectShimmer = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        let shimmerView = UIView.init(frame: rectShimmer)
-        
+        let shimmerView = UIView(frame: rectShimmer)
+
         let shimmerColor = (ShimmerOptions.instance.animationType == .classic) ? ShimmerOptions.instance.gradientColor : ShimmerOptions.instance.backgroundColor
-        
+
         shimmerView.backgroundColor = shimmerColor
         shimmerView.tag = UIView.shimmer_tag
         ShimmerAnimation.buildAnimation(view: shimmerView, type: ShimmerOptions.instance.animationType)
 
         let rectBackground = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        let shimmerViewBackground = UIView.init(frame: rectBackground)
+        let shimmerViewBackground = UIView(frame: rectBackground)
         shimmerViewBackground.layer.cornerRadius = view.layer.cornerRadius
-        
+
         let backgroundShimmer = (ShimmerOptions.instance.animationType == .classic) ? ShimmerOptions.instance.backgroundColor : UIColor.white
-        
+
         shimmerViewBackground.backgroundColor = backgroundShimmer
         shimmerViewBackground.tag = UIView.shimmer_tag
         shimmerViewBackground.layer.borderWidth = ShimmerOptions.instance.borderWidth
         shimmerViewBackground.layer.borderColor = ShimmerOptions.instance.borderColor.cgColor
         shimmerViewBackground.layer.masksToBounds = true
-        
+
         view.addSubview(shimmerViewBackground)
         shimmerViewBackground.addSubview(shimmerView)
         if let superView = view.superview {
