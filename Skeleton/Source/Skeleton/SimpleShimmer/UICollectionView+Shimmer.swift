@@ -8,7 +8,7 @@
 
 import UIKit
 
-private var _collectionViewShimmerAssociateObjectValue: Int = 2
+private var _collectionViewShimmerAssociateObjectValue: Int = 2 // swiftlint:disable:this identifier_name
 
 // Accessible Method
 extension UICollectionView {
@@ -168,7 +168,7 @@ private func swizzle(_ vc: UICollectionView.Type) {
 // MARK: - Swizzle method : Intercept all cell initialisation
 private var hasSwizzled = false
 extension UICollectionView {
-    private final class func Swizzle() {
+    private final class func Swizzle() { // swiftlint:disable:this identifier_name
         guard !hasSwizzled else { return }
         hasSwizzled = true
         swizzle(self)

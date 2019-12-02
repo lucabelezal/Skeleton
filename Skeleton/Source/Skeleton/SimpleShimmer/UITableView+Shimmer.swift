@@ -8,7 +8,7 @@
 
 import UIKit
 
-private var _tableViewShimmerAssociateObjectValue: Int = 1
+private var _tableViewShimmerAssociateObjectValue: Int = 1 // swiftlint:disable:this identifier_name
 
 // Accessible Method
 extension UITableView {
@@ -181,7 +181,7 @@ private func swizzle(_ vc: UITableView.Type) {
 
 private var hasSwizzled = false
 extension UITableView {
-    private final class func Swizzle() {
+    private final class func Swizzle() { // swiftlint:disable:this identifier_name
         guard !hasSwizzled else { return }
         hasSwizzled = true
         swizzle(self)

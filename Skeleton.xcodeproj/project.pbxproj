@@ -36,12 +36,11 @@
 		6E252E0A23949D4800FA5851 /* ShimmerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */; };
 		6E252E0B23949D4800FA5851 /* UITableView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */; };
 		6E252E0C23949D4800FA5851 /* ShimmerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0723949D4700FA5851 /* ShimmerOptions.swift */; };
+		6E252E0E23949E2500FA5851 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E252E0D23949E2500FA5851 /* Networking.framework */; };
+		6E252E0F23949E2500FA5851 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E252E0D23949E2500FA5851 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */; };
 		6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E21231C74D4002A6861 /* MovieService.swift */; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
-		B37AAB5D2322104A001A310D /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37AAB5C2322104A001A310D /* Networking.framework */; };
-		B37AAB5E2322105D001A310D /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37AAB5C2322104A001A310D /* Networking.framework */; };
-		B37AAB5F2322105D001A310D /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B37AAB5C2322104A001A310D /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,13 +54,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B37AAB602322105D001A310D /* Embed Frameworks */ = {
+		6E252E1023949E2500FA5851 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B37AAB5F2322105D001A310D /* Networking.framework in Embed Frameworks */,
+				6E252E0F23949E2500FA5851 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +102,7 @@
 		6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerAnimation.swift; sourceTree = "<group>"; };
 		6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Shimmer.swift"; sourceTree = "<group>"; };
 		6E252E0723949D4700FA5851 /* ShimmerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerOptions.swift; sourceTree = "<group>"; };
+		6E252E0D23949E2500FA5851 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E64A67322E9344500A87269 /* Windless.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Windless.framework; path = Carthage/Build/iOS/Windless.framework; sourceTree = "<group>"; };
 		6E8648182314D6270031B3F1 /* ShimmerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShimmerSwift.framework; path = Carthage/Build/iOS/ShimmerSwift.framework; sourceTree = "<group>"; };
 		6E8648192314D6270031B3F1 /* SkeletonView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkeletonView.framework; path = Carthage/Build/iOS/SkeletonView.framework; sourceTree = "<group>"; };
@@ -117,8 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B37AAB5E2322105D001A310D /* Networking.framework in Frameworks */,
-				B37AAB5D2322104A001A310D /* Networking.framework in Frameworks */,
+				6E252E0E23949E2500FA5851 /* Networking.framework in Frameworks */,
 				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +188,7 @@
 		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E252E0D23949E2500FA5851 /* Networking.framework */,
 				6E8648182314D6270031B3F1 /* ShimmerSwift.framework */,
 				6E8648192314D6270031B3F1 /* SkeletonView.framework */,
 				6E64A67322E9344500A87269 /* Windless.framework */,
@@ -320,7 +320,7 @@
 				6E1A8B1D22C837080055B6D8 /* Frameworks */,
 				6E1A8B1E22C837080055B6D8 /* Resources */,
 				6E1A8B4322C83B3B0055B6D8 /* Carthage */,
-				B37AAB602322105D001A310D /* Embed Frameworks */,
+				6E252E1023949E2500FA5851 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
