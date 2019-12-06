@@ -10,7 +10,8 @@ import Networking
 //import SkeletonView
 import UIKit
 
-class MovieListViewController: UIViewController {
+//PlaceholderAnimationViewController
+class MovieListViewController: PlaceholderAnimationViewController {
 
     var mainView: MovieListView {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
@@ -31,7 +32,8 @@ class MovieListViewController: UIViewController {
         }
     }
 
-    var isAnimateStart: Bool = false
+    //var isAnimateStart: Bool = false
+
     init(service: MovieServiceProtocol) {
         self.service = service
         self.movies = []
@@ -77,14 +79,17 @@ class MovieListViewController: UIViewController {
             //view.showAnimatedGradientSkeleton()
             //self.startAnimation()
 
-            startShimmerAnimation()
-
+//            startShimmerAnimation()
+//            startPlaceholderAnimation()
+            startAnimation()
+            
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
-                DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
-                        //self.stopAnimation()
+                        self.stopAnimation()
+//                        self.stopShimmerAnimation()
                         self.currentPage = data.page
                         print("AQUI: - \(self.currentPage)")
                         self.totalPages = data.totalPages

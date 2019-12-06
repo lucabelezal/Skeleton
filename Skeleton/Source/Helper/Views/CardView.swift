@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardView: UIView {
+class CardView: SkeletonView {
 
     override func layoutSubviews() {
         layer.cornerRadius = 0
