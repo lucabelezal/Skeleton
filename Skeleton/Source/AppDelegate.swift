@@ -14,16 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
+
         let networkManager = NetworkManager(environment: .production)
         let controller = MovieListViewController(service: MovieService(networkManager: networkManager))
         let navigation = UINavigationController(rootViewController: controller)
         navigation.navigationBar.prefersLargeTitles = true
-        navigation.navigationBar.isTranslucent = false
-        //navigation.navigationBar.backgroundColor = .white
+
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+
         return true
     }
 

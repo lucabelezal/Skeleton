@@ -7,7 +7,6 @@
 //
 
 import LayoutKit
-//import SkeletonView
 import UIKit
 
 protocol MovieListViewDelegate: class {
@@ -39,13 +38,12 @@ class MovieListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Private Methods
+    // MARK: - Private Methods
 
     private func update() {
-        self.tableView.reloadData()
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -55,12 +53,8 @@ extension MovieListView: ViewCodable {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
-//        tableView.rowHeight = 272
-//        tableView.estimatedRowHeight = 272
         tableView.separatorStyle = .none
         tableView.register(cellType: Cell.self)
-        //isSkeletonable = true
-        //tableView.isSkeletonable = true
     }
 
     func hierarchy() {
@@ -79,35 +73,36 @@ extension MovieListView: ViewCodable {
 
     func styles() {
         backgroundColor = .lightGray
+        tableView.backgroundColor = .clear
     }
 }
 
-//extension MovieListView: DataSourceDelegate {
-//
-//    func fetchNextPage() {
-//         delegate?.didReachToScrollBottom(is: true)
-//    }
-//
-//    func cancelNextPage() {
-//         delegate?.didReachToScrollBottom(is: false)
-//    }
-//
-//    func loadData(forItemAtIndex: Int) {
-//
-//    }
-//
-//    func cancelLoading(forItemAtIndex: Int) {
-//
-//    }
-//
-//    func loadData(loading: Bool) {
-//        delegate?.didReachToScrollBottom(is: loading)
-//    }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//    }
-//}
+extension MovieListView: DataSourceDelegate {
+
+    func fetchNextPage() {
+         delegate?.didReachToScrollBottom(is: true)
+    }
+
+    func cancelNextPage() {
+         delegate?.didReachToScrollBottom(is: false)
+    }
+
+    func loadData(forItemAtIndex: Int) {
+
+    }
+
+    func cancelLoading(forItemAtIndex: Int) {
+
+    }
+
+    func loadData(loading: Bool) {
+        delegate?.didReachToScrollBottom(is: loading)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    }
+}
 
 extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
 
@@ -115,23 +110,12 @@ extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableView
         return tableView.numberOfSections
     }
 
-//    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel?.items ?? 0
-//    }
-//
-//    func collectionSkeletonView(_ skeletonView: UITableView,
-//                                       cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-//        return Cell.reuseIdentifier
-//    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.items ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
-        //cell.isSkeletonable = true
-        //cell.contentView.isSkeletonable = true
         cell.viewModel = viewModel?.data[indexPath.row]
         return cell
     }

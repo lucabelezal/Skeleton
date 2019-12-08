@@ -14,23 +14,23 @@ extension SkeletonView {
         static let enterForegroundNotification = UIApplication.didEnterBackgroundNotification
         static let needAnimatedSkeletonKey = "needAnimateSkeleton"
     }
-    
+
     func addAppNotificationsObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: Constants.becomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: Constants.enterForegroundNotification, object: nil)
     }
-    
+
     func removeAppNoticationsObserver() {
         NotificationCenter.default.removeObserver(self, name: Constants.becomeActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: Constants.enterForegroundNotification, object: nil)
     }
-    
+
     @objc func appDidBecomeActive() {
         if UserDefaults.standard.bool(forKey: Constants.needAnimatedSkeletonKey) {
             restartSkeleton()
         }
     }
-    
+
     @objc func appDidEnterBackground() {
         UserDefaults.standard.set((isSkeletonActive && isAnimated), forKey: Constants.needAnimatedSkeletonKey)
     }

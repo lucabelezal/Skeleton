@@ -31,25 +31,25 @@ extension CALayer {
         pulseAnimation.repeatCount = .infinity
         return pulseAnimation
     }
-    
+
     var sliding: CAAnimation {
         let startPointAnim = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.startPoint))
         startPointAnim.fromValue = CGPoint(x: -1, y: 0.5)
         startPointAnim.toValue = CGPoint(x: 1, y: 0.5)
-        
+
         let endPointAnim = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.endPoint))
         endPointAnim.fromValue = CGPoint(x: 0, y: 0.5)
         endPointAnim.toValue = CGPoint(x: 2, y: 0.5)
-        
+
         let animGroup = CAAnimationGroup()
         animGroup.animations = [startPointAnim, endPointAnim]
         animGroup.duration = 1.5
         animGroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         animGroup.repeatCount = .infinity
-        
+
         return animGroup
     }
-    
+
     /// Start to play the skeleton animation closure for the specified skeleton type.
     ///
     /// - Parameter type: The skeleton type used to decide the animation.
@@ -57,7 +57,7 @@ extension CALayer {
         let animation = type.layerAnimation
         playAnimation(animation, key: "skeletonAnimation")
     }
-    
+
     /// Play the specified skeleton animation closure to the layer.
     ///
     /// - Parameters:
@@ -66,7 +66,7 @@ extension CALayer {
     func playAnimation(_ anim: SkeletonView.SkeletonLayerAnimation, key: String) {
         add(anim(self), forKey: key)
     }
-    
+
     /// Stop the animation with the specified key.
     ///
     /// - Parameter key: The identifier of the animation to stop.

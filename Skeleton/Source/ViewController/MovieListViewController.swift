@@ -7,7 +7,6 @@
 //
 
 import Networking
-//import SkeletonView
 import UIKit
 
 //PlaceholderAnimationViewController
@@ -32,8 +31,6 @@ class MovieListViewController: PlaceholderAnimationViewController {
         }
     }
 
-    //var isAnimateStart: Bool = false
-
     init(service: MovieServiceProtocol) {
         self.service = service
         self.movies = []
@@ -57,7 +54,7 @@ class MovieListViewController: PlaceholderAnimationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Filmes populares"
-        mainView.delegate = self
+        view.backgroundColor = .white
         loadData()
     }
 
@@ -65,7 +62,7 @@ class MovieListViewController: PlaceholderAnimationViewController {
         super.viewDidAppear(animated)
     }
 
-    // MARK: Private Metthods
+    // MARK: - Private Metthods
 
     private func loadData(pagination loadMore: Bool = false) {
 
@@ -76,32 +73,23 @@ class MovieListViewController: PlaceholderAnimationViewController {
             }
 
             isFetchInProgress = true
-            //view.showAnimatedGradientSkeleton()
-            //self.startAnimation()
 
-//            startShimmerAnimation()
-//            startPlaceholderAnimation()
-            startAnimation()
-            
+            //startAnimation()
+
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false
-                        self.stopAnimation()
-//                        self.stopShimmerAnimation()
+                        //self.stopAnimation()
                         self.currentPage = data.page
                         print("AQUI: - \(self.currentPage)")
                         self.totalPages = data.totalPages
                         self.movies.append(contentsOf: data.movies)
 
-                        //self.view.hideSkeleton()
-
                     case .failure(let error):
                         self.isFetchInProgress = false
-                        //self.stopAnimation()
                         print(error)
-                        //self.view.hideSkeleton()
                     }
                 }
             }
@@ -111,6 +99,7 @@ class MovieListViewController: PlaceholderAnimationViewController {
     private func loadImageData() {}
 
     private func updateView() {
+        mainView.delegate = self
         mainView.viewModel = MovieListViewModel(movies: movies)
     }
 }

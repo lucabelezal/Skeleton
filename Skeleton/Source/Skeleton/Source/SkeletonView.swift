@@ -10,11 +10,11 @@ import UIKit
 
 extension SkeletonView {
     typealias SkeletonLayerAnimation = (CALayer) -> CAAnimation
-    
+
     enum SkeletonType {
         case solid
         case gradient
-        
+
         var layer: CALayer {
             switch self {
             case .solid:
@@ -23,7 +23,7 @@ extension SkeletonView {
                 return CAGradientLayer()
             }
         }
-        
+
         var layerAnimation: SkeletonLayerAnimation {
             switch self {
             case .solid:
@@ -33,14 +33,14 @@ extension SkeletonView {
             }
         }
     }
-    
+
     struct SkeletonGradient {
         private var gradientColors: [UIColor]
-        
+
         var colors: [UIColor] {
             return gradientColors
         }
-        
+
         init(baseColor: UIColor, secondaryColor: UIColor? = nil) {
             if let secondary = secondaryColor {
                 self.gradientColors = [baseColor, secondary, baseColor]
@@ -52,12 +52,12 @@ extension SkeletonView {
 }
 
 class SkeletonView: UIView {
-    
+
     fileprivate var skeletonColor: UIColor?
     fileprivate var skeletonGradient: SkeletonGradient?
     fileprivate var skeletonType: SkeletonType?
     fileprivate(set) var isAnimated: Bool = false
-    
+
     /// Show the skeleton loader for every subview marked as skeletonable. If animated a pulsing animation is used by default.
     ///
     /// - Parameters:
@@ -71,7 +71,7 @@ class SkeletonView: UIView {
             showSkeleton(withType: .solid, usingColors: [color], animated: animated)
         }
     }
-    
+
     /// Show the skeleton loader for every subview marked as skeletonable. If animated a sliding animation is used by default.
     ///
     /// - Parameters:
@@ -85,7 +85,7 @@ class SkeletonView: UIView {
             showSkeleton(withType: .gradient, usingColors: gradient.colors, animated: animated)
         }
     }
-    
+
     /// Use this in a `SkeletonView` you have inside another SkeletonView if you want to override the solid color or gradient of the SkeletonView skeletonable subviews.
     ///
     /// - Parameters:
@@ -95,7 +95,7 @@ class SkeletonView: UIView {
         skeletonColor = color
         skeletonGradient = gradient
     }
-    
+
     fileprivate func showSkeleton(withType type: SkeletonType, usingColors colors: [UIColor], animated: Bool) {
         skeletonType = type
         isAnimated = animated
@@ -103,7 +103,7 @@ class SkeletonView: UIView {
         status = .on
         buildSkeleton(for: subviews, usingColors: colors)
     }
-    
+
     fileprivate func buildSkeleton(for views: [UIView], usingColors colors: [UIColor]) {
         guard let skeletonType = skeletonType else { return }
         views.forEach { (view) in
@@ -117,7 +117,7 @@ class SkeletonView: UIView {
             }
         }
     }
-    
+
     fileprivate func buildSkeleton(for view: UIView, usingColors colors: [UIColor]) {
         guard let skeletonType = skeletonType else { return }
         let maskLayer = CAShapeLayer()
@@ -129,12 +129,12 @@ class SkeletonView: UIView {
         view.addSkeletonLayer(withType: skeletonType, usingColors: colors, animated: isAnimated)
         view.status = .on
     }
-    
+
     /// Restart the skeleton animation
     func restartSkeleton() {
         if isSkeletonActive { resetSkeleton() }
     }
-    
+
     fileprivate func resetSkeleton() {
         guard let skeletonType = skeletonType else { return }
         hideSkeleton()
@@ -144,13 +144,13 @@ class SkeletonView: UIView {
             showGradientSkeleton(usingGradient: skeletonGradient, animated: isAnimated)
         }
     }
-    
+
     /// Take the skeleton loaders off of all subviews marked as skeletonable.
     func hideSkeleton() {
         removeAppNoticationsObserver()
         removeSkeleton(of: subviews)
     }
-    
+
     fileprivate func removeSkeleton(of views: [UIView]) {
         status = .off
         views.forEach { (view) in
@@ -175,13 +175,13 @@ fileprivate extension UIView {
         layer.addSublayer(skeletonLayer!)
         if animated { skeletonLayer?.startAnimation(for: type) }
     }
-    
+
     func removeSkeletonLayer() {
         skeletonLayer?.removeAllAnimations()
         skeletonLayer?.removeFromSuperlayer()
         layer.mask = nil
     }
-    
+
     func getSkeletonColors(or colors: [UIColor], withType type: SkeletonView.SkeletonType) -> [UIColor] {
         let newColors: [UIColor]
         switch type {

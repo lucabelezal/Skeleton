@@ -23,6 +23,12 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     var posterImage: UIImageView
     var didAction: (() -> Void)?
 
+    init() {
+        self.title = String()
+        self.overview = String()
+        self.posterImage = UIImageView()
+    }
+
     init(movie: Movie) {
         self.title = movie.title
         self.overview = movie.overview
