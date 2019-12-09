@@ -30,13 +30,7 @@
 		6E1A8BB422C8731E0055B6D8 /* MovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8BB322C8731E0055B6D8 /* MovieCellView.swift */; };
 		6E252DF323947A3D00FA5851 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DF223947A3D00FA5851 /* UIImageView+Extension.swift */; };
 		6E252DF523948F9D00FA5851 /* UIImageView+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */; };
-		6E252E0823949D4800FA5851 /* UIView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */; };
-		6E252E0923949D4800FA5851 /* UICollectionView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */; };
-		6E252E0A23949D4800FA5851 /* ShimmerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */; };
-		6E252E0B23949D4800FA5851 /* UITableView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */; };
-		6E252E0C23949D4800FA5851 /* ShimmerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252E0723949D4700FA5851 /* ShimmerOptions.swift */; };
 		6E43DFEB239A03A500707FAA /* PlaceholderAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43DFEA239A03A500707FAA /* PlaceholderAnimationViewController.swift */; };
-		6E43DFFF239A17D200707FAA /* AnimatedGradientContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43DFFC239A17D100707FAA /* AnimatedGradientContainerView.swift */; };
 		6E43E00C239A229700707FAA /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43E006239A229700707FAA /* SkeletonView.swift */; };
 		6E43E00D239A229700707FAA /* UIColorSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43E007239A229700707FAA /* UIColorSkeleton.swift */; };
 		6E43E00E239A229700707FAA /* SkeletonViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43E008239A229700707FAA /* SkeletonViewExtension.swift */; };
@@ -100,13 +94,7 @@
 		6E1A8BB322C8731E0055B6D8 /* MovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellView.swift; sourceTree = "<group>"; };
 		6E252DF223947A3D00FA5851 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Cache.swift"; sourceTree = "<group>"; };
-		6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmer.swift"; sourceTree = "<group>"; };
-		6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Shimmer.swift"; sourceTree = "<group>"; };
-		6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerAnimation.swift; sourceTree = "<group>"; };
-		6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Shimmer.swift"; sourceTree = "<group>"; };
-		6E252E0723949D4700FA5851 /* ShimmerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerOptions.swift; sourceTree = "<group>"; };
 		6E43DFEA239A03A500707FAA /* PlaceholderAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderAnimationViewController.swift; sourceTree = "<group>"; };
-		6E43DFFC239A17D100707FAA /* AnimatedGradientContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedGradientContainerView.swift; sourceTree = "<group>"; };
 		6E43E006239A229700707FAA /* SkeletonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
 		6E43E007239A229700707FAA /* UIColorSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorSkeleton.swift; sourceTree = "<group>"; };
 		6E43E008239A229700707FAA /* SkeletonViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonViewExtension.swift; sourceTree = "<group>"; };
@@ -215,9 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				6E43E005239A229700707FAA /* Source */,
-				6E43DFFB239A17D100707FAA /* AnimatedGradientContainerView */,
 				6E43DFE9239A038C00707FAA /* PlaceholderAnimation */,
-				6E252DF8239494A300FA5851 /* SimpleShimmer */,
 				6E9FAAED239DBC3C00062683 /* ABLoaderView.swift */,
 			);
 			path = Skeleton;
@@ -272,32 +258,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		6E252DF8239494A300FA5851 /* SimpleShimmer */ = {
-			isa = PBXGroup;
-			children = (
-				6E252E0523949D4700FA5851 /* ShimmerAnimation.swift */,
-				6E252E0723949D4700FA5851 /* ShimmerOptions.swift */,
-				6E252E0423949D4700FA5851 /* UICollectionView+Shimmer.swift */,
-				6E252E0623949D4700FA5851 /* UITableView+Shimmer.swift */,
-				6E252E0323949D4600FA5851 /* UIView+Shimmer.swift */,
-			);
-			path = SimpleShimmer;
-			sourceTree = "<group>";
-		};
 		6E43DFE9239A038C00707FAA /* PlaceholderAnimation */ = {
 			isa = PBXGroup;
 			children = (
 				6E43DFEA239A03A500707FAA /* PlaceholderAnimationViewController.swift */,
 			);
 			path = PlaceholderAnimation;
-			sourceTree = "<group>";
-		};
-		6E43DFFB239A17D100707FAA /* AnimatedGradientContainerView */ = {
-			isa = PBXGroup;
-			children = (
-				6E43DFFC239A17D100707FAA /* AnimatedGradientContainerView.swift */,
-			);
-			path = AnimatedGradientContainerView;
 			sourceTree = "<group>";
 		};
 		6E43E005239A229700707FAA /* Source */ = {
@@ -494,17 +460,14 @@
 				6E252DF323947A3D00FA5851 /* UIImageView+Extension.swift in Sources */,
 				6E43E00C239A229700707FAA /* SkeletonView.swift in Sources */,
 				6E075F4A22C9605A00CBCC8D /* DataSource.swift in Sources */,
-				6E43DFFF239A17D200707FAA /* AnimatedGradientContainerView.swift in Sources */,
 				6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */,
 				6E075F4C22C9608100CBCC8D /* TableSection.swift in Sources */,
 				6E43E00F239A229700707FAA /* CALayerSkeleton.swift in Sources */,
-				6E252E0823949D4800FA5851 /* UIView+Shimmer.swift in Sources */,
 				6E1A8BAC22C86C0F0055B6D8 /* ViewCodable.swift in Sources */,
 				6E252DF523948F9D00FA5851 /* UIImageView+Cache.swift in Sources */,
 				6E43E00E239A229700707FAA /* SkeletonViewExtension.swift in Sources */,
 				6E1A8BA922C86C0F0055B6D8 /* NibLoadable.swift in Sources */,
 				6E1A8BB222C873110055B6D8 /* MovieCellViewModel.swift in Sources */,
-				6E252E0A23949D4800FA5851 /* ShimmerAnimation.swift in Sources */,
 				6E0FCE7D231AF75600E85079 /* ViewModelOwner.swift in Sources */,
 				6E43E00D239A229700707FAA /* UIColorSkeleton.swift in Sources */,
 				6E1A8BA722C86C0F0055B6D8 /* Reusable.swift in Sources */,
@@ -513,10 +476,7 @@
 				6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */,
 				6E1A8BAA22C86C0F0055B6D8 /* NibOwnerLoadable.swift in Sources */,
 				6E1A8B5322C84B770055B6D8 /* MovieListViewModel.swift in Sources */,
-				6E252E0B23949D4800FA5851 /* UITableView+Shimmer.swift in Sources */,
-				6E252E0923949D4800FA5851 /* UICollectionView+Shimmer.swift in Sources */,
 				6E43DFEB239A03A500707FAA /* PlaceholderAnimationViewController.swift in Sources */,
-				6E252E0C23949D4800FA5851 /* ShimmerOptions.swift in Sources */,
 				6E43E011239A229700707FAA /* StringExtension.swift in Sources */,
 				6E1A8BB422C8731E0055B6D8 /* MovieCellView.swift in Sources */,
 				6E9FAAEE239DBC3C00062683 /* ABLoaderView.swift in Sources */,

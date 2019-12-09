@@ -11,7 +11,7 @@ import UIKit
 
 class MovieCellView: UIView, ViewModelOwner {
 
-    private var contentView: SkeletonView
+    private var contentView: CardView
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
@@ -24,7 +24,7 @@ class MovieCellView: UIView, ViewModelOwner {
     }
 
     override init(frame: CGRect) {
-        self.contentView = SkeletonView()
+        self.contentView = CardView()
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
@@ -52,11 +52,11 @@ extension MovieCellView: ViewCodable {
 //        posterImageView.shimmerAnimationPlaceholderAnimation = true
 //        titleLabel.shimmerAnimationPlaceholderAnimation = true
 //        overviewLabel.shimmerAnimationPlaceholderAnimation = true
-        
-        contentView.isSkeletonable = true
-        posterImageView.isSkeletonable = true
-        titleLabel.isSkeletonable = true
-        overviewLabel.isSkeletonable = true
+
+//        contentView.isSkeletonable = true
+//        posterImageView.isSkeletonable = true
+//        titleLabel.isSkeletonable = true
+//        overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {

@@ -73,9 +73,9 @@ class MovieListViewController: UIViewController {
 
             isFetchInProgress = true
 
-            startAnimation()
-            //startPlaceholderAnimation()
- 
+//            startAnimation()
+//            startPlaceholderAnimation()
+
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
                     switch result {
