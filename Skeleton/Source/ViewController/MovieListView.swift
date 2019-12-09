@@ -55,6 +55,8 @@ extension MovieListView: ViewCodable {
         tableView.dataSource = self
         tableView.prefetchDataSource = self
         tableView.separatorStyle = .none
+        tableView.rowHeight = 236
+        tableView.estimatedRowHeight = 236
         tableView.register(cellType: Cell.self)
     }
 
