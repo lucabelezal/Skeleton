@@ -40,6 +40,8 @@
 		6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */; };
 		6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E21231C74D4002A6861 /* MovieService.swift */; };
 		6E9FAAEE239DBC3C00062683 /* ABLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FAAED239DBC3C00062683 /* ABLoaderView.swift */; };
+		6E9FAB4E239DF4A400062683 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FAB4D239DF4A400062683 /* Networking.framework */; };
+		6E9FAB4F239DF4A400062683 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FAB4D239DF4A400062683 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6E9FAB4F239DF4A400062683 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +107,7 @@
 		6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceProtocol.swift; sourceTree = "<group>"; };
 		6E8D0E21231C74D4002A6861 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		6E9FAAED239DBC3C00062683 /* ABLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABLoaderView.swift; sourceTree = "<group>"; };
+		6E9FAB4D239DF4A400062683 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECCA80F22D44752001B91F6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B37AAB5C2322104A001A310D /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9FAB4E239DF4A400062683 /* Networking.framework in Frameworks */,
 				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +188,7 @@
 		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E9FAB4D239DF4A400062683 /* Networking.framework */,
 				B37AAB5C2322104A001A310D /* Networking.framework */,
 				6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */,
 			);

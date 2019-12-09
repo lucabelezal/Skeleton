@@ -40,9 +40,9 @@ extension UIView {
 extension UIViewController {
 
     func startPlaceholderAnimation() {
-        
+
         for animateView in getSubViewsForPlaceholderAnimate() {
-                
+
             let colorLayer = CALayer()
             colorLayer.backgroundColor = UIColor(white: 0.82, alpha: 1).cgColor
             colorLayer.frame = animateView.maxBoundsEstimated
@@ -63,7 +63,7 @@ extension UIViewController {
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
             gradientLayer.frame = animateView.maxBoundsEstimated
             animateView.layer.addSublayer(gradientLayer)
-           
+
             let animation = CABasicAnimation(keyPath: "transform.translation.x")
             animation.duration = 1.2
             animation.fromValue = -animateView.frame.width
@@ -77,11 +77,10 @@ extension UIViewController {
         for animateView in getSubViewsForPlaceholderAnimate() {
             //animateView.layer.removeAllAnimations()
             //animateView.layer.mask = nil
-            
+
             if let smartLayers = animateView.layer.sublayers?.filter({ $0.name == "colorLayer" || $0.name == "loaderLayer" }) {
                 smartLayers.forEach({ $0.removeFromSuperlayer() })
             }
-            
         }
     }
 }
@@ -115,21 +114,21 @@ extension UIView {
         }
         return CGRect(origin: .zero, size: maxSizeEstimated)
     }
-    
+
     var maxSizeEstimated: CGSize {
         return CGSize(width: maxWidthEstimated, height: maxHeightEstimated)
     }
-    
+
     var maxWidthEstimated: CGFloat {
         let constraintsWidth = nonContentSizeLayoutConstraints.filter({ $0.firstAttribute == NSLayoutConstraint.Attribute.width })
         return max(between: frame.size.width, andContantsOf: constraintsWidth)
     }
-    
+
     var maxHeightEstimated: CGFloat {
         let constraintsHeight = nonContentSizeLayoutConstraints.filter({ $0.firstAttribute == NSLayoutConstraint.Attribute.height })
         return max(between: frame.size.height, andContantsOf: constraintsHeight)
     }
-    
+
     private func max(between value: CGFloat, andContantsOf constraints: [NSLayoutConstraint]) -> CGFloat {
         let max = constraints.reduce(value, { max, constraint in
             var tempMax = max
@@ -138,7 +137,7 @@ extension UIView {
         })
         return max
     }
-    
+
     var nonContentSizeLayoutConstraints: [NSLayoutConstraint] {
         return constraints.filter({ "\(type(of: $0))" != "NSContentSizeLayoutConstraint" })
     }

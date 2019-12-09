@@ -10,9 +10,7 @@ import Foundation
 
 public struct PopularMovies: Decodable {
 
-    public let page: Int
-    public let totalPages: Int
-    public let totalResults: Int
+    public let page, totalPages, totalResults: Int
     public let movies: [Movie]
 
     private enum MovieApiResponseCodingKeys: String, CodingKey {
@@ -28,6 +26,5 @@ public struct PopularMovies: Decodable {
         totalPages = try container.decode(Int.self, forKey: .totalPages)
         totalResults = try container.decode(Int.self, forKey: .totalResults)
         movies = try container.decode([Movie].self, forKey: .movies)
-
     }
 }

@@ -51,19 +51,19 @@ public final class Router<EndPoint: EndPointType>: Routable {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            case .requestParameters(let bodyParameters,
-                                    let bodyEncoding,
-                                    let urlParameters):
+            case let .requestParameters(bodyParameters,
+                                        bodyEncoding,
+                                        urlParameters):
 
                 try self.configureParameters(bodyParameters: bodyParameters,
                                              bodyEncoding: bodyEncoding,
                                              urlParameters: urlParameters,
                                              request: &request)
 
-            case .requestParametersAndHeaders(let bodyParameters,
-                                              let bodyEncoding,
-                                              let urlParameters,
-                                              let additionalHeaders):
+            case let .requestParametersAndHeaders(bodyParameters,
+                                                  bodyEncoding,
+                                                  urlParameters,
+                                                  additionalHeaders):
 
                 self.addAdditionalHeaders(additionalHeaders, request: &request)
                 try self.configureParameters(bodyParameters: bodyParameters,
@@ -90,7 +90,9 @@ public final class Router<EndPoint: EndPointType>: Routable {
     }
 
     fileprivate func addAdditionalHeaders(_ additionalHeaders: HttpHeaders?, request: inout URLRequest) {
-        guard let headers = additionalHeaders else { return }
+        guard let headers = additionalHeaders else {
+            return
+        }
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }

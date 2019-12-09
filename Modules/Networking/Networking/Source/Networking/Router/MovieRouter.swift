@@ -46,10 +46,7 @@ extension MovieRouter: EndPointType {
         case .newMovies(let page):
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: [
-                                        "page": page,
-                                        "api_key": ConstantApi.apiKey,
-                ])
+                                      urlParameters: ["page": page, "api_key": ConstantApi.apiKey])
         default:
             return .request
         }

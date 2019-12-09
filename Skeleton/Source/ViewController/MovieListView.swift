@@ -91,11 +91,9 @@ extension MovieListView: DataSourceDelegate {
     }
 
     func loadData(forItemAtIndex: Int) {
-
     }
 
     func cancelLoading(forItemAtIndex: Int) {
-
     }
 
     func loadData(loading: Bool) {
@@ -103,7 +101,6 @@ extension MovieListView: DataSourceDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
     }
 }
 

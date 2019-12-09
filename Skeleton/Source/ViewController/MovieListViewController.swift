@@ -60,7 +60,7 @@ class MovieListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
     // MARK: - Private Metthods
 
     private func loadData(pagination loadMore: Bool = false) {
@@ -111,6 +111,5 @@ extension MovieListViewController: MovieListViewDelegate {
     }
 
     func didPushToRefresh(is loading: Bool) {
-
     }
 }

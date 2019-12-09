@@ -9,14 +9,11 @@
 import Foundation
 
 public struct Movie: Codable {
+
     public let id: Int
-    public let posterPath: String?
-    public let backdropPath: String?
-    public let popularity: Double
-    public let title: String
-    public let releaseDate: String
-    public let rating: Double
-    public let overview: String
+    public let backdropPath, posterPath: String?
+    public let rating, popularity: Double
+    public let title, releaseDate, overview: String
 
     public enum CodingKeys: String, CodingKey {
         case id, title, overview, popularity
