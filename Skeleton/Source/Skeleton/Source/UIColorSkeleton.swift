@@ -10,7 +10,6 @@ import UIKit
 
 extension UIColor {
     func isLight() -> Bool {
-        // algorithm from: http://www.w3.org/WAI/ER/WD-AERT/#color-contrast
         guard let components = cgColor.components,
             components.count >= 3 else { return false }
         let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
@@ -30,9 +29,9 @@ extension UIColor {
     }
 
     func adjust(by percent: CGFloat) -> UIColor {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        return UIColor(hue: h, saturation: s, brightness: b * percent, alpha: a)
+        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
+        getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        return UIColor(hue: hue, saturation: saturation, brightness: brightness * percent, alpha: alpha)
     }
 
     func makeGradient() -> [UIColor] {

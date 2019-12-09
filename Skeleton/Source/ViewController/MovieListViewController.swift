@@ -9,8 +9,7 @@
 import Networking
 import UIKit
 
-//PlaceholderAnimationViewController
-class MovieListViewController: PlaceholderAnimationViewController {
+class MovieListViewController: UIViewController {
 
     var mainView: MovieListView {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
@@ -74,8 +73,9 @@ class MovieListViewController: PlaceholderAnimationViewController {
 
             isFetchInProgress = true
 
-            //startAnimation()
-
+            startAnimation()
+            //startPlaceholderAnimation()
+ 
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
                     switch result {

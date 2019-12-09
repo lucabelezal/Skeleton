@@ -8,49 +8,6 @@
 
 import UIKit
 
-extension SkeletonView {
-    typealias SkeletonLayerAnimation = (CALayer) -> CAAnimation
-
-    enum SkeletonType {
-        case solid
-        case gradient
-
-        var layer: CALayer {
-            switch self {
-            case .solid:
-                return CALayer()
-            case .gradient:
-                return CAGradientLayer()
-            }
-        }
-
-        var layerAnimation: SkeletonLayerAnimation {
-            switch self {
-            case .solid:
-                return { $0.pulse }
-            case .gradient:
-                return { $0.sliding }
-            }
-        }
-    }
-
-    struct SkeletonGradient {
-        private var gradientColors: [UIColor]
-
-        var colors: [UIColor] {
-            return gradientColors
-        }
-
-        init(baseColor: UIColor, secondaryColor: UIColor? = nil) {
-            if let secondary = secondaryColor {
-                self.gradientColors = [baseColor, secondary, baseColor]
-            } else {
-                self.gradientColors = baseColor.makeGradient()
-            }
-        }
-    }
-}
-
 class SkeletonView: UIView {
 
     fileprivate var skeletonColor: UIColor?
@@ -58,11 +15,6 @@ class SkeletonView: UIView {
     fileprivate var skeletonType: SkeletonType?
     fileprivate(set) var isAnimated: Bool = false
 
-    /// Show the skeleton loader for every subview marked as skeletonable. If animated a pulsing animation is used by default.
-    ///
-    /// - Parameters:
-    ///   - color: The color for the skeleton loader.
-    ///   - animated: Pass true to animate the presentation; otherwise, pass false.
     func showSkeleton(usingColor color: UIColor = #colorLiteral(red: 0.9254901961, green: 0.9411764706, blue: 0.9450980392, alpha: 1), animated: Bool = false) {
         skeletonColor = color
         if isSkeletonActive {
@@ -72,11 +24,6 @@ class SkeletonView: UIView {
         }
     }
 
-    /// Show the skeleton loader for every subview marked as skeletonable. If animated a sliding animation is used by default.
-    ///
-    /// - Parameters:
-    ///   - gradient: The skeleton gradient for the skeleton loader.
-    ///   - animated: Pass true to animate the presentation; otherwise, pass false.
     func showGradientSkeleton(usingGradient gradient: SkeletonGradient = SkeletonGradient(baseColor: #colorLiteral(red: 0.9254901961, green: 0.9411764706, blue: 0.9450980392, alpha: 1)), animated: Bool = false) {
         skeletonGradient = gradient
         if isSkeletonActive {
@@ -86,11 +33,6 @@ class SkeletonView: UIView {
         }
     }
 
-    /// Use this in a `SkeletonView` you have inside another SkeletonView if you want to override the solid color or gradient of the SkeletonView skeletonable subviews.
-    ///
-    /// - Parameters:
-    ///   - color: A color for the SkeletonView
-    ///   - gradient: A gradient for the SkeletonView
     func setSkeletonColor(_ color: UIColor?, orGradient gradient: SkeletonGradient?) {
         skeletonColor = color
         skeletonGradient = gradient
@@ -130,7 +72,6 @@ class SkeletonView: UIView {
         view.status = .on
     }
 
-    /// Restart the skeleton animation
     func restartSkeleton() {
         if isSkeletonActive { resetSkeleton() }
     }
@@ -145,7 +86,6 @@ class SkeletonView: UIView {
         }
     }
 
-    /// Take the skeleton loaders off of all subviews marked as skeletonable.
     func hideSkeleton() {
         removeAppNoticationsObserver()
         removeSkeleton(of: subviews)
@@ -161,6 +101,49 @@ class SkeletonView: UIView {
                 removeSkeleton(of: stackView.arrangedSubviews)
             } else if !view.subviews.isEmpty {
                 removeSkeleton(of: view.subviews)
+            }
+        }
+    }
+}
+
+extension SkeletonView {
+    typealias SkeletonLayerAnimation = (CALayer) -> CAAnimation
+
+    enum SkeletonType {
+        case solid
+        case gradient
+
+        var layer: CALayer {
+            switch self {
+            case .solid:
+                return CALayer()
+            case .gradient:
+                return CAGradientLayer()
+            }
+        }
+
+        var layerAnimation: SkeletonLayerAnimation {
+            switch self {
+            case .solid:
+                return { $0.pulse }
+            case .gradient:
+                return { $0.sliding }
+            }
+        }
+    }
+
+    struct SkeletonGradient {
+        private var gradientColors: [UIColor]
+
+        var colors: [UIColor] {
+            return gradientColors
+        }
+
+        init(baseColor: UIColor, secondaryColor: UIColor? = nil) {
+            if let secondary = secondaryColor {
+                self.gradientColors = [baseColor, secondary, baseColor]
+            } else {
+                self.gradientColors = baseColor.makeGradient()
             }
         }
     }

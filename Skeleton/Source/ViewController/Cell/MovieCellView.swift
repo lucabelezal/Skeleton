@@ -11,7 +11,7 @@ import UIKit
 
 class MovieCellView: UIView, ViewModelOwner {
 
-    private var contentView: CardView
+    private var contentView: SkeletonView
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
@@ -24,7 +24,7 @@ class MovieCellView: UIView, ViewModelOwner {
     }
 
     override init(frame: CGRect) {
-        self.contentView = CardView()
+        self.contentView = SkeletonView()
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
@@ -38,20 +38,10 @@ class MovieCellView: UIView, ViewModelOwner {
     }
 
     func update() {
-
-//        DispatchQueue.main.async {
-//            self.contentView.showGradientSkeleton(usingGradient: SkeletonView.SkeletonGradient(baseColor: #colorLiteral(red: 0.831372549, green: 0.831372549, blue: 0.8705882353, alpha: 1)), animated: true)
-//        }
-
         if let model = self.viewModel {
             self.titleLabel.text = model.title
             self.overviewLabel.text = model.overview
             self.posterImageView.image = model.posterImage.image
-        }
-
-        DispatchQueue.main.async {
-            //        ABLoader().startShining(posterImageView)
-//            ABLoader().startSmartShining(self.contentView)
         }
     }
 }
@@ -59,6 +49,10 @@ class MovieCellView: UIView, ViewModelOwner {
 extension MovieCellView: ViewCodable {
 
     func configure() {
+//        posterImageView.shimmerAnimationPlaceholderAnimation = true
+//        titleLabel.shimmerAnimationPlaceholderAnimation = true
+//        overviewLabel.shimmerAnimationPlaceholderAnimation = true
+        
         contentView.isSkeletonable = true
         posterImageView.isSkeletonable = true
         titleLabel.isSkeletonable = true
@@ -92,7 +86,7 @@ extension MovieCellView: ViewCodable {
             make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
-            make.height.lessThanOrEqualTo(constant: 42)
+//            make.height.equalTo(constant: 42)
         }
 
         overviewLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -101,6 +95,7 @@ extension MovieCellView: ViewCodable {
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(titleLabel.layout.left)
             make.right.equalTo(titleLabel.layout.right)
+//            make.height.equalTo(constant: 146)
         }
     }
 

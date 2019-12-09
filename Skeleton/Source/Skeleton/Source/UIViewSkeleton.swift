@@ -8,9 +8,7 @@
 
 import UIKit
 
-//Partially copy/pasted from https://github.com/jameslintaylor/AssociatedObjects/blob/master/AssociatedObjects/AssociatedObjects.swift
 private enum AssociationPolicy: UInt {
-    // raw values map to objc_AssociationPolicy's raw values
     case assign = 0
     case copy = 771
     case copyNonatomic = 3
@@ -84,34 +82,7 @@ extension UIView {
     }
 }
 
-///KNSLKNLJFNALSDNLKASDNFLKSJDFKLASJFLKASJKLASJDLJSLKJFLKASJFDLKASJLAKSFJD
-
-// ViewController
-class PlaceholderAnimationViewController: UIViewController {
-
-    /// IBOutlet(s)
-    @IBOutlet weak var tableView: UITableView!
-
-    /// Variable Declaration(s)
-    var isAnimateStart: Bool = false
-
-    /// View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        startAnimation()
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
-
-// MARK: - Animation Related
-extension PlaceholderAnimationViewController {
+extension UIViewController {
 
     func startAnimation() {
         for animateView in getSubViewsForAnimate() {
@@ -126,18 +97,17 @@ extension PlaceholderAnimationViewController {
     }
 }
 
-// MARK: - Other Method(s)
-extension PlaceholderAnimationViewController {
+extension UIViewController {
 
     func getSubViewsForAnimate() -> [SkeletonView] {
         var obj: [SkeletonView] = []
         for objView in view.subviewsRecursive() {
-            if let v = objView as? SkeletonView {
-                 obj.append(v)
+            if let skeletonView = objView as? SkeletonView {
+                 obj.append(skeletonView)
             }
         }
-        return obj.filter({ (obj) -> Bool in
+        return obj.filter { (obj) -> Bool in
             obj.isSkeletonable
-        })
+        }
     }
 }

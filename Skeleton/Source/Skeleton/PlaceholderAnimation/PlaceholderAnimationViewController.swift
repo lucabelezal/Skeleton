@@ -37,70 +37,56 @@
 //    }
 //}
 //
-///// ViewController
-//class PlaceholderAnimationViewController: UIViewController {
-//
-//    /// IBOutlet(s)
-//    @IBOutlet weak var tableView: UITableView!
-//
-//    /// Variable Declaration(s)
-//    var isAnimateStart: Bool = false
-//
-//    /// View Life Cycle
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        prepareUI()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        startPlaceholderAnimation()
-//    }
-//
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-//}
-//
-//extension PlaceholderAnimationViewController {
-//
-//    func prepareUI() {
-//
-//    }
-//}
-//
-//extension PlaceholderAnimationViewController {
+//extension UIViewController {
 //
 //    func startPlaceholderAnimation() {
+//        
 //        for animateView in getSubViewsForPlaceholderAnimate() {
-//                        animateView.clipsToBounds = true
+//            
+//            let colorLayer = CALayer()
+//            colorLayer.backgroundColor = UIColor(white: 0.82, alpha: 1).cgColor
+//            colorLayer.frame = animateView.bounds
+//            colorLayer.name = "colorLayer"
+//            animateView.layer.addSublayer(colorLayer)
+//            animateView.autoresizesSubviews = true
+//            animateView.clipsToBounds = true
+//
 //            let gradientLayer = CAGradientLayer()
-//            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor]
-//            gradientLayer.startPoint = CGPoint(x: 0.7, y: 1.0)
-//            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.8)
+//            gradientLayer.colors = [
+//                UIColor(white: 0.82, alpha: 1).cgColor,
+//                UIColor(white: 0.86, alpha: 1).cgColor,
+//                UIColor(white: 0.82, alpha: 1).cgColor,
+//            ]
+//            gradientLayer.locations = [0, 0.4, 0.8, 1]
+//            gradientLayer.name = "loaderLayer"
+//            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+//            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
 //            gradientLayer.frame = animateView.bounds
-//            animateView.layer.mask = gradientLayer
-//            
+//            animateView.layer.addSublayer(gradientLayer)
+//           
 //            let animation = CABasicAnimation(keyPath: "transform.translation.x")
-//            animation.duration = 1.5
-//            animation.fromValue = -animateView.frame.size.width
-//            animation.toValue = animateView.frame.size.width
+//            animation.duration = 1.2
+//            animation.fromValue = -animateView.frame.width
+//            animation.toValue = animateView.frame.width
 //            animation.repeatCount = .infinity
-//            
-//            gradientLayer.add(animation, forKey: "")
+//            gradientLayer.add(animation, forKey: "smartLoader")
 //        }
 //    }
 //
 //    func stopPlaceholderAnimation() {
 //        for animateView in getSubViewsForPlaceholderAnimate() {
-//            animateView.layer.removeAllAnimations()
-//            animateView.layer.mask = nil
-//            //self.gradientLayer.removeAllAnimations()
+//            //animateView.layer.removeAllAnimations()
+//            //animateView.layer.mask = nil
+//            
+//            if let smartLayers = animateView.layer.sublayers?.filter({ $0.name == "colorLayer" || $0.name == "loaderLayer" }) {
+//                smartLayers.forEach({ $0.removeFromSuperlayer() })
+//            }
+//            
 //        }
 //    }
 //}
 //
-//extension PlaceholderAnimationViewController {
+//extension UIViewController {
 //
 //    func getSubViewsForPlaceholderAnimate() -> [UIView] {
 //        var obj: [UIView] = []
@@ -110,39 +96,5 @@
 //        return obj.filter({ (obj) -> Bool in
 //            obj.shimmerAnimationPlaceholderAnimation
 //        })
-//    }
-//}
-//
-//extension PlaceholderAnimationViewController {
-//
-//    @IBAction func tapBtnRefresh(_ sender: UIBarButtonItem) {
-//        if isAnimateStart {
-//            startPlaceholderAnimation()
-//            sender.title = "Stop"
-//        } else {
-//            stopPlaceholderAnimation()
-//            sender.title = "Start"
-//        }
-//        isAnimateStart = !isAnimateStart
-//    }
-//}
-//
-//extension PlaceholderAnimationViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 3
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 300
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
 //    }
 //}

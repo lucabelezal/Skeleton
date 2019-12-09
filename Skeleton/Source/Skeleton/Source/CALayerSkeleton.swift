@@ -23,8 +23,8 @@ extension CAGradientLayer {
 extension CALayer {
     var pulse: CAAnimation {
         let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
-        pulseAnimation.fromValue = backgroundColor
-        pulseAnimation.toValue = UIColor(cgColor: backgroundColor!).complementaryColor.cgColor
+        pulseAnimation.fromValue = frame.size.height
+        pulseAnimation.toValue = -frame.size.height
         pulseAnimation.duration = 1
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         pulseAnimation.autoreverses = true
@@ -50,26 +50,15 @@ extension CALayer {
         return animGroup
     }
 
-    /// Start to play the skeleton animation closure for the specified skeleton type.
-    ///
-    /// - Parameter type: The skeleton type used to decide the animation.
     func startAnimation(for type: SkeletonView.SkeletonType) {
         let animation = type.layerAnimation
         playAnimation(animation, key: "skeletonAnimation")
     }
 
-    /// Play the specified skeleton animation closure to the layer.
-    ///
-    /// - Parameters:
-    ///   - anim: The animation to be added and played in the render tree. This object is copied by the render tree, not referenced. Therefore, subsequent modifications to the object are not propagated into the render tree.
-    ///   - key: A string that identifies the animation. Only one animation per unique key is added to the layer. The special key kCATransition is automatically used for transition animations. You may specify nil for this parameter.
     func playAnimation(_ anim: SkeletonView.SkeletonLayerAnimation, key: String) {
         add(anim(self), forKey: key)
     }
 
-    /// Stop the animation with the specified key.
-    ///
-    /// - Parameter key: The identifier of the animation to stop.
     func stopAnimation(forKey key: String) {
         removeAnimation(forKey: key)
     }
