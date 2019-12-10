@@ -41,10 +41,9 @@ class MovieListView: UIView {
     // MARK: - Private Methods
 
     private func update() {
-         self.tableView.reloadData()
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

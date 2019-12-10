@@ -8,22 +8,22 @@
 
 import UIKit
 
-//PlaceholderAnimation
-
-var associateObjectValuePlaceholderAnimation: Int = 0 // swiftlint:disable:this identifier_name
+struct AssociatedKeys {
+    static var state: Int = 0
+}
 
 extension UIView {
 
     fileprivate var isAnimate: Bool {
         get {
-            return objc_getAssociatedObject(self, &associateObjectValuePlaceholderAnimation) as? Bool ?? false
+            return objc_getAssociatedObject(self, &AssociatedKeys.state) as? Bool ?? false
         }
         set {
-            return objc_setAssociatedObject(self, &associateObjectValuePlaceholderAnimation, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_setAssociatedObject(self, &AssociatedKeys.state, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
 
-    @IBInspectable var shimmerAnimationPlaceholderAnimation: Bool { // swiftlint:disable:this identifier_name
+    @IBInspectable var isShimmerAnimation: Bool {
         get {
             return isAnimate
         }
@@ -32,16 +32,16 @@ extension UIView {
         }
     }
 
-    func subviewsRecursivePlaceholderAnimation() -> [UIView] {
-        return subviews + subviews.flatMap { $0.subviewsRecursivePlaceholderAnimation() }
+    func subviewsRecursive() -> [UIView] {
+        return subviews + subviews.flatMap { $0.subviewsRecursive() }
     }
 }
 
 extension UIViewController {
 
-    func startPlaceholderAnimation() {
+    func startLoading() {
 
-        for animateView in getSubViewsForPlaceholderAnimate() {
+        for animateView in getSubViewsForAnimate() {
 
             let colorLayer = CALayer()
             colorLayer.backgroundColor = UIColor(white: 0.82, alpha: 1).cgColor
@@ -58,28 +58,25 @@ extension UIViewController {
                 UIColor(white: 0.82, alpha: 1).cgColor,
             ]
             gradientLayer.locations = [0, 0.4, 0.8, 1]
-            gradientLayer.name = "loaderLayer"
+            gradientLayer.name = "gradientLayer"
             gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
             gradientLayer.frame = animateView.maxBoundsEstimated
             animateView.layer.addSublayer(gradientLayer)
 
-            let animation = CABasicAnimation(keyPath: "transform.translation.x")
-            animation.duration = 1.2
-            animation.fromValue = -animateView.frame.width
-            animation.toValue = animateView.frame.width
-            animation.repeatCount = .infinity
-            gradientLayer.add(animation, forKey: "smartLoader")
+            let pulseAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+            pulseAnimation.duration = 1.2
+            pulseAnimation.fromValue = -animateView.frame.width
+            pulseAnimation.toValue = animateView.frame.width
+            pulseAnimation.repeatCount = .infinity
+            gradientLayer.add(pulseAnimation, forKey: "smartLoader")
         }
     }
 
-    func stopPlaceholderAnimation() {
-        for animateView in getSubViewsForPlaceholderAnimate() {
-            //animateView.layer.removeAllAnimations()
-            //animateView.layer.mask = nil
-
-            if let smartLayers = animateView.layer.sublayers?.filter({ $0.name == "colorLayer" || $0.name == "loaderLayer" }) {
-                smartLayers.forEach({ $0.removeFromSuperlayer() })
+    func stopLoading() {
+        for animateView in getSubViewsForAnimate() {
+            if let smartLayers = animateView.layer.sublayers?.filter({ $0.name == "colorLayer" || $0.name == "gradientLayer" }) {
+                smartLayers.forEach { $0.removeFromSuperlayer() }
             }
         }
     }
@@ -87,21 +84,23 @@ extension UIViewController {
 
 extension UIViewController {
 
-    func getSubViewsForPlaceholderAnimate() -> [UIView] {
+    func getSubViewsForAnimate() -> [UIView] {
         var obj: [UIView] = []
-        for objView in view.subviewsRecursivePlaceholderAnimation() {
+        for objView in view.subviewsRecursive() {
             obj.append(objView)
         }
-        return obj.filter({ (obj) -> Bool in
-            obj.shimmerAnimationPlaceholderAnimation
-        })
+        return obj.filter { (obj) -> Bool in
+            obj.isShimmerAnimation
+        }
     }
 }
 
 extension UIView {
+    
     var maxBoundsEstimated: CGRect {
         if let parentStackView = (superview as? UIStackView) {
             var origin: CGPoint = .zero
+            
             switch parentStackView.alignment {
             case .center:
                 origin.x = maxWidthEstimated / 2
@@ -110,8 +109,10 @@ extension UIView {
             default:
                 break
             }
+            
             return CGRect(origin: origin, size: maxSizeEstimated)
         }
+        
         return CGRect(origin: .zero, size: maxSizeEstimated)
     }
 
@@ -120,12 +121,12 @@ extension UIView {
     }
 
     var maxWidthEstimated: CGFloat {
-        let constraintsWidth = nonContentSizeLayoutConstraints.filter({ $0.firstAttribute == NSLayoutConstraint.Attribute.width })
+        let constraintsWidth = nonContentSizeLayoutConstraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.width }
         return max(between: frame.size.width, andContantsOf: constraintsWidth)
     }
 
     var maxHeightEstimated: CGFloat {
-        let constraintsHeight = nonContentSizeLayoutConstraints.filter({ $0.firstAttribute == NSLayoutConstraint.Attribute.height })
+        let constraintsHeight = nonContentSizeLayoutConstraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.height }
         return max(between: frame.size.height, andContantsOf: constraintsHeight)
     }
 
@@ -139,6 +140,7 @@ extension UIView {
     }
 
     var nonContentSizeLayoutConstraints: [NSLayoutConstraint] {
-        return constraints.filter({ "\(type(of: $0))" != "NSContentSizeLayoutConstraint" })
+        return constraints.filter { "\(type(of: $0))" != "NSContentSizeLayoutConstraint" }
     }
+    
 }

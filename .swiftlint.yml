@@ -36,8 +36,9 @@ opt_in_rules:
   - syntactic_sugar
   - vertical_parameter_alignment_on_call
   - vertical_whitespace
-  - trailing_whitespace
-  - ignores_empty_lines
+
+trailing_whitespace:
+  ignores_empty_lines: true
 
 disabled_rules: # rule identifiers to exclude from running
   - missing_docs
@@ -72,8 +73,8 @@ identifier_name:
   allowed_symbols: "_"
   min_length: 2
   max_length: 
-    warning: 30
-    error: 35
+    warning: 35
+    error: 40
   excluded:
     - id
     - url
