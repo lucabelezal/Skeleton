@@ -49,14 +49,9 @@ class MovieCellView: UIView, ViewModelOwner {
 extension MovieCellView: ViewCodable {
 
     func configure() {
-        posterImageView.isShimmerAnimation = true
-        titleLabel.isShimmerAnimation = true
-        overviewLabel.isShimmerAnimation = true
-
-//        contentView.isSkeletonable = true
-//        posterImageView.isSkeletonable = true
-//        titleLabel.isSkeletonable = true
-//        overviewLabel.isSkeletonable = true
+        posterImageView.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        overviewLabel.isSkeletonable = true
     }
 
     func hierarchy() {
