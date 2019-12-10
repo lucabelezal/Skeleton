@@ -9,7 +9,6 @@
 import UIKit
 
 protocol NibOwnerLoadable: class {
-    /// The nib file to use to load a new instance of the View designed in a XIB
     static var nib: UINib { get }
 }
 
@@ -38,7 +37,6 @@ extension NibOwnerLoadable where Self: UIView {
     }
 }
 
-/// Swift < 4.2 support
 #if !(swift(>=4.2))
 private extension NSLayoutConstraint {
     typealias Attribute = NSLayoutAttribute

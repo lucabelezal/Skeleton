@@ -32,7 +32,7 @@ struct MovieListSection: TableSection {
         model.didAction?()
     }
 
-    // MARK: Private Methods
+    // MARK: - Private Methods
 
     private func renderCell(view: MovieCellView) {}
 }
@@ -43,4 +43,5 @@ extension MovieListSection {
         self.data = data
         self.numberOfRows = data.count
     }
+    
 }

@@ -45,6 +45,7 @@ class MovieListView: UIView {
             self.tableView.reloadData()
         }
     }
+    
 }
 
 extension MovieListView: ViewCodable {
@@ -54,8 +55,6 @@ extension MovieListView: ViewCodable {
         tableView.dataSource = self
         tableView.prefetchDataSource = self
         tableView.separatorStyle = .none
-        tableView.rowHeight = 236
-        tableView.estimatedRowHeight = 236
         tableView.register(cellType: Cell.self)
     }
 
@@ -77,6 +76,7 @@ extension MovieListView: ViewCodable {
         backgroundColor = .lightGray
         tableView.backgroundColor = .clear
     }
+    
 }
 
 extension MovieListView: DataSourceDelegate {
@@ -101,6 +101,7 @@ extension MovieListView: DataSourceDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
+    
 }
 
 extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
@@ -134,4 +135,5 @@ extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableView
             }
         }
     }
+    
 }

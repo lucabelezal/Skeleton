@@ -18,13 +18,9 @@ struct MovieListViewModel: MovieListViewModelProtocol {
     var items: Int
     var data: [MovieCellViewModelProtocol]
 
-    init() {
-        self.items = 0
-        self.data = [MovieCellViewModel()]
-    }
-
     init(movies: [Movie]) {
         self.items = movies.count
         self.data = movies.map { MovieCellViewModel(movie: $0) }
     }
+    
 }

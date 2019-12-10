@@ -44,6 +44,7 @@ class MovieCellView: UIView, ViewModelOwner {
             self.posterImageView.image = model.posterImage.image
         }
     }
+    
 }
 
 extension MovieCellView: ViewCodable {
@@ -55,21 +56,21 @@ extension MovieCellView: ViewCodable {
     }
 
     func hierarchy() {
-        contentView.addView(posterImageView, titleLabel, overviewLabel)
-        addView(contentView)
+        contentView.addView(titleLabel, overviewLabel)
+        addView(contentView, posterImageView)
     }
 
     func constraints() {
 
         contentView.layout.makeConstraints { make in
-            make.top.equalTo(self.layout.top, constant: 16)
-            make.bottom.equalTo(self.layout.bottom, constant: -16)
+            make.top.equalTo(self.layout.top, constant: 48)
+            make.bottom.equalTo(self.layout.bottom)
             make.left.equalTo(self.layout.left, constant: 16)
             make.right.equalTo(self.layout.right, constant: -16)
         }
 
         posterImageView.layout.makeConstraints { make in
-            make.top.equalTo(contentView.layout.top)
+            make.top.equalTo(self.layout.top, constant: 16)
             make.bottom.equalTo(contentView.layout.bottom)
             make.left.equalTo(contentView.layout.left)
             make.height.equalTo(constant: 204)
@@ -90,18 +91,22 @@ extension MovieCellView: ViewCodable {
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(titleLabel.layout.left)
             make.right.equalTo(titleLabel.layout.right)
-            make.height.lessThanOrEqualTo(constant: 146)
+            make.height.lessThanOrEqualTo(constant: 122)
         }
     }
 
     func styles() {
-        backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         contentView.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        overviewLabel.textColor = .darkGray
+        
         posterImageView.contentMode = .scaleAspectFill
+        posterImageView.layer.cornerRadius = 8
+        posterImageView.layer.masksToBounds = true
+        
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        overviewLabel.textColor = .darkGray
         overviewLabel.numberOfLines = 0
-        overviewLabel.font = UIFont.systemFont(ofSize: 12)
+        overviewLabel.font = UIFont.systemFont(ofSize: 14)
     }
 }

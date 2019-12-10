@@ -44,6 +44,7 @@ class DataSource: NSObject {
         self.sections.append(contentsOf: sections)
         self.tableView.insertSections(last, with: .fade)
     }
+    
 }
 
 extension DataSource: UITableViewDataSource {
@@ -65,6 +66,7 @@ extension DataSource: UITableViewDataSource {
         let section = sections[section]
         return section.title
     }
+    
 }
 
 extension DataSource: UITableViewDelegate {
@@ -89,6 +91,7 @@ extension DataSource: UITableViewDelegate {
         let section = sections[indexPath.section]
         section.didSelectRow(for: indexPath)
     }
+    
 }
 
 extension DataSource: UIScrollViewDelegate {
@@ -96,6 +99,7 @@ extension DataSource: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
     }
+    
 }
 
 extension DataSource: UITableViewDataSourcePrefetching {
@@ -111,4 +115,5 @@ extension DataSource: UITableViewDataSourcePrefetching {
             }
         }
     }
+    
 }

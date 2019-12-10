@@ -38,7 +38,6 @@ class TableViewCell<View: UIView, ViewModel>: UITableViewCell, Reusable where Vi
         fatalError("init(coder:) has not been implemented")
     }
 
-    // The final here is necessary and it's related to this https://developer.apple.com/swift/blog/?id=27
     final var viewModel: ViewModel? {
         get {
             return customView.viewModel
@@ -53,4 +52,5 @@ class TableViewCell<View: UIView, ViewModel>: UITableViewCell, Reusable where Vi
         super.setSelected(selected, animated: animated)
         customView.isSelected = selected
     }
+    
 }

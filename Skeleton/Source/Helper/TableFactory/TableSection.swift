@@ -26,7 +26,7 @@ protocol TableSection {
 
 extension TableSection {
 
-    // MARK: Option Properties
+    // MARK: - Option Properties
 
     var title: String? {
         return nil
@@ -42,7 +42,7 @@ extension TableSection {
         }
     }
 
-    // MARK: Option Methods
+    // MARK: - Option Methods
 
     func separatorInset(for indexPath: IndexPath) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

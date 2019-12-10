@@ -23,12 +23,6 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     var posterImage: UIImageView
     var didAction: (() -> Void)?
 
-    init() {
-        self.title = String()
-        self.overview = String()
-        self.posterImage = UIImageView()
-    }
-
     init(movie: Movie) {
         self.title = movie.title
         self.overview = movie.overview
@@ -36,7 +30,7 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
 
         if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
             self.posterImage.load(url: url, placeholder: self.posterImage.image)
-            //self.posterImage.loadImage(fromURL: "\(ConstantApi.baseImageURL)\(path)")
         }
     }
+    
 }
