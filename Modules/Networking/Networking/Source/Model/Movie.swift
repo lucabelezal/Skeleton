@@ -12,7 +12,7 @@ public struct Movie: Codable {
 
     public let id: Int
     public let backdropPath, posterPath: String?
-    public let rating, popularity: Double
+    public let voteAverage, popularity: Double
     public let title, releaseDate, overview: String
 
     public enum CodingKeys: String, CodingKey {
@@ -20,6 +20,6 @@ public struct Movie: Codable {
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
         case releaseDate = "release_date"
-        case rating = "vote_average"
+        case voteAverage = "vote_average"
     }
 }

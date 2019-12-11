@@ -29,6 +29,7 @@
 		6E1A8BB222C873110055B6D8 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8BB122C873110055B6D8 /* MovieCellViewModel.swift */; };
 		6E1A8BB422C8731E0055B6D8 /* MovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8BB322C8731E0055B6D8 /* MovieCellView.swift */; };
 		6E252DF523948F9D00FA5851 /* UIImageView+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */; };
+		6E29703623A08E2C007BB70C /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E29703523A08E2C007BB70C /* CircleProgressView.swift */; };
 		6E696B03239F4F09000AD9F8 /* UIView+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E696B02239F4F09000AD9F8 /* UIView+Skeleton.swift */; };
 		6E696B05239F4F98000AD9F8 /* UIViewController+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E696B04239F4F98000AD9F8 /* UIViewController+Skeleton.swift */; };
 		6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */; };
@@ -89,6 +90,7 @@
 		6E1A8BB122C873110055B6D8 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		6E1A8BB322C8731E0055B6D8 /* MovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellView.swift; sourceTree = "<group>"; };
 		6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Cache.swift"; sourceTree = "<group>"; };
+		6E29703523A08E2C007BB70C /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		6E696B02239F4F09000AD9F8 /* UIView+Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Skeleton.swift"; sourceTree = "<group>"; };
 		6E696B04239F4F98000AD9F8 /* UIViewController+Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Skeleton.swift"; sourceTree = "<group>"; };
 		6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceProtocol.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECCA80F22D44752001B91F6 /* CardView.swift */,
+				6E29703523A08E2C007BB70C /* CircleProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 			files = (
 				6E0FCE7F231AF77700E85079 /* TableViewCell.swift in Sources */,
 				6E1A8BA622C86C0F0055B6D8 /* UICollectionView+Reusable.swift in Sources */,
+				6E29703623A08E2C007BB70C /* CircleProgressView.swift in Sources */,
 				6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */,
 				6E1A8BA822C86C0F0055B6D8 /* UITableView+Reusable.swift in Sources */,
 				6E696B03239F4F09000AD9F8 /* UIView+Skeleton.swift in Sources */,
