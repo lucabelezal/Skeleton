@@ -17,7 +17,7 @@ class MovieCellView: UIView, ViewModelOwner {
     private var overviewLabel: UILabel
     private var releaseDateLabel: UILabel
     private var containerView: UIView
-    private var circleProgressView: CircleProgressView?
+    private var circleProgressView: CircleProgressView
     
     var isSelected: Bool
     
@@ -34,7 +34,8 @@ class MovieCellView: UIView, ViewModelOwner {
         self.overviewLabel = UILabel()
         self.releaseDateLabel = UILabel()
         self.isSelected = false
-        self.containerView = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
+        self.containerView = UIView()
+        self.circleProgressView = CircleProgressView()
         super.init(frame: frame)
         setupView()
     }
@@ -49,7 +50,7 @@ class MovieCellView: UIView, ViewModelOwner {
             self.overviewLabel.text = model.overview
             self.releaseDateLabel.text = model.releaseDate
             self.posterImageView.image = model.posterImage.image
-            self.circleProgressView?.progress = model.voteAverage
+            self.circleProgressView.progress = Float(model.voteAverage)
         }
     }
     
@@ -63,20 +64,13 @@ extension MovieCellView: ViewCodable {
         releaseDateLabel.isSkeletonable = true
         overviewLabel.isSkeletonable = true
         containerView.isSkeletonable = true
+//        circleProgressView.isSkeletonable = true
     }
     
     func hierarchy() {
+        containerView.addView(circleProgressView)
         contentView.addView(titleLabel, releaseDateLabel, overviewLabel, containerView)
         addView(contentView, posterImageView)
-        
-        let xPosition = containerView.center.x
-        let yPosition = containerView.center.y
-        let position = CGPoint(x: xPosition, y: yPosition)
-        
-        circleProgressView = CircleProgressView(radius: 18, position: position, lineWidth: 4)
-        if let progressView = circleProgressView {
-             containerView.layer.addSublayer(progressView)
-        }
     }
     
     func constraints() {
@@ -102,7 +96,14 @@ extension MovieCellView: ViewCodable {
             make.height.equalTo(constant: 42)
             make.width.equalTo(constant: 42)
         }
-        
+
+        circleProgressView.layout.makeConstraints { make in
+            make.top.equalTo(containerView.layout.top)
+            make.bottom.equalTo(containerView.layout.bottom)
+            make.left.equalTo(containerView.layout.left)
+            make.right.equalTo(containerView.layout.right)
+        }
+
         titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         titleLabel.layout.makeConstraints { make in
             make.top.equalTo(contentView.layout.top, constant: 8)
