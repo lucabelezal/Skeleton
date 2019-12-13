@@ -15,9 +15,9 @@ class MovieCellView: UIView, ViewModelOwner {
     private var posterImageView: UIImageView
     private var titleLabel: UILabel
     private var overviewLabel: UILabel
-    
-    private var circularProgress: UIView
-    private var circular: CircleProgressView?
+    private var releaseDateLabel: UILabel
+    private var containerView: UIView
+    private var circleProgressView: CircleProgressView?
     
     var isSelected: Bool
     
@@ -32,10 +32,9 @@ class MovieCellView: UIView, ViewModelOwner {
         self.posterImageView = UIImageView()
         self.titleLabel = UILabel()
         self.overviewLabel = UILabel()
+        self.releaseDateLabel = UILabel()
         self.isSelected = false
-        
-        self.circularProgress = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
-        
+        self.containerView = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
         super.init(frame: frame)
         setupView()
     }
@@ -48,8 +47,9 @@ class MovieCellView: UIView, ViewModelOwner {
         if let model = self.viewModel {
             self.titleLabel.text = model.title
             self.overviewLabel.text = model.overview
+            self.releaseDateLabel.text = model.releaseDate
             self.posterImageView.image = model.posterImage.image
-            self.circular?.progress = model.voteAverage
+            self.circleProgressView?.progress = model.voteAverage
         }
     }
     
@@ -60,20 +60,22 @@ extension MovieCellView: ViewCodable {
     func configure() {
         posterImageView.isSkeletonable = true
         titleLabel.isSkeletonable = true
+        releaseDateLabel.isSkeletonable = true
         overviewLabel.isSkeletonable = true
+        containerView.isSkeletonable = true
     }
     
     func hierarchy() {
-        contentView.addView(circularProgress, titleLabel, overviewLabel)
+        contentView.addView(titleLabel, releaseDateLabel, overviewLabel, containerView)
         addView(contentView, posterImageView)
         
-        let xPosition = circularProgress.center.x
-        let yPosition = circularProgress.center.y
+        let xPosition = containerView.center.x
+        let yPosition = containerView.center.y
         let position = CGPoint(x: xPosition, y: yPosition)
         
-        circular = CircleProgressView(radius: 16, position: position, lineWidth: 4)
-        if let pro = circular {
-             circularProgress.layer.addSublayer(pro)
+        circleProgressView = CircleProgressView(radius: 18, position: position, lineWidth: 4)
+        if let progressView = circleProgressView {
+             containerView.layer.addSublayer(progressView)
         }
     }
     
@@ -94,28 +96,34 @@ extension MovieCellView: ViewCodable {
             make.width.equalTo(constant: 136)
         }
         
-        circularProgress.layout.makeConstraints { make in
-            make.top.equalTo(contentView.layout.top, constant: 4)
-            make.left.equalTo(contentView.layout.left, constant: 144)
+        containerView.layout.makeConstraints { make in
+            make.top.equalTo(contentView.layout.top, constant: 8)
+            make.left.equalTo(contentView.layout.left, constant: 140)
             make.height.equalTo(constant: 42)
             make.width.equalTo(constant: 42)
         }
         
         titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         titleLabel.layout.makeConstraints { make in
-            make.centerY.equalTo(circularProgress.layout.centerY)
+            make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
-            make.left.equalTo(circularProgress.layout.right, constant: 8)
+            make.left.equalTo(containerView.layout.right, constant: 8)
             make.height.lessThanOrEqualTo(constant: 42)
+        }
+        
+        releaseDateLabel.layout.makeConstraints { make in
+            make.top.equalTo(titleLabel.layout.bottom, constant: 4)
+            make.right.equalTo(contentView.layout.right, constant: -8)
+            make.left.equalTo(containerView.layout.right, constant: 8)
         }
         
         overviewLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         overviewLabel.layout.makeConstraints { make in
-            make.top.equalTo(circularProgress.layout.bottom, constant: 8)
+            make.top.equalTo(releaseDateLabel.layout.bottom, constant: 8)
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
-            make.right.equalTo(titleLabel.layout.right)
-            make.height.lessThanOrEqualTo(constant: 112)
+            make.right.equalTo(releaseDateLabel.layout.right)
+            make.height.lessThanOrEqualTo(constant: 110)
         }
     }
     
@@ -127,10 +135,13 @@ extension MovieCellView: ViewCodable {
         posterImageView.layer.masksToBounds = true
         
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
+        
+        releaseDateLabel.numberOfLines = 0
+        releaseDateLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.light)
         
         overviewLabel.textColor = .darkGray
         overviewLabel.numberOfLines = 0
-        overviewLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+        overviewLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
     }
 }

@@ -59,7 +59,7 @@ public class CircleProgressView: CALayer {
         progressLabel.frame = CGRect(origin: origin, size: size)
         progressLabel.center = position
         progressLabel.center.y = position.y
-        progressLabel.font = UIFont.systemFont(ofSize: 6, weight: UIFont.Weight.medium)
+        progressLabel.font = UIFont.systemFont(ofSize: 6.5, weight: UIFont.Weight.bold)
         progressLabel.text = "0%"
         progressLabel.textColor = .black
         progressLabel.textAlignment = .center
