@@ -43,7 +43,7 @@ public class CircleProgressView: UIView {
         let circularPath = UIBezierPath(arcCenter: .zero,
                                         radius: (rect.height / 2) - 4,
                                         startAngle: 0,
-                                        endAngle: -.pi * 2,
+                                        endAngle: .pi * 2,
                                         clockwise: false)
 
         trackLayer.path = circularPath.cgPath
