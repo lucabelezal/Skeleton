@@ -77,7 +77,7 @@ class MovieListViewController: UIViewController {
             startLoading()
 
             self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
-                DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
                     switch result {
                     case .success(let data):
                         self.isFetchInProgress = false

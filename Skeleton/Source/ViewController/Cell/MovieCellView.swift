@@ -98,7 +98,7 @@ extension MovieCellView: ViewCodable {
         
         containerView.layout.makeConstraints { make in
             make.top.equalTo(contentView.layout.top, constant: 8)
-            make.left.equalTo(contentView.layout.left, constant: 140)
+            make.left.equalTo(contentView.layout.left, constant: 144)
             make.height.equalTo(constant: 42)
             make.width.equalTo(constant: 42)
         }
