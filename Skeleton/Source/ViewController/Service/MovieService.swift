@@ -41,7 +41,6 @@ class MovieService: MovieServiceProtocol {
                         let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
                         completion(.success(apiResponse))
                     } catch {
-                        print(error)
                         completion(.failure(NetworkResponse.unableToDecode))
                     }
                 case .failure(let networkFailureError):
