@@ -36,8 +36,9 @@ opt_in_rules:
   - syntactic_sugar
   - vertical_parameter_alignment_on_call
   - vertical_whitespace
-  - trailing_whitespace
-  - ignores_empty_lines
+
+trailing_whitespace:
+  ignores_empty_lines: true
 
 disabled_rules: # rule identifiers to exclude from running
   - missing_docs

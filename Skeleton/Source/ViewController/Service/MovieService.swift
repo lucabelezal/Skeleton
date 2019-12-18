@@ -38,9 +38,6 @@ class MovieService: MovieServiceProtocol {
                         return
                     }
                     do {
-                        print(responseData)
-                        let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                        print(jsonData)
                         let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
                         completion(.success(apiResponse))
                     } catch {
