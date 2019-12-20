@@ -109,11 +109,11 @@ extension MovieCellView: ViewCodable {
             make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
-            make.height.greaterThanOrEqualTo(constant: 42)
+            make.height.lessThanOrEqualTo(constant: 42)
         }
 
         releaseDateLabel.layout.makeConstraints { make in
-            make.top.equalTo(titleLabel.layout.bottom, constant: 4)
+            make.top.equalTo(titleLabel.layout.bottom, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
             make.height.greaterThanOrEqualTo(constant: 16)
@@ -125,7 +125,7 @@ extension MovieCellView: ViewCodable {
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
             make.right.equalTo(releaseDateLabel.layout.right)
-            make.height.greaterThanOrEqualTo(constant: 88)
+            make.height.greaterThanOrEqualTo(constant: 64)
         }
     }
     
