@@ -21,7 +21,7 @@ public class CircleProgressView: UIView {
             update()
         }
     }
-
+    
     @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,6 +37,19 @@ public class CircleProgressView: UIView {
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        var color: UIColor {
+            switch progress * 10 {
+            case 1...39:
+                return .red
+            case 40...69:
+                return .yellow
+            case 70...100:
+                return .green
+            default:
+                return .clear
+            }
+        }
 
         let centerPoint = CGPoint(x: rect.width / 2, y: rect.width / 2)
         let trackLayer = CAShapeLayer()
@@ -55,7 +68,7 @@ public class CircleProgressView: UIView {
         trackLayer.position = centerPoint
 
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.green.cgColor
+        shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineWidth = 2.5
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -65,28 +78,32 @@ public class CircleProgressView: UIView {
 
         layer.addSublayer(trackLayer)
         layer.addSublayer(shapeLayer)
-
+        
+        layer.backgroundColor = UIColor.black.cgColor
+        layer.cornerRadius = 21
     }
 
     private func update() {
 
+        let progressValue = progress * 10
+        
         if let value = percentageLabel.text {
 
-            guard NSString(string: value).floatValue < 10.0 else {
+            guard NSString(string: value).floatValue < 100 else {
                 return
             }
 
-            percentageLabel.text = "\(String(format: "%.1f", progress))%"
+            percentageLabel.text = "\(Int(progressValue))%"
 
-            if progress != NSString(string: value).floatValue {
-                circleAnimation(fromValue: CGFloat(NSString(string: value).floatValue) / 10.0, toValue: CGFloat(progress) / 10.0)
+            if progressValue != NSString(string: value).floatValue {
+                circleAnimation(fromValue: CGFloat(NSString(string: value).floatValue) / 100,
+                                toValue: CGFloat(progressValue) / 100)
             }
 
         } else {
-            percentageLabel.text = "\(String(format: "%.1f", progress))%"
-            circleAnimation(fromValue: 0.0, toValue: CGFloat(progress) / 10.0)
+            percentageLabel.text = "\(Int(progressValue))%"
+            circleAnimation(fromValue: 0.0, toValue: CGFloat(progressValue) / 100)
         }
-
     }
 
     private func circleAnimation(fromValue: CGFloat, toValue: CGFloat) {
@@ -130,9 +147,9 @@ extension CircleProgressView: ViewCodable {
 
     public func styles() {
         percentageLabel.textAlignment = .center
-        percentageLabel.font = UIFont.systemFont(ofSize: 8, weight: UIFont.Weight.bold)
+        percentageLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.bold)
         percentageLabel.text = "0%"
-        percentageLabel.textColor = .black
+        percentageLabel.textColor = .white
     }
 
     public func render() {

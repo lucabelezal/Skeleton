@@ -10,8 +10,7 @@ import LayoutKit
 import UIKit
 
 protocol MovieListViewDelegate: class {
-    func didReachToScrollBottom(is loading: Bool)
-    func didPushToRefresh(is loading: Bool)
+    func prefetch(page: Int)
 }
 
 class MovieListView: UIView {
@@ -41,9 +40,7 @@ class MovieListView: UIView {
     // MARK: - Private Methods
 
     private func update() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     
 }
@@ -79,36 +76,7 @@ extension MovieListView: ViewCodable {
     
 }
 
-extension MovieListView: DataSourceDelegate {
-
-    func fetchNextPage() {
-         delegate?.didReachToScrollBottom(is: true)
-    }
-
-    func cancelNextPage() {
-         delegate?.didReachToScrollBottom(is: false)
-    }
-
-    func loadData(forItemAtIndex: Int) {
-    }
-
-    func cancelLoading(forItemAtIndex: Int) {
-    }
-
-    func loadData(loading: Bool) {
-        delegate?.didReachToScrollBottom(is: loading)
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    }
-    
-}
-
 extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
-
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return tableView.numberOfSections
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.items ?? 5
@@ -125,13 +93,12 @@ extension MovieListView: UITableViewDataSource, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-
         indexPaths.forEach { indexPath in
 
-            let count = tableView.numberOfRows(inSection: 0)
+            let numberOfRows = tableView.numberOfRows(inSection: 0)
 
-            if indexPath.row == count - 5 {
-                delegate?.didReachToScrollBottom(is: true)
+            if indexPath.row == numberOfRows - 5, let model = viewModel {
+                delegate?.prefetch(page: model.nextPage)
             }
         }
     }

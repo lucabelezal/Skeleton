@@ -9,5 +9,5 @@
 import Networking
 
 protocol MovieServiceProtocol: class {
-    func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void)
+    func popularMovies(page: Int, isRequestCanceled: Bool, completion: @escaping (Result<PopularMovies>) -> Void)
 }

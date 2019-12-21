@@ -11,12 +11,12 @@ import Foundation
 public typealias NetworkRouterCompletion = (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void
 
 public protocol Routable: class {
-    associatedtype EndPoint: EndPointType
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
-    func cancel()
+    associatedtype Endpoint: EndpointType
+    func request(_ route: Endpoint, completion: @escaping NetworkRouterCompletion)
+    func cancelRequest()
 }
 
-public final class Router<EndPoint: EndPointType>: Routable {
+public final class Router<EndPoint: EndpointType>: Routable {
 
     private var task: URLSessionTask?
 
@@ -37,7 +37,7 @@ public final class Router<EndPoint: EndPointType>: Routable {
         self.task?.resume()
     }
 
-    public func cancel() {
+    public func cancelRequest() {
         self.task?.cancel()
     }
 
@@ -90,7 +90,7 @@ public final class Router<EndPoint: EndPointType>: Routable {
         }
     }
 
-    fileprivate func addAdditionalHeaders(_ additionalHeaders: HttpHeaders?, request: inout URLRequest) {
+    fileprivate func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
         guard let headers = additionalHeaders else {
             return
         }

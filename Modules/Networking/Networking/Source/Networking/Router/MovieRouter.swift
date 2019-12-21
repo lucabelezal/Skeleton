@@ -15,7 +15,7 @@ public enum MovieRouter {
     case video(id: Int)
 }
 
-extension MovieRouter: EndPointType {
+extension MovieRouter: EndpointType {
 
     public var baseURL: URL {
         guard let base = NetworkManager.baseURL, let url = URL(string: base) else {
@@ -37,11 +37,11 @@ extension MovieRouter: EndPointType {
         }
     }
 
-    public var httpMethod: HttpMethod {
+    public var httpMethod: HTTPMethod {
         return .get
     }
 
-    public var task: HttpTask {
+    public var task: HTTPTask {
         switch self {
         case .newMovies(let page):
             return .requestParameters(bodyParameters: nil,
@@ -52,7 +52,7 @@ extension MovieRouter: EndPointType {
         }
     }
 
-    public var headers: HttpHeaders? {
+    public var headers: HTTPHeaders? {
         return nil
     }
 }

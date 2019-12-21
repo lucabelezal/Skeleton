@@ -8,10 +8,10 @@
 
 import Foundation
 
-public protocol EndPointType {
+public protocol EndpointType {
     var baseURL: URL { get }
     var path: String { get }
-    var httpMethod: HttpMethod { get }
-    var task: HttpTask { get }
-    var headers: HttpHeaders? { get }
+    var httpMethod: HTTPMethod { get }
+    var task: HTTPTask { get }
+    var headers: HTTPHeaders? { get }
 }

@@ -96,24 +96,24 @@ extension MovieCellView: ViewCodable {
             make.height.equalTo(constant: 42)
             make.width.equalTo(constant: 42)
         }
-
+        
         circleProgressView.layout.makeConstraints { make in
             make.top.equalTo(containerView.layout.top)
             make.bottom.equalTo(containerView.layout.bottom)
             make.left.equalTo(containerView.layout.left)
             make.right.equalTo(containerView.layout.right)
         }
-
+        
         titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         titleLabel.layout.makeConstraints { make in
             make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
-            make.height.lessThanOrEqualTo(constant: 42)
+            make.height.greaterThanOrEqualTo(constant: 21)
         }
-
+        
         releaseDateLabel.layout.makeConstraints { make in
-            make.top.equalTo(titleLabel.layout.bottom, constant: 8)
+            make.top.equalTo(titleLabel.layout.bottom)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
             make.height.greaterThanOrEqualTo(constant: 16)
@@ -125,7 +125,7 @@ extension MovieCellView: ViewCodable {
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
             make.right.equalTo(releaseDateLabel.layout.right)
-            make.height.greaterThanOrEqualTo(constant: 64)
+            make.height.greaterThanOrEqualTo(constant: 88)
         }
     }
     

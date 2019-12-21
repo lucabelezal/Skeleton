@@ -16,16 +16,13 @@ class MovieListViewController: UIViewController {
     }
 
     private var service: MovieServiceProtocol
-    private var isFetchInProgress: Bool
-    private var isNextPage: Bool
-    private var isSearching: Bool
-    private var totalPages: Int
+
     private var currentPage: Int
+    private var totalPages: Int
     private var isLoading: Bool
 
     private var movies: [Movie] {
         didSet {
-            currentPage += 1
             updateView()
         }
     }
@@ -33,12 +30,10 @@ class MovieListViewController: UIViewController {
     init(service: MovieServiceProtocol) {
         self.service = service
         self.movies = []
-        self.isFetchInProgress = false
-        self.isNextPage = true
         self.currentPage = 1
         self.totalPages = 1
         self.isLoading = false
-        self.isSearching = false
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -55,7 +50,7 @@ class MovieListViewController: UIViewController {
         title = "Popular movies"
         view.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        loadData()
+        loadData(at: currentPage)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,35 +59,23 @@ class MovieListViewController: UIViewController {
 
     // MARK: - Private Metthods
 
-    private func loadData(pagination loadMore: Bool = false) {
-
-        if currentPage <= totalPages {
-
-            guard !isFetchInProgress else {
-                return
-            }
-
-            isFetchInProgress = true
-
-            startLoading()
-
-            self.service.popularMovies(page: currentPage, flag: isNextPage) { result in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //asyncAfter(deadline: .now() + 4)
-                    switch result {
-                    case .success(let data):
-                        self.isFetchInProgress = false
-                        self.stopLoading()
-                        self.currentPage = data.page
-                        print("AQUI: - \(self.currentPage)")
-                        self.totalPages = data.totalPages
-                        self.movies.append(contentsOf: data.movies)
-
-                    case .failure(let error):
-                        self.isFetchInProgress = false
-                        print(error)
-                    }
+    private func loadData(at page: Int) {
+        
+        startLoading()
+        
+        service.popularMovies(page: page, isRequestCanceled: false) { result in
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                switch result {
+                case .success(let data):
+                    self.stopLoading()
+                    self.currentPage = data.page
+                    self.totalPages = data.totalPages
+                    self.movies.append(contentsOf: data.movies)
+                case .failure(let error):
+                    print(error)
                 }
             }
+            
         }
     }
 
@@ -100,16 +83,14 @@ class MovieListViewController: UIViewController {
 
     private func updateView() {
         mainView.delegate = self
-        mainView.viewModel = MovieListViewModel(movies: movies)
+        mainView.viewModel = MovieListViewModel(movies: movies, page: currentPage, totalPages: totalPages)
     }
 }
 
 extension MovieListViewController: MovieListViewDelegate {
 
-    func didReachToScrollBottom(is loading: Bool) {
-        isNextPage = loading
-        loadData()
+    func prefetch(page: Int) {
+        loadData(at: page)
     }
 
-    func didPushToRefresh(is loading: Bool) {}
 }

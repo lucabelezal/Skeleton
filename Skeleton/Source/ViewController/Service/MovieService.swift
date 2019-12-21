@@ -18,9 +18,11 @@ class MovieService: MovieServiceProtocol {
         self.router = Router<MovieRouter>()
     }
 
-    func popularMovies(page: Int, flag: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
-        if flag == false {
-            return router.cancel()
+    func popularMovies(page: Int, isRequestCanceled: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
+        
+        if isRequestCanceled {
+            router.cancelRequest()
+            return
         }
 
         router.request(.newMovies(page: page)) { data, response, error in
