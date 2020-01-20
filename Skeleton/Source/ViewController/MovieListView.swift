@@ -14,40 +14,50 @@ protocol MovieListViewDelegate: class {
 }
 
 class MovieListView: UIView {
-
+    
     typealias Cell = TableViewCell<MovieCellView, MovieCellViewModelProtocol>
-
+    
     let tableView: UITableView
-
+    
     weak var delegate: MovieListViewDelegate?
-
+    
     var viewModel: MovieListViewModelProtocol {
         didSet {
             update()
         }
     }
-
+    
     override init(frame: CGRect) {
         self.viewModel = MovieListViewModel()
         self.tableView = UITableView()
         super.init(frame: frame)
         setupView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private Methods
-
+    
     private func update() {
-        tableView.reloadData()
+        guard let newIndexPathsToReload = self.viewModel.indexPathsToReload else {
+            self.tableView.reloadData()
+            return
+        }
+        
+        UIView.transition(with: self.tableView, duration: 0, options: [], animations: {
+            let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+            self.tableView.beginUpdates()
+            self.tableView.reloadRows(at: indexPathsToReload, with: .none)
+            self.tableView.endUpdates()
+        }, completion: nil)
     }
     
 }
 
 extension MovieListView: ViewCodable {
-
+    
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,13 +65,13 @@ extension MovieListView: ViewCodable {
         tableView.separatorStyle = .none
         tableView.register(cellType: Cell.self)
     }
-
+    
     func hierarchy() {
         addView(tableView)
     }
-
+    
     func constraints() {
-
+        
         tableView.layout.makeConstraints { make in
             make.top.equalTo(self.layout.safeArea.top)
             make.bottom.equalTo(self.layout.safeArea.bottom)
@@ -69,7 +79,7 @@ extension MovieListView: ViewCodable {
             make.right.equalTo(self.layout.right)
         }
     }
-
+    
     func styles() {
         backgroundColor = .lightGray
         tableView.backgroundColor = .clear

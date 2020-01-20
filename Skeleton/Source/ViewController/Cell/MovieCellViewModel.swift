@@ -7,6 +7,7 @@
 //
 
 import Networking
+import Nuke
 import UIKit
 
 protocol MovieCellViewModelProtocol {
@@ -19,24 +20,24 @@ protocol MovieCellViewModelProtocol {
 }
 
 struct MovieCellViewModel: MovieCellViewModelProtocol {
-
+    
     var title: String
     var overview: String
     var releaseDate: String?
     var posterImage: UIImageView
     var voteAverage: Double
     var didAction: (() -> Void)?
-
+    
     init() {
-        self.title = String()
-        self.overview = String()
+        self.title = "No Title"
+        self.overview = "We don't have a synopsis"
         self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
         self.voteAverage = 0.0
     }
     
     init(movie: Movie) {
         self.title = movie.title
-        self.overview = movie.overview
+        self.overview = movie.overview.isEmpty ? "We don't have a synopsis" : movie.overview
         self.posterImage = UIImageView()
         self.voteAverage = movie.voteAverage
         self.releaseDate = MovieCellViewModel.formattedDateFromString(dateString: movie.releaseDate)
@@ -46,20 +47,18 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
             self.posterImage.load(url: url, placeholder: self.posterImage.image)
         }
     }
-    
 }
 
 extension MovieCellViewModel {
-        
+    
     static func formattedDateFromString(dateString: String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         if let date = dateFormatter.date(from: dateString) {
             dateFormatter.dateFormat = "MMMM dd, yyyy"
-             return dateFormatter.string(from: date)
+            return dateFormatter.string(from: date)
         }
-
+        
         return nil
     }
-    
 }

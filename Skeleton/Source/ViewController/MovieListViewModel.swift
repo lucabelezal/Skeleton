@@ -29,7 +29,7 @@ struct MovieListViewModel: MovieListViewModelProtocol {
     }
     
     init(with data: PopularMovies, and movies: [Movie]) {
-        self.totalCount = data.movies.count + movies.count
+        self.totalCount = data.totalResults
         self.currentCount = movies.count
         self.movie = { index in
             return MovieCellViewModel(movie: movies[index])

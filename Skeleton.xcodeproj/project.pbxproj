@@ -38,6 +38,7 @@
 		6E9FAB4F239DF4A400062683 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FAB4D239DF4A400062683 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
 		6EFDA1A623D63F3A00BF68DD /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */; };
+		6EFDA1A823D663FD00BF68DD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A723D663FD00BF68DD /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		6E9FAB4D239DF4A400062683 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECCA80F22D44752001B91F6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
+		6EFDA1A723D663FD00BF68DD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		6EFDA1A923D664A800BF68DD /* Nuke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nuke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37AAB5C2322104A001A310D /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -178,6 +181,7 @@
 		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EFDA1A923D664A800BF68DD /* Nuke.framework */,
 				6E9FAB4D239DF4A400062683 /* Networking.framework */,
 				B37AAB5C2322104A001A310D /* Networking.framework */,
 				6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */,
@@ -228,6 +232,7 @@
 				6E0FCE7E231AF77700E85079 /* TableViewCell.swift */,
 				6E252DF423948F9D00FA5851 /* UIImageView+Cache.swift */,
 				6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */,
+				6EFDA1A723D663FD00BF68DD /* String+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */,
 				6E1A8BA822C86C0F0055B6D8 /* UITableView+Reusable.swift in Sources */,
 				6E696B03239F4F09000AD9F8 /* UIView+Skeleton.swift in Sources */,
+				6EFDA1A823D663FD00BF68DD /* String+Extension.swift in Sources */,
 				6E075F4A22C9605A00CBCC8D /* DataSource.swift in Sources */,
 				6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */,
 				6EFDA1A623D63F3A00BF68DD /* AlertDisplayer.swift in Sources */,
