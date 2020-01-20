@@ -27,6 +27,13 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     var voteAverage: Double
     var didAction: (() -> Void)?
 
+    init() {
+        self.title = String()
+        self.overview = String()
+        self.posterImage = UIImageView()
+        self.voteAverage = 0.0
+    }
+    
     init(movie: Movie) {
         self.title = movie.title
         self.overview = movie.overview

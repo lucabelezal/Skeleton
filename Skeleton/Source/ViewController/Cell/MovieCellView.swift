@@ -53,7 +53,6 @@ class MovieCellView: UIView, ViewModelOwner {
             self.circleProgressView.progress = Float(model.voteAverage)
         }
     }
-    
 }
 
 extension MovieCellView: ViewCodable {
