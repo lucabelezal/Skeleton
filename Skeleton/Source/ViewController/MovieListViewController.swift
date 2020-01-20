@@ -9,20 +9,13 @@
 import Networking
 import UIKit
 
-class MovieListViewController: UIViewController {
-
+class MovieListViewController: UIViewController, AlertDisplayer {
+    
     var theView: MovieListView {
         return self.view as! MovieListView // swiftlint:disable:this force_cast
     }
-
-    private var movies: [Movie]
     
-    private var data: PopularMovies? {
-        didSet {
-            updateView()
-        }
-    }
-
+    private var movies: [Movie]
     private var service: MovieServiceProtocol
     private var currentPage: Int
     private var totalPages: Int
@@ -36,36 +29,36 @@ class MovieListViewController: UIViewController {
         self.isLoadInProgress = false
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = MovieListView(frame: .zero)
-        theView.delegate = self
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        loadData()
+    }
+    
+    // MARK: - Private Metthods
+    
+    private func configureView() {
+        theView.delegate = self
         title = "Popular movies"
         view.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        loadData()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    // MARK: - Private Metthods
-
+    
     private func loadData() {
         
         guard !isLoadInProgress else {
-                   return
-               }
-               
+            return
+        }
+        
         isLoadInProgress = true
         
         startLoading()
@@ -78,32 +71,26 @@ class MovieListViewController: UIViewController {
                     self.currentPage += 1
                     self.isLoadInProgress = false
                     self.totalPages = data.totalPages
-                    
                     self.movies.append(contentsOf: data.movies)
-                    self.data = data
-                    
+                    self.theView.viewModel = MovieListViewModel(with: data, and: self.movies)
                 case .failure(let error):
                     self.isLoadInProgress = false
                     self.stopLoading()
-                    //TODO - displayAlert com try again no botão
-                    fatalError("\(error)")
+                    let title = "Warning"
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
+                        self.loadData()
+                    }
+                    self.displayAlert(with: title, message: error.description, actions: [okAction, tryAgainAction])
                 }
             }
-            
-        }
-    }
-
-    private func updateView() {
-        if let data = data {
-          theView.viewModel = MovieListViewModel(with: data, and: movies)
         }
     }
 }
 
 extension MovieListViewController: MovieListViewDelegate {
-
+    
     func fetchNextPage() {
         loadData()
     }
-
 }

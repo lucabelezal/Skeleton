@@ -30,7 +30,7 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     init() {
         self.title = String()
         self.overview = String()
-        self.posterImage = UIImageView()
+        self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
         self.voteAverage = 0.0
     }
     
@@ -40,6 +40,7 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
         self.posterImage = UIImageView()
         self.voteAverage = movie.voteAverage
         self.releaseDate = MovieCellViewModel.formattedDateFromString(dateString: movie.releaseDate)
+        self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
         
         if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
             self.posterImage.load(url: url, placeholder: self.posterImage.image)
