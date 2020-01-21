@@ -7,7 +7,6 @@
 //
 
 import Networking
-import Nuke
 import UIKit
 
 protocol MovieCellViewModelProtocol {
@@ -44,7 +43,7 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
         self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
         
         if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
-            self.posterImage.load(url: url, placeholder: self.posterImage.image)
+            self.posterImage.loadImage(with: url, into: self.posterImage.image)
         }
     }
 }
