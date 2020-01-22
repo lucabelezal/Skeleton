@@ -41,6 +41,16 @@ class MovieListViewController: UIViewController, AlertDisplayer {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        //loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         loadData()
     }
     
@@ -62,20 +72,21 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         isLoadInProgress = true
         
         startLoading()
-        
+        //startShimmerAnimation()
+                    
         service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
             DispatchQueue.main.async { //asyncAfter(deadline: .now())
                 switch result {
                 case .success(let data):
-                    self.stopLoading()
                     self.currentPage += 1
                     self.isLoadInProgress = false
                     self.totalPages = data.totalPages
                     self.movies.append(contentsOf: data.movies)
                     self.theView.viewModel = MovieListViewModel(with: data, and: self.movies)
+                    //self.stopLoading()
                 case .failure(let error):
                     self.isLoadInProgress = false
-                    self.stopLoading()
+                    //self.stopLoading()
                     let title = "Warning"
                     let okAction = UIAlertAction(title: "OK", style: .default)
                     let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
