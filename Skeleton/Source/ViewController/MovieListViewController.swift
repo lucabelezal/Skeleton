@@ -88,7 +88,7 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         startLoading()
                     
         service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
-            DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 switch result {
                 case .success(let data):
                     self.updateView(data)
