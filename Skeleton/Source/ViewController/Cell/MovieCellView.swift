@@ -26,7 +26,7 @@ class MovieCellView: UIView, ViewModelOwner {
             update()
         }
     }
-        
+
     override init(frame: CGRect) {
         self.contentView = CardView()
         self.posterImageView = UIImageView()
@@ -45,15 +45,13 @@ class MovieCellView: UIView, ViewModelOwner {
     }
     
     func update() {
-        if let model = self.viewModel {
-            self.titleLabel.text = model.title
-            self.overviewLabel.text = model.overview
-            self.releaseDateLabel.text = model.releaseDate
-            self.posterImageView.image = model.posterImage.image
-            self.circleProgressView.progress = Float(model.voteAverage)
-            
-            self.updateConstraints()
-            self.layoutIfNeeded()
+        if let model = viewModel {
+            titleLabel.text = model.title
+            overviewLabel.text = model.overview
+            releaseDateLabel.text = model.releaseDate
+            posterImageView.image = model.posterImage.image
+            circleProgressView.progress = Float(model.voteAverage)
+            circleProgressView.isHidden = false
         }
     }
 }
@@ -67,13 +65,7 @@ extension MovieCellView: ViewCodable {
         overviewLabel.isSkeletonable = true
         containerView.isSkeletonable = true
         circleProgressView.isSkeletonable = true
-        
-//        posterImageView.withShimmer = true
-//        titleLabel.withShimmer = true
-//        releaseDateLabel.withShimmer = true
-//        overviewLabel.withShimmer = true
-//        containerView.withShimmer = true
-//        circleProgressView.withShimmer = true
+        circleProgressView.isHidden = true
     }
     
     func hierarchy() {
@@ -117,11 +109,12 @@ extension MovieCellView: ViewCodable {
             make.top.equalTo(contentView.layout.top, constant: 8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
-            make.height.lessThanOrEqualTo(constant: 42)//greaterThanOrEqualTo(constant: 21)
+            make.height.lessThanOrEqualTo(constant: 42)
         }
         
         releaseDateLabel.layout.makeConstraints { make in
             make.top.equalTo(titleLabel.layout.bottom, constant: 8)
+            make.bottom.equalTo(overviewLabel.layout.top, constant: -8)
             make.right.equalTo(contentView.layout.right, constant: -8)
             make.left.equalTo(containerView.layout.right, constant: 8)
             make.height.equalTo(constant: 16)
@@ -129,12 +122,11 @@ extension MovieCellView: ViewCodable {
         
         overviewLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         overviewLabel.layout.makeConstraints { make in
-            make.top.equalTo(releaseDateLabel.layout.bottom, constant: 8)
             make.top.greaterThanOrEqualTo(circleProgressView.layout.bottom, constant: 8)
             make.bottom.lessThanOrEqualTo(contentView.layout.bottom, constant: -8)
             make.left.equalTo(posterImageView.layout.right, constant: 8)
             make.right.equalTo(releaseDateLabel.layout.right)
-            make.height.lessThanOrEqualTo(constant: 116) //greaterThanOrEqualTo(constant: 88)
+            make.height.lessThanOrEqualTo(constant: 116)
         }
     }
     
