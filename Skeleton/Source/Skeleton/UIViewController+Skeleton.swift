@@ -8,16 +8,13 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
     func startLoading() {
         DispatchQueue.main.async {
             for animateView in self.getSubViewsForAnimate() {
                 
-//                animateView.layoutSubviews()
-//                animateView.layoutIfNeeded()
-//                animateView.setNeedsLayout()
-//                animateView.updateConstraints()
+                animateView.layoutIfNeeded()
                 
                 let colorLayer = CALayer()
                 colorLayer.backgroundColor = UIColor(white: 0.82, alpha: 1).cgColor
@@ -63,7 +60,7 @@ extension UIViewController {
     
 }
 
-extension UIViewController {
+private extension UIViewController {
     
     func getSubViewsForAnimate() -> [UIView] {
         var obj: [UIView] = []

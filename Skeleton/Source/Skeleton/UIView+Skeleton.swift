@@ -59,16 +59,16 @@ extension UIView {
         return CGRect(origin: .zero, size: maxSizeEstimated)
     }
     
-    internal var maxSizeEstimated: CGSize {
+    private var maxSizeEstimated: CGSize {
         return CGSize(width: maxWidthEstimated, height: maxHeightEstimated)
     }
     
-    internal var maxWidthEstimated: CGFloat {
+    private var maxWidthEstimated: CGFloat {
         let constraintsWidth = nonContentSizeLayoutConstraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.width }
         return max(between: frame.size.width, andContantsOf: constraintsWidth)
     }
     
-    internal var maxHeightEstimated: CGFloat {
+    private var maxHeightEstimated: CGFloat {
         let constraintsHeight = nonContentSizeLayoutConstraints.filter { $0.firstAttribute == NSLayoutConstraint.Attribute.height }
         return max(between: frame.size.height, andContantsOf: constraintsHeight)
     }
@@ -82,7 +82,7 @@ extension UIView {
         return max
     }
     
-    internal var nonContentSizeLayoutConstraints: [NSLayoutConstraint] {
+    private var nonContentSizeLayoutConstraints: [NSLayoutConstraint] {
         return constraints.filter { "\(type(of: $0))" != "NSContentSizeLayoutConstraint" }
     }
     
