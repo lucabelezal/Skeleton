@@ -41,17 +41,22 @@ class MovieListView: UIView {
     // MARK: - Private Methods
     
     private func update() {
-        guard let newIndexPathsToReload = self.viewModel.indexPathsToReload else {
+
+        guard let newIndexPathsToReload = viewModel.indexPathsToReload else {
             self.tableView.reloadData()
             return
         }
-        
-        UIView.transition(with: self.tableView, duration: 0, options: [], animations: {
-            let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
-            self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: indexPathsToReload, with: .none)
-            self.tableView.endUpdates()
-        }, completion: nil)
+
+        if viewModel.isToReloadTableView {
+            self.tableView.reloadData()
+        } else {
+            UIView.transition(with: self.tableView, duration: 0, options: [], animations: {
+                let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+                self.tableView.beginUpdates()
+                self.tableView.reloadRows(at: indexPathsToReload, with: .none)
+                self.tableView.endUpdates()
+            }, completion: nil)
+        }
     }
     
 }

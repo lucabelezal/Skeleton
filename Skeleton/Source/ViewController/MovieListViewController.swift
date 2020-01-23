@@ -11,10 +11,8 @@ import UIKit
 
 class MovieListViewController: UIViewController, AlertDisplayer {
     
-    var theView: MovieListView {
-        return self.view as! MovieListView // swiftlint:disable:this force_cast
-    }
-    
+    private var theView: MovieListView
+    private var totalResults: Int
     private var movies: [Movie]
     private var service: MovieServiceProtocol
     private var currentPage: Int
@@ -23,7 +21,9 @@ class MovieListViewController: UIViewController, AlertDisplayer {
     
     init(service: MovieServiceProtocol) {
         self.service = service
+        self.theView = MovieListView(frame: .zero)
         self.movies = []
+        self.totalResults = 0
         self.currentPage = 1
         self.totalPages = 1
         self.isLoadInProgress = false
@@ -35,34 +35,48 @@ class MovieListViewController: UIViewController, AlertDisplayer {
     }
     
     override func loadView() {
-        view = MovieListView(frame: .zero)
+        theView.delegate = self
+        view = theView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        //loadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //loadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         loadData()
     }
-    
+        
     // MARK: - Private Metthods
     
     private func configureView() {
-        theView.delegate = self
         title = "Popular movies"
         view.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
     }
     
+    private func tryAgain(_ error: NetworkResponse) {
+        self.isLoadInProgress = false
+        self.stopLoading()
+        let title = "Warning"
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
+            self.loadData()
+        }
+        self.displayAlert(with: title, message: error.description, actions: [okAction, tryAgainAction])
+    }
+
+    private func updateView(_ data: PopularMovies) {
+
+        let isToReload = data.totalResults != totalResults
+
+        totalResults = data.totalResults
+        currentPage += 1
+        isLoadInProgress = false
+        totalPages = data.totalPages
+        movies.append(contentsOf: data.movies)
+        theView.viewModel = MovieListViewModel(with: data, and: self.movies, isToReloadTableView: isToReload)
+        stopLoading()
+    }
+
     private func loadData() {
         
         guard !isLoadInProgress else {
@@ -72,27 +86,14 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         isLoadInProgress = true
         
         startLoading()
-        //startShimmerAnimation()
                     
         service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
-            DispatchQueue.main.async { //asyncAfter(deadline: .now())
+            DispatchQueue.main.async { //asyncAfter(deadline: .now() + 4)
                 switch result {
                 case .success(let data):
-                    self.currentPage += 1
-                    self.isLoadInProgress = false
-                    self.totalPages = data.totalPages
-                    self.movies.append(contentsOf: data.movies)
-                    self.theView.viewModel = MovieListViewModel(with: data, and: self.movies)
-                    //self.stopLoading()
+                    self.updateView(data)
                 case .failure(let error):
-                    self.isLoadInProgress = false
-                    //self.stopLoading()
-                    let title = "Warning"
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    let tryAgainAction = UIAlertAction(title: "Try Again", style: .default) { _ in
-                        self.loadData()
-                    }
-                    self.displayAlert(with: title, message: error.description, actions: [okAction, tryAgainAction])
+                    self.tryAgain(error)
                 }
             }
         }
