@@ -26,7 +26,7 @@ class MovieCellView: UIView, ViewModelOwner {
             update()
         }
     }
-
+    
     override init(frame: CGRect) {
         self.contentView = CardView()
         self.posterImageView = UIImageView()
@@ -49,9 +49,10 @@ class MovieCellView: UIView, ViewModelOwner {
             titleLabel.text = model.title
             overviewLabel.text = model.overview
             releaseDateLabel.text = model.releaseDate
-            posterImageView.image = model.posterImage.image
             circleProgressView.progress = Float(model.voteAverage)
             circleProgressView.isHidden = false
+            
+            posterImageView.image = model.loadImage?(model.posterPath.unsafelyUnwrapped)
         }
     }
 }

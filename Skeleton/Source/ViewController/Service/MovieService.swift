@@ -7,30 +7,31 @@
 //
 
 import Networking
+import UIKit
 
 class MovieService: MovieServiceProtocol {
-
+    
     var networkManager: NetworkManagerProtocol
     var router: Router<MovieRouter>
-
+    
     init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
         self.router = Router<MovieRouter>()
     }
-
+    
     func popularMovies(page: Int, isRequestCanceled: Bool, completion: @escaping (Result<PopularMovies>) -> Void) {
         
         if isRequestCanceled {
             router.cancelRequest()
             return
         }
-
+        
         router.request(.newMovies(page: page)) { data, response, error in
-
+            
             if error != nil {
                 completion(.failure(NetworkResponse.connection))
             }
-
+            
             if let response = response as? HTTPURLResponse {
                 let result = self.networkManager.handleNetworkResponse(response)
                 switch result {
@@ -50,6 +51,29 @@ class MovieService: MovieServiceProtocol {
                 }
             }
         }
+    }
+    
+    func loadImage(with path: String, completion: @escaping (UIImage) -> Void) {
+        
+        guard let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") else {
+            return completion(UIImage())
+        }
+        
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, _ in
+            if let data = data,
+                let response = response, ((response as? HTTPURLResponse)?.statusCode ?? 500) < 300,
+                let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+                
+            } else {
+                completion(UIImage())
+            }
+        }.resume()
+        
     }
     
 }

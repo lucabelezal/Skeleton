@@ -13,9 +13,13 @@ protocol MovieCellViewModelProtocol {
     var title: String { get }
     var overview: String { get }
     var releaseDate: String? { get }
-    var posterImage: UIImageView { get }
+    var posterImage: UIImageView? { get }
     var voteAverage: Double { get }
-    var didAction: (() -> Void)? { get }
+    var posterPath: String? { get }
+    var didAction: (() -> Void)? { get set }
+    
+    var loadImage: ((String) -> UIImage)? { get }
+    var backComplition: ((UIImage) -> Void)? { get set }
 }
 
 struct MovieCellViewModel: MovieCellViewModelProtocol {
@@ -23,9 +27,13 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     var title: String
     var overview: String
     var releaseDate: String?
-    var posterImage: UIImageView
+    var posterImage: UIImageView?
     var voteAverage: Double
+    var posterPath: String?
     var didAction: (() -> Void)?
+    var loadImage: ((String) -> UIImage)?
+    
+    var backComplition: ((UIImage) -> Void)?
     
     init() {
         self.title = "No Title"
@@ -37,17 +45,16 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
 
 extension MovieCellViewModel {
 
-    init(movie: Movie) {
+    init(movie: Movie, complition: @escaping (String) -> UIImage) {
         self.title = movie.title
         self.overview = movie.overview.isEmpty ? "We don't have a synopsis" : movie.overview
         self.posterImage = UIImageView()
         self.voteAverage = movie.voteAverage
         self.releaseDate = MovieCellViewModel.formattedDateFromString(dateString: movie.releaseDate)
         self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
-
-        if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
-            self.posterImage.loadImage(with: url, into: self.posterImage.image)
-        }
+        self.posterPath = movie.posterPath
+        
+        self.loadImage = complition
     }
 }
 
