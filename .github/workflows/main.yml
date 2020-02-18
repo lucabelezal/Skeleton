@@ -20,7 +20,9 @@ jobs:
         run: |
           set -o pipefail && brew install carthage
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
+      - name: GitHub Action for Danger-Swift + SwiftLint
+        uses: 417-72KI/danger-swiftlint@v1.0.1
       - name: Run Carthage
         run: |
           set -o pipefail && carthage update --platform iOS --no-use-binaries
