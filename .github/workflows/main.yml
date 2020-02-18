@@ -5,6 +5,7 @@ on:
     - master
     - develop
     - release/*
+    - feature/*
 jobs:
   test:
     runs-on: macOS-latest
