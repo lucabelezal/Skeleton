@@ -2,7 +2,7 @@ reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
-  - SkeletonTests
+  - NetworkingTests
 
 # If you need help with rules run $ swiftlint 
 
@@ -73,8 +73,8 @@ identifier_name:
   allowed_symbols: "_"
   min_length: 2
   max_length: 
-    warning: 35
-    error: 40
+    warning: 30
+    error: 35
   excluded:
     - id
     - url

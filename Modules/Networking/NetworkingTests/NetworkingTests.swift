@@ -1,15 +1,15 @@
 //
-//  SkeletonTests.swift
-//  SkeletonTests
+//  NetworkingTests.swift
+//  NetworkingTests
 //
-//  Created by Lucas Nascimento on 29/06/19.
-//  Copyright © 2019 Lucas Nascimento. All rights reserved.
+//  Created by l.b.do.nascimento on 06/09/19.
+//  Copyright © 2019 l.b.do.nascimento. All rights reserved.
 //
 
+@testable import Networking
 import XCTest
-@testable import Skeleton
 
-class SkeletonTests: XCTestCase {
+class NetworkingTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
