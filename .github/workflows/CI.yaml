@@ -3,17 +3,6 @@ name: CI
 on: [push]
 
 jobs:
-  Danger Swift:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Danger
-        uses: danger/swift@2.0.3
-        with:
-            args: --failOnErrors --no-publish-check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
