@@ -1,0 +1,37 @@
+name: GitHubActions      
+on:
+  push:
+    branches:
+    - master
+    - develop
+    - release/*
+    - feature/*
+jobs:
+  test:
+    runs-on: macOS-latest
+    strategy:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
+    steps:       
+      - name: Install Lint
+        run: |
+          set -o pipefail && brew install swiftlint
+      - name: Install Carthage
+        run: |
+          set -o pipefail && brew install carthage
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run Carthage
+        run: |
+          set -o pipefail && carthage update --platform iOS --no-use-binaries
+      - name: Run Build
+        env: 
+          CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
+          destination: ${{ matrix.destination }}
+        run: |
+          set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
+      - name: Run Test
+        env: 
+         destination: ${{ matrix.destination }}
+        run: |
+          set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
