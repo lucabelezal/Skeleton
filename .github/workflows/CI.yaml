@@ -3,24 +3,46 @@ name: CI
 on: [push]
 
 jobs:
-  SwiftLint:
-
+  Danger Swift:
     runs-on: ubuntu-latest
-    
+    name: "Run Danger"
     steps:
-    - uses: actions/checkout@v1
-    - name: GitHub Action for SwiftLint
-      uses: norio-nomura/action-swiftlint@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: Danger
+        uses: danger/swift@2.0.3
+        with:
+            args: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  SwiftLint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: GitHub Action for SwiftLint
+        uses: norio-nomura/action-swiftlint@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+  Swift Action:
+    uses: Didstopia/SwiftAction@v1.0.1
+    with:
+      swift-action: 'build'
 
   Test:
-
     runs-on: macOS-latest
-
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
     steps:
-    - uses: actions/checkout@v1
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - name: Run Build
+        env: 
+          CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
+          destination: ${{ matrix.destination }}
+        run: |
+          set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
+      - name: Run Test
+        env: 
+         destination: ${{ matrix.destination }}
+        run: |
+          set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
