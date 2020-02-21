@@ -15,9 +15,11 @@ jobs:
   Test:
     runs-on: macOS-latest
     strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
-    steps:
+         matrix:
+           destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
+    steps:       
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Run Build
         env: 
           CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
@@ -26,6 +28,6 @@ jobs:
           set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
       - name: Run Test
         env: 
-          destination: ${{ matrix.destination }}
+         destination: ${{ matrix.destination }}
         run: |
           set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
