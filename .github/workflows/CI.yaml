@@ -5,7 +5,6 @@ on: [push]
 jobs:
   Danger Swift:
     runs-on: ubuntu-latest
-    name: "Run Danger"
     steps:
       - uses: actions/checkout@v1
       - name: Danger
