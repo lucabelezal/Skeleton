@@ -43,6 +43,6 @@ jobs:
           set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
       - name: Run Test
         env: 
-         destination: ${{ matrix.destination }}
+          destination: ${{ matrix.destination }}
         run: |
           set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
