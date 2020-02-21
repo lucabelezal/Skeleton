@@ -12,14 +12,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
-  Swift Action:
-    runs-on: macOS-latest
-    steps:
-      - name: Swift Action
-        uses: Didstopia/SwiftAction@v1.0.1
-        with:
-          swift-action: 'build'
-
   Test:
     runs-on: macOS-latest
     strategy:
