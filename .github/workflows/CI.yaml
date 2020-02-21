@@ -25,10 +25,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
   Swift Action:
+    runs-on: macOS-latest
     steps:
-      uses: Didstopia/SwiftAction@v1.0.1
-      with:
-        swift-action: 'build'
+      - name: Swift Action
+        uses: Didstopia/SwiftAction@v1.0.1
+        with:
+          swift-action: 'build'
 
   Test:
     runs-on: macOS-latest
