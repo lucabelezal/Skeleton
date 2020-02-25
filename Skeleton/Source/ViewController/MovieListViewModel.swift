@@ -7,7 +7,6 @@
 //
 
 import Networking
-import UIKit
 
 protocol MovieListViewModelProtocol {
     var isToReloadTableView: Bool { get }
@@ -15,19 +14,15 @@ protocol MovieListViewModelProtocol {
     var currentCount: Int { get }
     var movie: (_ index: Int) -> MovieCellViewModelProtocol { get }
     var indexPathsToReload: [IndexPath]? { get }
-    
-    var backComplition: ((UIImage) -> Void)? { get set }
 }
 
 struct MovieListViewModel: MovieListViewModelProtocol {
-    
+
     var isToReloadTableView: Bool
     var totalCount: Int
     var currentCount: Int
     var movie: (Int) -> MovieCellViewModelProtocol
     var indexPathsToReload: [IndexPath]?
-    
-    var backComplition: ((UIImage) -> Void)?
     
     init() {
         self.isToReloadTableView = false
@@ -36,23 +31,17 @@ struct MovieListViewModel: MovieListViewModelProtocol {
         self.movie = { _ in return MovieCellViewModel() }
     }
     
-    init(with data: PopularMovies,
-         and movies: [Movie],
-         isToReloadTableView: Bool,
-         complition: @escaping (String) -> UIImage) {
-        
+    init(with data: PopularMovies, and movies: [Movie], isToReloadTableView: Bool) {
         self.isToReloadTableView = isToReloadTableView
         self.totalCount = data.totalResults
         self.currentCount = movies.count
-                
         self.movie = { index in
-            return MovieCellViewModel(movie: movies[index], complition: complition)
+            return MovieCellViewModel(movie: movies[index])
         }
-                
+        
         if data.page > 1 {
             indexPathsToReload = MovieListViewModel.calculateIndexPathsToReload(from: data.movies, with: movies)
         }
-        
     }
     
     private static func calculateIndexPathsToReload(from newMovies: [Movie], with allMovies: [Movie]) -> [IndexPath] {

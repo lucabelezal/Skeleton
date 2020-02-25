@@ -49,10 +49,9 @@ class MovieCellView: UIView, ViewModelOwner {
             titleLabel.text = model.title
             overviewLabel.text = model.overview
             releaseDateLabel.text = model.releaseDate
+            posterImageView.image = model.posterImage.image
             circleProgressView.progress = Float(model.voteAverage)
             circleProgressView.isHidden = false
-            
-            posterImageView.image = model.loadImage?(model.posterPath.unsafelyUnwrapped)
         }
     }
 }

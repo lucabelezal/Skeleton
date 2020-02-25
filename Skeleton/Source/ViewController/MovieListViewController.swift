@@ -19,8 +19,6 @@ class MovieListViewController: UIViewController, AlertDisplayer {
     private var totalPages: Int
     private var isLoadInProgress: Bool
     
-    private var viewModel: MovieListViewModelProtocol?
-    
     init(service: MovieServiceProtocol) {
         self.service = service
         self.theView = MovieListView(frame: .zero)
@@ -46,7 +44,7 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         configureView()
         loadData()
     }
-    
+        
     // MARK: - Private Metthods
     
     private func configureView() {
@@ -65,35 +63,20 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         }
         self.displayAlert(with: title, message: error.description, actions: [okAction, tryAgainAction])
     }
-    
+
     private func updateView(_ data: PopularMovies) {
-        
+
         let isToReload = data.totalResults != totalResults
-        
+
         totalResults = data.totalResults
         currentPage += 1
         isLoadInProgress = false
         totalPages = data.totalPages
         movies.append(contentsOf: data.movies)
-        
-        viewModel = MovieListViewModel(with: data,
-                                       and: self.movies,
-                                       isToReloadTableView: isToReload) { (path) -> UIImage in
-                                    
-                                         let ima: UIImageView = UIImageView()
-                                        
-                                        self.service.loadImage(with: path) { image in
-                                            ima.image = UIImage(named: "no_image_holder")
-                                        }
-                                        
-                                        return ima.image ?? UIImage()
-        }
-        
-        theView.viewModel = viewModel.unsafelyUnwrapped
-        
+        theView.viewModel = MovieListViewModel(with: data, and: self.movies, isToReloadTableView: isToReload)
         stopLoading()
     }
-    
+
     private func loadData() {
         
         guard !isLoadInProgress else {
@@ -103,7 +86,7 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         isLoadInProgress = true
         
         startLoading()
-        
+                    
         service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 switch result {
