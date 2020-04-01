@@ -2,7 +2,17 @@
 
 ![](https://github.com/lucabelezal/Skeleton/workflows/GitHubActions/badge.svg)
 
-### Run
+### Copy the files that are in the Skeleton folder
+
+```
+Source    
+├───Skeleton
+│   ├───UIView+Skeleton.swift
+│   └───UIViewController+Skeleton
+│
+```
+
+### Run the command before running the example
 
 ```
   carthage update --platform iOS --no-use-binaries
