@@ -25,32 +25,38 @@ class MovieService: MovieServiceProtocol {
             router.cancelRequest()
             return
         }
-        
-        router.request(.newMovies(page: page)) { data, response, error in
-            
-            if error != nil {
-                completion(.failure(NetworkResponse.connection))
-            }
-            
-            if let response = response as? HTTPURLResponse {
-                let result = self.networkManager.handleNetworkResponse(response)
-                switch result {
-                case .success:
-                    guard let responseData = data else {
-                        completion(.failure(NetworkResponse.noData))
-                        return
+
+        DispatchQueue.global(qos: .background).async {
+            self.router.request(.newMovies(page: page)) { data, response, error in
+
+                if error != nil {
+                    completion(.failure(NetworkResponse.connection))
+                }
+
+                if let response = response as? HTTPURLResponse {
+                    let result = self.networkManager.handleNetworkResponse(response)
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        switch result {
+                        case .success:
+                            guard let responseData = data else {
+                                completion(.failure(NetworkResponse.noData))
+                                return
+                            }
+                            do {
+                                let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
+                                completion(.success(apiResponse))
+                            } catch {
+                                completion(.failure(NetworkResponse.unableToDecode))
+                            }
+                        case .failure(let networkFailureError):
+                            completion(.failure(networkFailureError))
+                        }
                     }
-                    do {
-                        let apiResponse = try JSONDecoder().decode(PopularMovies.self, from: responseData)
-                        completion(.success(apiResponse))
-                    } catch {
-                        completion(.failure(NetworkResponse.unableToDecode))
-                    }
-                case .failure(let networkFailureError):
-                    completion(.failure(networkFailureError))
                 }
             }
         }
+
     }
     
     func loadImage(with path: String, completion: @escaping (UIImage) -> Void) {

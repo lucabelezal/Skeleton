@@ -44,7 +44,7 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         configureView()
         loadData()
     }
-        
+
     // MARK: - Private Metthods
     
     private func configureView() {
@@ -86,15 +86,13 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         isLoadInProgress = true
         
         startLoading()
-                    
-        service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                switch result {
-                case .success(let data):
-                    self.updateView(data)
-                case .failure(let error):
-                    self.tryAgain(error)
-                }
+
+        self.service.popularMovies(page: self.currentPage, isRequestCanceled: false) { result in
+            switch result {
+            case .success(let data):
+                self.updateView(data)
+            case .failure(let error):
+                self.tryAgain(error)
             }
         }
     }

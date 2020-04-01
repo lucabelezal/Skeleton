@@ -39,6 +39,12 @@
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
 		6EFDA1A623D63F3A00BF68DD /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */; };
 		6EFDA1A823D663FD00BF68DD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A723D663FD00BF68DD /* String+Extension.swift */; };
+		B3E9E2352434117F00317725 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2342434117F00317725 /* AsyncTask.swift */; };
+		B3E9E2372434118900317725 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2362434118900317725 /* DataTask.swift */; };
+		B3E9E2392434119300317725 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2382434119300317725 /* ImageTask.swift */; };
+		B3E9E23B2434119C00317725 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E23A2434119C00317725 /* ImageUtil.swift */; };
+		B3E9E23D243411A500317725 /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E23C243411A500317725 /* TaskQueue.swift */; };
+		B3E9E23F243417F900317725 /* ImageServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E23E243417F900317725 /* ImageServiceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +109,12 @@
 		6EFDA1A723D663FD00BF68DD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		6EFDA1A923D664A800BF68DD /* Nuke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nuke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37AAB5C2322104A001A310D /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E9E2342434117F00317725 /* AsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
+		B3E9E2362434118900317725 /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
+		B3E9E2382434119300317725 /* ImageTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTask.swift; sourceTree = "<group>"; };
+		B3E9E23A2434119C00317725 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		B3E9E23C243411A500317725 /* TaskQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
+		B3E9E23E243417F900317725 /* ImageServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageServiceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,8 +282,10 @@
 		6E8D0E1E231C7479002A6861 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B3E9E2332434117200317725 /* Operations */,
 				6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */,
 				6E8D0E21231C74D4002A6861 /* MovieService.swift */,
+				B3E9E23E243417F900317725 /* ImageServiceManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -286,6 +300,18 @@
 				6E1A8B4822C83DA30055B6D8 /* Resoures */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		B3E9E2332434117200317725 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				B3E9E2342434117F00317725 /* AsyncTask.swift */,
+				B3E9E2362434118900317725 /* DataTask.swift */,
+				B3E9E2382434119300317725 /* ImageTask.swift */,
+				B3E9E23A2434119C00317725 /* ImageUtil.swift */,
+				B3E9E23C243411A500317725 /* TaskQueue.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,11 +460,15 @@
 			files = (
 				6E0FCE7F231AF77700E85079 /* TableViewCell.swift in Sources */,
 				6E1A8BA622C86C0F0055B6D8 /* UICollectionView+Reusable.swift in Sources */,
+				B3E9E23D243411A500317725 /* TaskQueue.swift in Sources */,
 				6E29703623A08E2C007BB70C /* CircleProgressView.swift in Sources */,
 				6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */,
+				B3E9E2392434119300317725 /* ImageTask.swift in Sources */,
 				6E1A8BA822C86C0F0055B6D8 /* UITableView+Reusable.swift in Sources */,
 				6E696B03239F4F09000AD9F8 /* UIView+Skeleton.swift in Sources */,
 				6EFDA1A823D663FD00BF68DD /* String+Extension.swift in Sources */,
+				B3E9E2372434118900317725 /* DataTask.swift in Sources */,
+				B3E9E23F243417F900317725 /* ImageServiceManager.swift in Sources */,
 				6E075F4A22C9605A00CBCC8D /* DataSource.swift in Sources */,
 				6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */,
 				6EFDA1A623D63F3A00BF68DD /* AlertDisplayer.swift in Sources */,
@@ -450,9 +480,11 @@
 				6E0FCE7D231AF75600E85079 /* ViewModelOwner.swift in Sources */,
 				6E1A8BA722C86C0F0055B6D8 /* Reusable.swift in Sources */,
 				6ECCA81022D44752001B91F6 /* CardView.swift in Sources */,
+				B3E9E2352434117F00317725 /* AsyncTask.swift in Sources */,
 				6E1A8B5122C84B700055B6D8 /* MovieListViewController.swift in Sources */,
 				6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */,
 				6E696B05239F4F98000AD9F8 /* UIViewController+Skeleton.swift in Sources */,
+				B3E9E23B2434119C00317725 /* ImageUtil.swift in Sources */,
 				6E1A8BAA22C86C0F0055B6D8 /* NibOwnerLoadable.swift in Sources */,
 				6E1A8B5322C84B770055B6D8 /* MovieListViewModel.swift in Sources */,
 				6E1A8BB422C8731E0055B6D8 /* MovieCellView.swift in Sources */,

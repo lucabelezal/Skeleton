@@ -40,15 +40,19 @@ extension MovieCellViewModel {
     init(movie: Movie) {
         self.title = movie.title
         self.overview = movie.overview.isEmpty ? "We don't have a synopsis" : movie.overview
-        self.posterImage = UIImageView()
         self.voteAverage = movie.voteAverage
         self.releaseDate = MovieCellViewModel.formattedDateFromString(dateString: movie.releaseDate)
         self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
 
         if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
             self.posterImage.loadImage(with: url, into: self.posterImage.image)
-            //self.posterImage.downloadImage(from: url)
         }
+
+//        let service = ImageServiceManager()
+//        service.fetchImageFor(movie, IndexPath(row: 0, section: 0)) { result in
+//
+//        }
+
     }
 }
 
