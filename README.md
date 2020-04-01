@@ -12,6 +12,22 @@ Source
 │
 ```
 
+### How to use
+
+
+All that inherit from UIView has `isSkeletonable` property available
+
+```
+titleLabel.isSkeletonable = true
+```
+
+To activate the Skeleton effect just call the functions in the UIViewController
+
+```
+startLoading()
+stopLoading()
+```
+
 ### Run the command before running the example
 
 ```
