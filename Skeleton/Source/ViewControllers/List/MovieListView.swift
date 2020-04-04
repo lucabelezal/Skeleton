@@ -111,7 +111,7 @@ extension MovieListView: UITableViewDataSource {
         if isLoadingCell(for: indexPath) {
             cell.viewModel = MovieCellViewModel()
         } else {
-            cell.viewModel = viewModel.movie(indexPath.row)
+            cell.viewModel = viewModel.movieModel(indexPath.row)
         }
         return cell
     }

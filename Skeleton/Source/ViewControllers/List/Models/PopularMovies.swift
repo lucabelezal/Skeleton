@@ -1,9 +1,9 @@
 //
 //  PopularMovies.swift
-//  Networking
+//  Skeleton
 //
-//  Created by Lucas Nascimento on 30/06/19.
-//  Copyright © 2019 Lucas Nascimento. All rights reserved.
+//  Created by l.b.do.nascimento on 04/04/20.
+//  Copyright © 2020 Lucas Nascimento. All rights reserved.
 //
 
 import Foundation

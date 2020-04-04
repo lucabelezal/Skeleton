@@ -13,7 +13,7 @@ protocol MovieCellViewModelProtocol {
     var title: String { get }
     var overview: String { get }
     var releaseDate: String? { get }
-    var posterImage: UIImageView { get }
+    var posterImage: UIImageView? { get }
     var voteAverage: Double { get }
     var didAction: (() -> Void)? { get }
 }
@@ -23,7 +23,7 @@ struct MovieCellViewModel: MovieCellViewModelProtocol {
     var title: String
     var overview: String
     var releaseDate: String?
-    var posterImage: UIImageView
+    var posterImage: UIImageView?
     var voteAverage: Double
     var didAction: (() -> Void)?
     
@@ -41,31 +41,11 @@ extension MovieCellViewModel {
         self.title = movie.title
         self.overview = movie.overview.isEmpty ? "We don't have a synopsis" : movie.overview
         self.voteAverage = movie.voteAverage
-        self.releaseDate = MovieCellViewModel.formattedDateFromString(dateString: movie.releaseDate)
+        self.releaseDate = movie.releaseDate.formattedDateFromString()
         self.posterImage = UIImageView(image: UIImage(named: "no_image_holder"))
 
-        if let path = movie.posterPath, let url = URL(string: "\(ConstantApi.baseImageURL)\(path)") {
-            self.posterImage.loadImage(with: url, into: self.posterImage.image)
+        if let path = movie.posterPath, let url = "\(ConstantApi.baseImageURL)\(path)".toURL {
+            self.posterImage?.loadImage(with: url)
         }
-
-//        let service = ImageServiceManager()
-//        service.fetchImageFor(movie, IndexPath(row: 0, section: 0)) { result in
-//
-//        }
-
-    }
-}
-
-extension MovieCellViewModel {
-    
-    static func formattedDateFromString(dateString: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let date = dateFormatter.date(from: dateString) {
-            dateFormatter.dateFormat = "MMMM dd, yyyy"
-            return dateFormatter.string(from: date)
-        }
-        
-        return nil
     }
 }

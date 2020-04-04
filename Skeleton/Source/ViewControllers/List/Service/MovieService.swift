@@ -66,20 +66,19 @@ class MovieService: MovieServiceProtocol {
         }
         
         let request = URLRequest(url: url)
-        
+
         URLSession.shared.dataTask(with: request) { data, response, _ in
+
             if let data = data,
                 let response = response, ((response as? HTTPURLResponse)?.statusCode ?? 500) < 300,
                 let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    completion(image)
-                }
-                
+
+                completion(image)
+
             } else {
                 completion(UIImage())
             }
         }.resume()
         
     }
-    
 }

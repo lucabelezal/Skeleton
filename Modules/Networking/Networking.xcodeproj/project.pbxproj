@@ -10,8 +10,6 @@
 		B37AAB1023220E0E001A310D /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37AAB0623220E0E001A310D /* Networking.framework */; };
 		B37AAB1523220E0E001A310D /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB1423220E0E001A310D /* NetworkingTests.swift */; };
 		B37AAB1723220E0E001A310D /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = B37AAB0923220E0E001A310D /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B37AAB3823220EA5001A310D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB2223220EA5001A310D /* Movie.swift */; };
-		B37AAB3923220EA5001A310D /* PopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB2323220EA5001A310D /* PopularMovies.swift */; };
 		B37AAB3A23220EA5001A310D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB2623220EA5001A310D /* ParameterEncoding.swift */; };
 		B37AAB3B23220EA5001A310D /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB2723220EA5001A310D /* URLParameterEncoding.swift */; };
 		B37AAB3C23220EA5001A310D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB2823220EA5001A310D /* JSONParameterEncoder.swift */; };
@@ -26,7 +24,6 @@
 		B37AAB4523220EA5001A310D /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB3323220EA5001A310D /* NetworkLogger.swift */; };
 		B37AAB4623220EA5001A310D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB3423220EA5001A310D /* EndpointType.swift */; };
 		B37AAB4723220EA5001A310D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB3523220EA5001A310D /* NetworkError.swift */; };
-		B37AAB4823220EA5001A310D /* MovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37AAB3723220EA5001A310D /* MovieRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +43,6 @@
 		B37AAB0F23220E0E001A310D /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37AAB1423220E0E001A310D /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		B37AAB1623220E0E001A310D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B37AAB2223220EA5001A310D /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		B37AAB2323220EA5001A310D /* PopularMovies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMovies.swift; sourceTree = "<group>"; };
 		B37AAB2623220EA5001A310D /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		B37AAB2723220EA5001A310D /* URLParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		B37AAB2823220EA5001A310D /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
@@ -62,7 +57,6 @@
 		B37AAB3323220EA5001A310D /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		B37AAB3423220EA5001A310D /* EndpointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
 		B37AAB3523220EA5001A310D /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		B37AAB3723220EA5001A310D /* MovieRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,30 +118,11 @@
 		B37AAB2023220E6D001A310D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B37AAB2123220EA5001A310D /* Model */,
-				B37AAB2423220EA5001A310D /* Networking */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		B37AAB2123220EA5001A310D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B37AAB2223220EA5001A310D /* Movie.swift */,
-				B37AAB2323220EA5001A310D /* PopularMovies.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B37AAB2423220EA5001A310D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
 				B37AAB2523220EA5001A310D /* Encoding */,
 				B37AAB2923220EA5001A310D /* Manager */,
 				B37AAB2C23220EA5001A310D /* Service */,
-				B37AAB3623220EA5001A310D /* Router */,
 			);
-			path = Networking;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		B37AAB2523220EA5001A310D /* Encoding */ = {
@@ -183,14 +158,6 @@
 				B37AAB3523220EA5001A310D /* NetworkError.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		B37AAB3623220EA5001A310D /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				B37AAB3723220EA5001A310D /* MovieRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B37AAB4523220EA5001A310D /* NetworkLogger.swift in Sources */,
-				B37AAB4823220EA5001A310D /* MovieRouter.swift in Sources */,
 				B37AAB4723220EA5001A310D /* NetworkError.swift in Sources */,
 				B37AAB3D23220EA5001A310D /* NetworkManager.swift in Sources */,
 				B37AAB4123220EA5001A310D /* NetworkResponse.swift in Sources */,
@@ -333,9 +299,7 @@
 				B37AAB3B23220EA5001A310D /* URLParameterEncoding.swift in Sources */,
 				B37AAB4323220EA5001A310D /* HTTPMethod.swift in Sources */,
 				B37AAB3A23220EA5001A310D /* ParameterEncoding.swift in Sources */,
-				B37AAB3923220EA5001A310D /* PopularMovies.swift in Sources */,
 				B37AAB4623220EA5001A310D /* EndpointType.swift in Sources */,
-				B37AAB3823220EA5001A310D /* Movie.swift in Sources */,
 				B37AAB3E23220EA5001A310D /* ConstantApi.swift in Sources */,
 				B37AAB4023220EA5001A310D /* HTTPTask.swift in Sources */,
 				B37AAB3F23220EA5001A310D /* EnvironmentType.swift in Sources */,

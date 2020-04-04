@@ -73,7 +73,7 @@ class MovieListViewController: UIViewController, AlertDisplayer {
         isLoadInProgress = false
         totalPages = data.totalPages
         movies.append(contentsOf: data.movies)
-        theView.viewModel = MovieListViewModel(with: data, and: self.movies, isToReloadTableView: isToReload)
+        theView.viewModel = MovieListViewModel(with: data, and: self.movies, isToReloadTableView: isToReload, service: service)
         stopLoading()
     }
 

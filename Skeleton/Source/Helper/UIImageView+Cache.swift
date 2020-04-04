@@ -10,13 +10,12 @@ import UIKit
 
 extension UIImageView {
     
-    func loadImage(with url: URL, into placeholder: UIImage?, cache: URLCache? = nil) {
+    func loadImage(with url: URL, cache: URLCache? = nil) {
         let cache = cache ?? URLCache.shared
         let request = URLRequest(url: url)
         if let data = cache.cachedResponse(for: request)?.data, let image = UIImage(data: data) {
             self.image = image
         } else {
-            self.image = placeholder
             URLSession.shared.dataTask(with: request) { data, response, _ in
                 if let data = data,
                     let response = response, ((response as? HTTPURLResponse)?.statusCode ?? 500) < 300,
@@ -33,25 +32,4 @@ extension UIImageView {
             }.resume()
         }
     }
-}
-
-extension UIImageView {
-    
-    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
-    func downloadImage(from url: URL) {
-        getData(from: url) { [weak self] (data, _, error) in
-            
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.image = UIImage(data: data)
-            }
-        }
-    }
-    
 }
