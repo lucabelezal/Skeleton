@@ -1,8 +1,9 @@
 coverage_service: cobertura_xml
 xcodeproj: Skeleton.xcodeproj
+workspace: Skeleton.xcworkspace
+scheme: Skeleton
 input_format: profdata
 output_directory: Coverage/
 build_directory: build/Build/
-scheme: Skeleton
 ignore:
   - SkeletonTests/*
