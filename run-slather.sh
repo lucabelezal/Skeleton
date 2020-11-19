@@ -2,7 +2,7 @@
 
 set -o pipefail
         xcodebuild test-without-building \
-        -workspace SkeletonApp.xcworkspace\
+        -workspace SkeletonApp.xcworkspace \
         -scheme Skeleton \
         -destination 'platform=iOS Simulator,name=iPhone 11' \
         -derivedDataPath build \

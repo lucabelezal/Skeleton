@@ -29,11 +29,11 @@ jobs:
         -derivedDataPath build \
         | xcpretty
         
-    # - name: Archive derived data artifacts
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: build
-    #     path: build
+    - name: Archive derived data artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
 
   test:
     name: Test Project
