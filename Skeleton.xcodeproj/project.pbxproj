@@ -15,7 +15,6 @@
 		6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2322C837080055B6D8 /* AppDelegate.swift */; };
 		6E1A8B2B22C8370B0055B6D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */; };
 		6E1A8B2E22C8370B0055B6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2C22C8370B0055B6D8 /* LaunchScreen.storyboard */; };
-		6E1A8B3922C8370B0055B6D8 /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */; };
 		6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */; };
 		6E1A8B5122C84B700055B6D8 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */; };
 		6E1A8B5322C84B770055B6D8 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */; };
@@ -34,14 +33,13 @@
 		6E696B05239F4F98000AD9F8 /* UIViewController+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E696B04239F4F98000AD9F8 /* UIViewController+Skeleton.swift */; };
 		6E8D0E20231C7491002A6861 /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */; };
 		6E8D0E22231C74D4002A6861 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D0E21231C74D4002A6861 /* MovieService.swift */; };
-		6E9FAB4E239DF4A400062683 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FAB4D239DF4A400062683 /* Networking.framework */; };
-		6E9FAB4F239DF4A400062683 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FAB4D239DF4A400062683 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ECCA81022D44752001B91F6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA80F22D44752001B91F6 /* CardView.swift */; };
 		6EFDA1A623D63F3A00BF68DD /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */; };
 		6EFDA1A823D663FD00BF68DD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDA1A723D663FD00BF68DD /* String+Extension.swift */; };
 		B317DCAD243916A90069A75C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCAC243916A90069A75C /* Movie.swift */; };
 		B317DCAF243916BB0069A75C /* PopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCAE243916BB0069A75C /* PopularMovies.swift */; };
 		B317DCB4243917110069A75C /* MovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCB3243917110069A75C /* MovieRouter.swift */; };
+		B3DF83F22566C33F00E7DBBC /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */; };
 		B3E9E2352434117F00317725 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2342434117F00317725 /* AsyncTask.swift */; };
 		B3E9E2372434118900317725 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2362434118900317725 /* DataTask.swift */; };
 		B3E9E2392434119300317725 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2382434119300317725 /* ImageTask.swift */; };
@@ -50,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6E1A8B3522C8370B0055B6D8 /* PBXContainerItemProxy */ = {
+		B3DF83F42566C33F00E7DBBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E1A8B1822C837080055B6D8 /* Project object */;
 			proxyType = 1;
@@ -66,7 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6E9FAB4F239DF4A400062683 /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,7 +81,6 @@
 		6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E1A8B2D22C8370B0055B6D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1A8B2F22C8370B0055B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E1A8B3422C8370B0055B6D8 /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
 		6E1A8B3A22C8370B0055B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LayoutKit.framework; path = Carthage/Build/iOS/LayoutKit.framework; sourceTree = "<group>"; };
@@ -105,15 +101,15 @@
 		6E696B04239F4F98000AD9F8 /* UIViewController+Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Skeleton.swift"; sourceTree = "<group>"; };
 		6E8D0E1F231C7491002A6861 /* MovieServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceProtocol.swift; sourceTree = "<group>"; };
 		6E8D0E21231C74D4002A6861 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
-		6E9FAB4D239DF4A400062683 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECCA80F22D44752001B91F6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
 		6EFDA1A723D663FD00BF68DD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		6EFDA1A923D664A800BF68DD /* Nuke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nuke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B317DCAC243916A90069A75C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		B317DCAE243916BB0069A75C /* PopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovies.swift; sourceTree = "<group>"; };
 		B317DCB3243917110069A75C /* MovieRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
-		B37AAB5C2322104A001A310D /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
+		B3DF83F32566C33F00E7DBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9E2342434117F00317725 /* AsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
 		B3E9E2362434118900317725 /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
 		B3E9E2382434119300317725 /* ImageTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTask.swift; sourceTree = "<group>"; };
@@ -126,12 +122,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E9FAB4E239DF4A400062683 /* Networking.framework in Frameworks */,
 				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E1A8B3122C8370B0055B6D8 /* Frameworks */ = {
+		B3DF83EC2566C33F00E7DBBC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -163,6 +158,7 @@
 			children = (
 				6E1A8B2222C837080055B6D8 /* Skeleton */,
 				6E1A8B3722C8370B0055B6D8 /* SkeletonTests */,
+				B3DF83F02566C33F00E7DBBC /* SkeletonTests */,
 				6E1A8B2122C837080055B6D8 /* Products */,
 				6E1A8B4522C83CEA0055B6D8 /* Frameworks */,
 			);
@@ -172,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1A8B2022C837080055B6D8 /* Skeleton.app */,
-				6E1A8B3422C8370B0055B6D8 /* SkeletonTests.xctest */,
+				B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,9 +193,6 @@
 		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6EFDA1A923D664A800BF68DD /* Nuke.framework */,
-				6E9FAB4D239DF4A400062683 /* Networking.framework */,
-				B37AAB5C2322104A001A310D /* Networking.framework */,
 				6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */,
 			);
 			name = Frameworks;
@@ -332,6 +325,15 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		B3DF83F02566C33F00E7DBBC /* SkeletonTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */,
+				B3DF83F32566C33F00E7DBBC /* Info.plist */,
+			);
+			path = SkeletonTests;
+			sourceTree = "<group>";
+		};
 		B3E9E2332434117200317725 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,22 +371,22 @@
 			productReference = 6E1A8B2022C837080055B6D8 /* Skeleton.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6E1A8B3322C8370B0055B6D8 /* SkeletonTests */ = {
+		B3DF83EE2566C33F00E7DBBC /* SkeletonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E1A8B4022C8370B0055B6D8 /* Build configuration list for PBXNativeTarget "SkeletonTests" */;
+			buildConfigurationList = B3DF83F62566C33F00E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */;
 			buildPhases = (
-				6E1A8B3022C8370B0055B6D8 /* Sources */,
-				6E1A8B3122C8370B0055B6D8 /* Frameworks */,
-				6E1A8B3222C8370B0055B6D8 /* Resources */,
+				B3DF83EB2566C33F00E7DBBC /* Sources */,
+				B3DF83EC2566C33F00E7DBBC /* Frameworks */,
+				B3DF83ED2566C33F00E7DBBC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6E1A8B3622C8370B0055B6D8 /* PBXTargetDependency */,
+				B3DF83F52566C33F00E7DBBC /* PBXTargetDependency */,
 			);
 			name = SkeletonTests;
 			productName = SkeletonTests;
-			productReference = 6E1A8B3422C8370B0055B6D8 /* SkeletonTests.xctest */;
+			productReference = B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -393,15 +395,15 @@
 		6E1A8B1822C837080055B6D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Lucas Nascimento";
 				TargetAttributes = {
 					6E1A8B1F22C837080055B6D8 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					6E1A8B3322C8370B0055B6D8 = {
-						CreatedOnToolsVersion = 10.2.1;
+					B3DF83EE2566C33F00E7DBBC = {
+						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 6E1A8B1F22C837080055B6D8;
 					};
 				};
@@ -422,7 +424,7 @@
 			projectRoot = "";
 			targets = (
 				6E1A8B1F22C837080055B6D8 /* Skeleton */,
-				6E1A8B3322C8370B0055B6D8 /* SkeletonTests */,
+				B3DF83EE2566C33F00E7DBBC /* SkeletonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -437,7 +439,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E1A8B3222C8370B0055B6D8 /* Resources */ = {
+		B3DF83ED2566C33F00E7DBBC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,21 +531,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E1A8B3022C8370B0055B6D8 /* Sources */ = {
+		B3DF83EB2566C33F00E7DBBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E1A8B3922C8370B0055B6D8 /* SkeletonTests.swift in Sources */,
+				B3DF83F22566C33F00E7DBBC /* SkeletonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6E1A8B3622C8370B0055B6D8 /* PBXTargetDependency */ = {
+		B3DF83F52566C33F00E7DBBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6E1A8B1F22C837080055B6D8 /* Skeleton */;
-			targetProxy = 6E1A8B3522C8370B0055B6D8 /* PBXContainerItemProxy */;
+			targetProxy = B3DF83F42566C33F00E7DBBC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -682,7 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2LFFGTNB7R;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -705,7 +707,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2LFFGTNB7R;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -723,19 +725,19 @@
 			};
 			name = Release;
 		};
-		6E1A8B4122C8370B0055B6D8 /* Debug */ = {
+		B3DF83F72566C33F00E7DBBC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SkeletonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teste.SkeletonTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucas.SkeletonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -743,19 +745,19 @@
 			};
 			name = Debug;
 		};
-		6E1A8B4222C8370B0055B6D8 /* Release */ = {
+		B3DF83F82566C33F00E7DBBC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SkeletonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teste.SkeletonTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucas.SkeletonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -784,11 +786,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E1A8B4022C8370B0055B6D8 /* Build configuration list for PBXNativeTarget "SkeletonTests" */ = {
+		B3DF83F62566C33F00E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6E1A8B4122C8370B0055B6D8 /* Debug */,
-				6E1A8B4222C8370B0055B6D8 /* Release */,
+				B3DF83F72566C33F00E7DBBC /* Debug */,
+				B3DF83F82566C33F00E7DBBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

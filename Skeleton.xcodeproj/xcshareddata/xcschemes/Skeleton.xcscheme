@@ -27,7 +27,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -37,12 +38,21 @@
             ReferencedContainer = "container:Skeleton.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B3DF83EE2566C33F00E7DBBC"
+            BuildableName = "SkeletonTests.xctest"
+            BlueprintName = "SkeletonTests"
+            ReferencedContainer = "container:Skeleton.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E1A8B3322C8370B0055B6D8"
+               BlueprintIdentifier = "B3DF83EE2566C33F00E7DBBC"
                BuildableName = "SkeletonTests.xctest"
                BlueprintName = "SkeletonTests"
                ReferencedContainer = "container:Skeleton.xcodeproj">
