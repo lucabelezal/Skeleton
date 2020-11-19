@@ -1,6 +1,6 @@
 # Lightweight Skeleton
 
-![CI](https://github.com/lucabelezal/Skeleton/workflows/Run%20CI/badge.svg)
+![CI](https://github.com/lucabelezal/Skeleton/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/lucabelezal/Skeleton/branch/master/graph/badge.svg?token=f0sH9cfXWn)](https://codecov.io/gh/lucabelezal/Skeleton)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lucabelezal_Skeleton&metric=alert_status)](https://sonarcloud.io/dashboard?id=lucabelezal_Skeleton)
 
@@ -28,12 +28,6 @@ To activate the Skeleton effect just call the functions in the UIViewController
 ```
 startLoading()
 stopLoading()
-```
-
-### Run the command before running the example
-
-```
-  carthage update --platform iOS --no-use-binaries
 ```
 
 <p align="center">
