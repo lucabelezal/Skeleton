@@ -30,12 +30,6 @@ startLoading()
 stopLoading()
 ```
 
-### Run the command before running the example
-
-```
-  carthage update --platform iOS --no-use-binaries
-```
-
 <p align="center">
   <img src="https://github.com/lucabelezal/Skeleton/blob/master/GIF/skeleton.gif" width="350"/>
 </p>
