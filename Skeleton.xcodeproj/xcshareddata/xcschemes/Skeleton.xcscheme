@@ -41,7 +41,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3DF83EE2566C33F00E7DBBC"
+            BlueprintIdentifier = "B3DF84262566C86800E7DBBC"
             BuildableName = "SkeletonTests.xctest"
             BlueprintName = "SkeletonTests"
             ReferencedContainer = "container:Skeleton.xcodeproj">
@@ -52,7 +52,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3DF83EE2566C33F00E7DBBC"
+               BlueprintIdentifier = "B3DF84262566C86800E7DBBC"
                BuildableName = "SkeletonTests.xctest"
                BlueprintName = "SkeletonTests"
                ReferencedContainer = "container:Skeleton.xcodeproj">

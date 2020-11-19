@@ -1,11 +1,3 @@
-//
-//  UIView+Skeleton.swift
-//  Skeleton
-//
-//  Created by Lucas Nascimento on 10/12/19.
-//  Copyright © 2019 Lucas Nascimento. All rights reserved.
-//
-
 import UIKit
 
 struct AssociatedKeys {

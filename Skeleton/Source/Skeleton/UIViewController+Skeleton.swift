@@ -1,15 +1,6 @@
-//
-//  UIViewController+Skeleton.swift
-//  Skeleton
-//
-//  Created by Lucas Nascimento on 10/12/19.
-//  Copyright © 2019 Lucas Nascimento. All rights reserved.
-//
-
 import UIKit
 
 public extension UIViewController {
-    
     func startLoading() {
         DispatchQueue.main.async {
             for animateView in self.getSubViewsForAnimate() {

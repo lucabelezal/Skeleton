@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LayoutKit",
+        "repositoryURL": "https://github.com/lucabelezal/LayoutKit.git",
+        "state": {
+          "branch": null,
+          "revision": "7571494c09093622042915adfdc54301d3104b28",
+          "version": "1.0.16"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

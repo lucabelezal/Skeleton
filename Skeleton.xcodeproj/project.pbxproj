@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,6 @@
 		6E1A8B2422C837080055B6D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2322C837080055B6D8 /* AppDelegate.swift */; };
 		6E1A8B2B22C8370B0055B6D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */; };
 		6E1A8B2E22C8370B0055B6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1A8B2C22C8370B0055B6D8 /* LaunchScreen.storyboard */; };
-		6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */; };
 		6E1A8B5122C84B700055B6D8 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */; };
 		6E1A8B5322C84B770055B6D8 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */; };
 		6E1A8B5522C84B7F0055B6D8 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A8B5422C84B7F0055B6D8 /* MovieListView.swift */; };
@@ -39,7 +38,8 @@
 		B317DCAD243916A90069A75C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCAC243916A90069A75C /* Movie.swift */; };
 		B317DCAF243916BB0069A75C /* PopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCAE243916BB0069A75C /* PopularMovies.swift */; };
 		B317DCB4243917110069A75C /* MovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCB3243917110069A75C /* MovieRouter.swift */; };
-		B3DF83F22566C33F00E7DBBC /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */; };
+		B3DF83FE2566C43D00E7DBBC /* LayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = B3DF83FD2566C43D00E7DBBC /* LayoutKit */; };
+		B3DF842A2566C86800E7DBBC /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF84292566C86800E7DBBC /* SkeletonTests.swift */; };
 		B3E9E2352434117F00317725 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2342434117F00317725 /* AsyncTask.swift */; };
 		B3E9E2372434118900317725 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2362434118900317725 /* DataTask.swift */; };
 		B3E9E2392434119300317725 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2382434119300317725 /* ImageTask.swift */; };
@@ -48,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B3DF83F42566C33F00E7DBBC /* PBXContainerItemProxy */ = {
+		B3DF842C2566C86800E7DBBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E1A8B1822C837080055B6D8 /* Project object */;
 			proxyType = 1;
@@ -81,9 +81,6 @@
 		6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E1A8B2D22C8370B0055B6D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E1A8B2F22C8370B0055B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
-		6E1A8B3A22C8370B0055B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LayoutKit.framework; path = Carthage/Build/iOS/LayoutKit.framework; sourceTree = "<group>"; };
 		6E1A8B5022C84B700055B6D8 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		6E1A8B5222C84B770055B6D8 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		6E1A8B5422C84B7F0055B6D8 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
@@ -107,9 +104,9 @@
 		B317DCAC243916A90069A75C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		B317DCAE243916BB0069A75C /* PopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovies.swift; sourceTree = "<group>"; };
 		B317DCB3243917110069A75C /* MovieRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
-		B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
-		B3DF83F32566C33F00E7DBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3DF84272566C86800E7DBBC /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3DF84292566C86800E7DBBC /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
+		B3DF842B2566C86800E7DBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9E2342434117F00317725 /* AsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
 		B3E9E2362434118900317725 /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
 		B3E9E2382434119300317725 /* ImageTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTask.swift; sourceTree = "<group>"; };
@@ -122,11 +119,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E1A8B4722C83CEB0055B6D8 /* LayoutKit.framework in Frameworks */,
+				B3DF83FE2566C43D00E7DBBC /* LayoutKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B3DF83EC2566C33F00E7DBBC /* Frameworks */ = {
+		B3DF84242566C86800E7DBBC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -157,10 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				6E1A8B2222C837080055B6D8 /* Skeleton */,
-				6E1A8B3722C8370B0055B6D8 /* SkeletonTests */,
-				B3DF83F02566C33F00E7DBBC /* SkeletonTests */,
+				B3DF84282566C86800E7DBBC /* SkeletonTests */,
 				6E1A8B2122C837080055B6D8 /* Products */,
-				6E1A8B4522C83CEA0055B6D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1A8B2022C837080055B6D8 /* Skeleton.app */,
-				B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */,
+				B3DF84272566C86800E7DBBC /* SkeletonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,26 +176,10 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
-		6E1A8B3722C8370B0055B6D8 /* SkeletonTests */ = {
-			isa = PBXGroup;
-			children = (
-				6E1A8B3822C8370B0055B6D8 /* SkeletonTests.swift */,
-				6E1A8B3A22C8370B0055B6D8 /* Info.plist */,
-			);
-			path = SkeletonTests;
-			sourceTree = "<group>";
-		};
-		6E1A8B4522C83CEA0055B6D8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6E1A8B4622C83CEB0055B6D8 /* LayoutKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6E1A8B4822C83DA30055B6D8 /* Resoures */ = {
 			isa = PBXGroup;
 			children = (
+				6E1A8B2322C837080055B6D8 /* AppDelegate.swift */,
 				6E1A8B2A22C8370B0055B6D8 /* Assets.xcassets */,
 				6E1A8B2C22C8370B0055B6D8 /* LaunchScreen.storyboard */,
 				6E1A8B2F22C8370B0055B6D8 /* Info.plist */,
@@ -217,15 +196,15 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
-		6E1A8B4F22C84B570055B6D8 /* ViewControllers */ = {
+		6E1A8B4F22C84B570055B6D8 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				B317DCB52439173C0069A75C /* List */,
 			);
-			path = ViewControllers;
+			path = Features;
 			sourceTree = "<group>";
 		};
-		6E1A8B9A22C86BA30055B6D8 /* Helper */ = {
+		6E1A8B9A22C86BA30055B6D8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				6E8D0E1A231C5B4A002A6861 /* Views */,
@@ -238,7 +217,7 @@
 				6EFDA1A523D63F3A00BF68DD /* AlertDisplayer.swift */,
 				6EFDA1A723D663FD00BF68DD /* String+Extension.swift */,
 			);
-			path = Helper;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		6E1A8B9D22C86C0F0055B6D8 /* Reusable */ = {
@@ -282,13 +261,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		B317DCAB2439169F0069A75C /* Models */ = {
+		B317DCAB2439169F0069A75C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				B317DCAC243916A90069A75C /* Movie.swift */,
 				B317DCAE243916BB0069A75C /* PopularMovies.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B317DCB2243917110069A75C /* Router */ = {
@@ -302,7 +281,7 @@
 		B317DCB52439173C0069A75C /* List */ = {
 			isa = PBXGroup;
 			children = (
-				B317DCAB2439169F0069A75C /* Models */,
+				B317DCAB2439169F0069A75C /* Model */,
 				6E8D0E1E231C7479002A6861 /* Service */,
 				6E075F4D22C9629700CBCC8D /* Section */,
 				6E1A8BAE22C872BD0055B6D8 /* Cell */,
@@ -316,20 +295,19 @@
 		B37AAB6123221442001A310D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6E1A8B2322C837080055B6D8 /* AppDelegate.swift */,
-				6E1A8B9A22C86BA30055B6D8 /* Helper */,
-				6E1A8B4F22C84B570055B6D8 /* ViewControllers */,
 				6E1A8B4922C83DD60055B6D8 /* Skeleton */,
+				6E1A8B9A22C86BA30055B6D8 /* Common */,
+				6E1A8B4F22C84B570055B6D8 /* Features */,
 				6E1A8B4822C83DA30055B6D8 /* Resoures */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		B3DF83F02566C33F00E7DBBC /* SkeletonTests */ = {
+		B3DF84282566C86800E7DBBC /* SkeletonTests */ = {
 			isa = PBXGroup;
 			children = (
-				B3DF83F12566C33F00E7DBBC /* SkeletonTests.swift */,
-				B3DF83F32566C33F00E7DBBC /* Info.plist */,
+				B3DF84292566C86800E7DBBC /* SkeletonTests.swift */,
+				B3DF842B2566C86800E7DBBC /* Info.plist */,
 			);
 			path = SkeletonTests;
 			sourceTree = "<group>";
@@ -357,7 +335,6 @@
 				6E1A8B1C22C837080055B6D8 /* Sources */,
 				6E1A8B1D22C837080055B6D8 /* Frameworks */,
 				6E1A8B1E22C837080055B6D8 /* Resources */,
-				6E1A8B4322C83B3B0055B6D8 /* Carthage */,
 				6E252E1023949E2500FA5851 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -366,27 +343,28 @@
 			);
 			name = Skeleton;
 			packageProductDependencies = (
+				B3DF83FD2566C43D00E7DBBC /* LayoutKit */,
 			);
 			productName = Skeleton;
 			productReference = 6E1A8B2022C837080055B6D8 /* Skeleton.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B3DF83EE2566C33F00E7DBBC /* SkeletonTests */ = {
+		B3DF84262566C86800E7DBBC /* SkeletonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B3DF83F62566C33F00E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */;
+			buildConfigurationList = B3DF842E2566C86800E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */;
 			buildPhases = (
-				B3DF83EB2566C33F00E7DBBC /* Sources */,
-				B3DF83EC2566C33F00E7DBBC /* Frameworks */,
-				B3DF83ED2566C33F00E7DBBC /* Resources */,
+				B3DF84232566C86800E7DBBC /* Sources */,
+				B3DF84242566C86800E7DBBC /* Frameworks */,
+				B3DF84252566C86800E7DBBC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B3DF83F52566C33F00E7DBBC /* PBXTargetDependency */,
+				B3DF842D2566C86800E7DBBC /* PBXTargetDependency */,
 			);
 			name = SkeletonTests;
 			productName = SkeletonTests;
-			productReference = B3DF83EF2566C33F00E7DBBC /* SkeletonTests.xctest */;
+			productReference = B3DF84272566C86800E7DBBC /* SkeletonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -402,7 +380,7 @@
 					6E1A8B1F22C837080055B6D8 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					B3DF83EE2566C33F00E7DBBC = {
+					B3DF84262566C86800E7DBBC = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 6E1A8B1F22C837080055B6D8;
 					};
@@ -418,13 +396,14 @@
 			);
 			mainGroup = 6E1A8B1722C837080055B6D8;
 			packageReferences = (
+				B3DF83FC2566C43D00E7DBBC /* XCRemoteSwiftPackageReference "LayoutKit" */,
 			);
 			productRefGroup = 6E1A8B2122C837080055B6D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6E1A8B1F22C837080055B6D8 /* Skeleton */,
-				B3DF83EE2566C33F00E7DBBC /* SkeletonTests */,
+				B3DF84262566C86800E7DBBC /* SkeletonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -439,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B3DF83ED2566C33F00E7DBBC /* Resources */ = {
+		B3DF84252566C86800E7DBBC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -449,26 +428,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E1A8B4322C83B3B0055B6D8 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/LayoutKit.framework",
-			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LayoutKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		6E1A8B4422C83B580055B6D8 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,21 +490,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B3DF83EB2566C33F00E7DBBC /* Sources */ = {
+		B3DF84232566C86800E7DBBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3DF83F22566C33F00E7DBBC /* SkeletonTests.swift in Sources */,
+				B3DF842A2566C86800E7DBBC /* SkeletonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B3DF83F52566C33F00E7DBBC /* PBXTargetDependency */ = {
+		B3DF842D2566C86800E7DBBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6E1A8B1F22C837080055B6D8 /* Skeleton */;
-			targetProxy = B3DF83F42566C33F00E7DBBC /* PBXContainerItemProxy */;
+			targetProxy = B3DF842C2566C86800E7DBBC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -725,7 +684,7 @@
 			};
 			name = Release;
 		};
-		B3DF83F72566C33F00E7DBBC /* Debug */ = {
+		B3DF842F2566C86800E7DBBC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -745,7 +704,7 @@
 			};
 			name = Debug;
 		};
-		B3DF83F82566C33F00E7DBBC /* Release */ = {
+		B3DF84302566C86800E7DBBC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -786,16 +745,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B3DF83F62566C33F00E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */ = {
+		B3DF842E2566C86800E7DBBC /* Build configuration list for PBXNativeTarget "SkeletonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3DF83F72566C33F00E7DBBC /* Debug */,
-				B3DF83F82566C33F00E7DBBC /* Release */,
+				B3DF842F2566C86800E7DBBC /* Debug */,
+				B3DF84302566C86800E7DBBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B3DF83FC2566C43D00E7DBBC /* XCRemoteSwiftPackageReference "LayoutKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucabelezal/LayoutKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.16;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B3DF83FD2566C43D00E7DBBC /* LayoutKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3DF83FC2566C43D00E7DBBC /* XCRemoteSwiftPackageReference "LayoutKit" */;
+			productName = LayoutKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E1A8B1822C837080055B6D8 /* Project object */;
 }
