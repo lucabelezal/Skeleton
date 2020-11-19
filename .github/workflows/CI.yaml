@@ -1,4 +1,4 @@
-name: Run CI
+name: GitHubActions
 on:
   pull_request
 
