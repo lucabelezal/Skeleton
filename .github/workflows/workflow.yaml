@@ -1,12 +1,12 @@
-name: CI
+name: GitHubActions
 
 on: [push]
 
 jobs:
-  SwiftLint:
+  Lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: GitHub Action for SwiftLint
         uses: norio-nomura/action-swiftlint@master
         env:
@@ -19,15 +19,19 @@ jobs:
            destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
     steps:       
       - name: Checkout
-        uses: actions/checkout@v1
-      - name: Run Build
+        uses: actions/checkout@v2
+
+      - name: Run build
         env: 
           destination: ${{ matrix.destination }}
-        run: |
-          set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
-      - name: Run Test
+        run: swift build -v
+
+      - name: Run tests
         env: 
-         CODECOV_TOKEN: $CODECOV_TOKEN
          destination: ${{ matrix.destination }}
-        run: |
-          set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
+        run: swift test -v
+
+      - name: Run coverage reports
+        uses: codecov/codecov-action@v1.0.15
+        with:
+          token: $CODECOV_TOKEN
