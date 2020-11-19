@@ -27,6 +27,7 @@ jobs:
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro' \
         -derivedDataPath build \
         | xcpretty
+        
     - name: Archive derived data artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -64,6 +65,7 @@ jobs:
         -derivedDataPath build \
         -enableCodeCoverage YES \
         | xcpretty
+        
     - name: Coverage report
       run: slather coverage -x --binary-basename 'Skeleton'
 
