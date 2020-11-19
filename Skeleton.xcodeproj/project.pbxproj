@@ -40,6 +40,8 @@
 		B317DCB4243917110069A75C /* MovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DCB3243917110069A75C /* MovieRouter.swift */; };
 		B3DF83FE2566C43D00E7DBBC /* LayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = B3DF83FD2566C43D00E7DBBC /* LayoutKit */; };
 		B3DF842A2566C86800E7DBBC /* SkeletonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF84292566C86800E7DBBC /* SkeletonTests.swift */; };
+		B3DF84412566E17500E7DBBC /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DF843D2566E16100E7DBBC /* Networking.framework */; };
+		B3DF84422566E17500E7DBBC /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3DF843D2566E16100E7DBBC /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3E9E2352434117F00317725 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2342434117F00317725 /* AsyncTask.swift */; };
 		B3E9E2372434118900317725 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2362434118900317725 /* DataTask.swift */; };
 		B3E9E2392434119300317725 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9E2382434119300317725 /* ImageTask.swift */; };
@@ -55,6 +57,20 @@
 			remoteGlobalIDString = 6E1A8B1F22C837080055B6D8;
 			remoteInfo = Skeleton;
 		};
+		B3DF843C2566E16100E7DBBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3DF84372566E16100E7DBBC /* Networking.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B37AAB0623220E0E001A310D;
+			remoteInfo = Networking;
+		};
+		B3DF843E2566E16100E7DBBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3DF84372566E16100E7DBBC /* Networking.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B37AAB0F23220E0E001A310D;
+			remoteInfo = NetworkingTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +80,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B3DF84422566E17500E7DBBC /* Networking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +124,7 @@
 		B3DF84272566C86800E7DBBC /* SkeletonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DF84292566C86800E7DBBC /* SkeletonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTests.swift; sourceTree = "<group>"; };
 		B3DF842B2566C86800E7DBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3DF84372566E16100E7DBBC /* Networking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Networking.xcodeproj; path = Modules/Networking/Networking.xcodeproj; sourceTree = "<group>"; };
 		B3E9E2342434117F00317725 /* AsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
 		B3E9E2362434118900317725 /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
 		B3E9E2382434119300317725 /* ImageTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTask.swift; sourceTree = "<group>"; };
@@ -119,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DF84412566E17500E7DBBC /* Networking.framework in Frameworks */,
 				B3DF83FE2566C43D00E7DBBC /* LayoutKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,9 +172,11 @@
 		6E1A8B1722C837080055B6D8 = {
 			isa = PBXGroup;
 			children = (
+				B3DF84372566E16100E7DBBC /* Networking.xcodeproj */,
 				6E1A8B2222C837080055B6D8 /* Skeleton */,
 				B3DF84282566C86800E7DBBC /* SkeletonTests */,
 				6E1A8B2122C837080055B6D8 /* Products */,
+				B3DF84402566E17500E7DBBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,6 +333,22 @@
 			path = SkeletonTests;
 			sourceTree = "<group>";
 		};
+		B3DF84382566E16100E7DBBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3DF843D2566E16100E7DBBC /* Networking.framework */,
+				B3DF843F2566E16100E7DBBC /* NetworkingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3DF84402566E17500E7DBBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B3E9E2332434117200317725 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +437,12 @@
 			);
 			productRefGroup = 6E1A8B2122C837080055B6D8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B3DF84382566E16100E7DBBC /* Products */;
+					ProjectRef = B3DF84372566E16100E7DBBC /* Networking.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6E1A8B1F22C837080055B6D8 /* Skeleton */,
@@ -407,6 +450,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B3DF843D2566E16100E7DBBC /* Networking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Networking.framework;
+			remoteRef = B3DF843C2566E16100E7DBBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B3DF843F2566E16100E7DBBC /* NetworkingTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NetworkingTests.xctest;
+			remoteRef = B3DF843E2566E16100E7DBBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6E1A8B1E22C837080055B6D8 /* Resources */ = {
