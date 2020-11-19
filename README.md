@@ -1,6 +1,7 @@
 # Lightweight Skeleton
 
 ![](https://github.com/lucabelezal/Skeleton/workflows/GitHubActions/badge.svg)
+[![codecov](https://codecov.io/gh/lucabelezal/Skeleton/branch/master/graph/badge.svg?token=f0sH9cfXWn)](https://codecov.io/gh/lucabelezal/Skeleton)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lucabelezal_Skeleton&metric=alert_status)](https://sonarcloud.io/dashboard?id=lucabelezal_Skeleton)
 
 ### Copy the files that are in the Skeleton folder
