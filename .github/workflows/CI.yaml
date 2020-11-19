@@ -24,7 +24,7 @@ jobs:
         set -o pipefail
         slather setup
         xcodebuild build-for-testing \
-        -scheme iOSGitHubActions \
+        -scheme Skeleton \
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro' \
         -derivedDataPath build \
         | xcpretty
@@ -60,17 +60,17 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild test-without-building \
-        -scheme iOSGitHubActions \
+        -scheme Skeleton \
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro' \
         -derivedDataPath build \
         -enableCodeCoverage YES \
         | xcpretty
     - name: Coverage report
-      run: slather coverage -x --binary-basename 'iOSGitHubActions'
+      run: slather coverage -x --binary-basename 'Skeleton'
 
     - name: Post coverage
       uses: codecov/codecov-action@v1
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}Skeleton
         file: ./Coverage/cobertura.xml
         fail_ci_if_error: true
