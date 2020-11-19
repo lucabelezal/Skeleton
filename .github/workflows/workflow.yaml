@@ -27,7 +27,7 @@ jobs:
           set -o pipefail && xcodebuild clean build -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" | xcpretty
       - name: Run Test
         env: 
-         CODECOV_TOKEN: "ff30730f-ba71-4122-a5c8-faf3dbcdfa57"
+         CODECOV_TOKEN: $CODECOV_TOKEN
          destination: ${{ matrix.destination }}
         run: |
           set -o pipefail && xcodebuild test -workspace SkeletonApp.xcworkspace -scheme Skeleton -destination "${destination}" -enableCodeCoverage YES | xcpretty
