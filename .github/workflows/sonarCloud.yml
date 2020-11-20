@@ -5,7 +5,7 @@ on:
   pull_request:
       types: [opened, synchronize, reopened]
 
-name: Run Continuous Code Quality & Code Security
+name: SonarQube
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
