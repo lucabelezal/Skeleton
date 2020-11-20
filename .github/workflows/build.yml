@@ -31,7 +31,7 @@ jobs:
               
     - name: Build and test
       run: |
-        xcodebuild build test -project ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+        xcodebuild build test -workspace SkeletonApp.xcworkspace -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
       env:
         project: 'Skeleton.xcodeproj'
         params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
@@ -52,7 +52,7 @@ jobs:
               
     - name: Build and test
       run: |
-        xcodebuild build test -project ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+        xcodebuild build test -workspace SkeletonApp.xcworkspace -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
       env:
         project: 'Skeleton.xcodeproj'
         params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
