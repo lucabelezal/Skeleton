@@ -366,6 +366,7 @@ if [ "$unittests" = "on" ]; then
     echo "${slatherCmd[@]}"
 
     runCommand /dev/stdout "${slatherCmd[@]}"
+	sh ./xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xccovarchive/ > sonarqube-generic-coverage.xml
     mv sonar-reports/cobertura.xml sonar-reports/coverage-swift.xml
 fi
 
