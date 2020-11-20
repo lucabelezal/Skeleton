@@ -1,0 +1,88 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+    - master
+    - develop
+
+jobs:
+  
+  tests:
+    runs-on: macos-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - destination: 'name=iPhone 8'
+          scheme: Skeleton
+          xcode: '/Applications/Xcode_12.2.app/Contents/Developer'
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Prepare iOS 12.4 simulator
+      if: contains(matrix.destination, 'OS=12.4')
+      run: |
+        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+        sudo ln -s /Applications/Xcode_10.3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 12.4.simruntime
+        xcrun simctl create custom-test-device "iPhone X" "com.apple.CoreSimulator.SimRuntime.iOS-12-4"
+        xcrun simctl list devices 12.4
+              
+    - name: Build and test
+      run: |
+        xcodebuild build test -project ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+      env:
+        project: 'Skeleton.xcodeproj'
+        params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
+        scheme: ${{ matrix.scheme }}
+        destination: ${{ matrix.destination }}
+        DEVELOPER_DIR: ${{ matrix.xcode }}
+        
+  sonar:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Install Dependencies
+      run: |
+        brew install sonar-scanner
+        brew install swiftlint
+        gem install slather
+              
+    - name: Build and test
+      run: |
+        xcodebuild build test -project ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+      env:
+        project: 'Skeleton.xcodeproj'
+        params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
+        scheme: Skeleton
+        destination: 'name=iPhone 11'
+                
+    - name: Slather
+      run: |
+        slather coverage --sonarqube-xml ${params} ${project}
+        slather coverage --cobertura-xml ${params} ${project}
+      env:
+        project: 'Skeleton.xcodeproj'
+        params: '--build-directory ./DerivedData
+        --output-directory ./reports
+        --scheme Skeleton
+        --binary-basename Skeleton'
+         
+    - name: SwiftLint
+      run: |
+        fastlane run swiftlint output_file:"./reports/swiftlint.json" reporter:"json" ignore_exit_status:"true"
+        
+    - name: Run Sonar
+      run: |
+        sonar-scanner -X -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Code coverage
+      if: github.ref == 'refs/heads/develop'
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./reports/cobertura.xml
