@@ -46,9 +46,9 @@ jobs:
         
     - name: Install Dependencies
       run: |
-        brew update
         brew tap homebrew/cask-versions
-        brew cask install java11
+        brew update
+        brew tap caskroom/cask
         brew install sonar-scanner
         brew install swiftlint
         gem install slather
