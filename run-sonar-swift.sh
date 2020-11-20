@@ -8,7 +8,7 @@
 #
 
 # Global parameters
-SLATHER_CMD=slather
+SLATHER_CMD=slather coverage --sonarqube-xml
 SWIFTLINT_CMD=swiftlint
 TAILOR_CMD=tailor
 XCPRETTY_CMD=xcpretty
@@ -350,8 +350,7 @@ if [ "$unittests" = "on" ]; then
     echo "${slatherCmd[@]}"
 
     runCommand /dev/stdout "${slatherCmd[@]}"
-    # mv sonar-reports/cobertura.xml sonar-reports/coverage-swift.xml
-	sh ./ xccov-to-sonarqube-generic.sh sonar-reports/cobertura.xml > sonar-reports/coverage-swift.xml
+    mv sonar-reports/cobertura.xml sonar-reports/coverage-swift.xml
 fi
 
 # SwiftLint
