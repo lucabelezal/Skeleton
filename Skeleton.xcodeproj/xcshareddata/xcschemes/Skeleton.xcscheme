@@ -41,9 +41,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3DF84262566C86800E7DBBC"
-            BuildableName = "SkeletonTests.xctest"
-            BlueprintName = "SkeletonTests"
+            BlueprintIdentifier = "6E1A8B1F22C837080055B6D8"
+            BuildableName = "Skeleton.app"
+            BlueprintName = "Skeleton"
             ReferencedContainer = "container:Skeleton.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

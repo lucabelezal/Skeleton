@@ -23,8 +23,6 @@ struct MovieListSection: TableSection {
         let model = self.data[indexPath.row]
         model.didAction?()
     }
-    
-    private func renderCell(view: MovieCellView) {}
 }
 
 extension MovieListSection {
