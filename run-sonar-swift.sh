@@ -350,8 +350,8 @@ if [ "$unittests" = "on" ]; then
     echo "${slatherCmd[@]}"
 
     runCommand /dev/stdout "${slatherCmd[@]}"
-    mv sonar-reports/cobertura.xml sonar-reports/coverage-swift.xml
-	sh ./ xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/ > sonar-reports/coverage-swift.xml
+    # mv sonar-reports/cobertura.xml sonar-reports/coverage-swift.xml
+	sh ./ xccov-to-sonarqube-generic.sh sonar-reports/cobertura.xml > sonar-reports/coverage-swift.xml
 fi
 
 # SwiftLint
