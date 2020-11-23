@@ -33,7 +33,8 @@ startLoading()
 stopLoading()
 ```
 
+
 <p align="center">
-  <img src="https://github.com/lucabelezal/Skeleton/blob/master/GIF/skeleton.gif" width="350"/>
+  <img src="https://github.com/lucabelezal/Skeleton/blob/master/GIF/skeleton.gif" width="344"/>
 </p>
 
