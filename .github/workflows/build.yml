@@ -35,7 +35,7 @@ jobs:
     - name: Build and test
       run: |
         set -o pipefail
-        xcodebuild build test -workspace ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+        xcodebuild build test -workspace ${workspace} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
       env:
         workspace: 'SkeletonApp.xcworkspace'
         params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
