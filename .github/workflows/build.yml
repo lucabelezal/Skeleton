@@ -32,26 +32,36 @@ jobs:
       run: |
         fastlane run swiftlint output_file:"./reports/swiftlint.json" reporter:"json" ignore_exit_status:"true"
 
-    - name: Run Build
+    - name: Build and test
       run: |
         set -o pipefail
-        xcodebuild build-for-testing \
-        -workspace SkeletonApp.xcworkspace \
-        -scheme Skeleton \
-        -destination 'platform=iOS Simulator,name=iPhone 11' \
-        -derivedDataPath build \
-        | xcpretty
+        xcodebuild build test -workspace ${project} -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+      env:
+        workspace: 'SkeletonApp.xcworkspace'
+        params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
+        scheme: Skeleton
+        destination: 'name=iPhone 11'
 
-    - name: Run Test
-      run: |
-        set -o pipefail
-        xcodebuild test-without-building \
-        -workspace SkeletonApp.xcworkspace \
-        -scheme Skeleton \
-        -destination 'platform=iOS Simulator,name=iPhone 11' \
-        -derivedDataPath build \
-        -enableCodeCoverage YES \
-        | xcpretty
+    # - name: Run Build
+    #   run: |
+    #     set -o pipefail
+    #     xcodebuild build-for-testing \
+    #     -workspace SkeletonApp.xcworkspace \
+    #     -scheme Skeleton \
+    #     -destination 'platform=iOS Simulator,name=iPhone 11' \
+    #     -derivedDataPath build \
+    #     | xcpretty
+
+    # - name: Run Test
+    #   run: |
+    #     set -o pipefail
+    #     xcodebuild test-without-building \
+    #     -workspace SkeletonApp.xcworkspace \
+    #     -scheme Skeleton \
+    #     -destination 'platform=iOS Simulator,name=iPhone 11' \
+    #     -derivedDataPath build \
+    #     -enableCodeCoverage YES \
+    #     | xcpretty
         
     - name: Run Slather
       env:
