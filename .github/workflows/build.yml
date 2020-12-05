@@ -28,6 +28,10 @@ jobs:
         brew install swiftlint
         bundle install
 
+    - name: SwiftLint
+      run: |
+        fastlane run swiftlint output_file:"./reports/swiftlint.json" reporter:"json" ignore_exit_status:"true"
+
     - name: Run Build
       run: |
         set -o pipefail
@@ -71,7 +75,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Run Code Coverage
-      if: github.ref == 'refs/heads/develop'
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
