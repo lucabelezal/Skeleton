@@ -17,7 +17,7 @@ jobs:
         include:
         - destination: 'name=iPhone 8'
           scheme: Skeleton
-          xcode: '/Applications/Xcode_12.2.app/Contents/Developer'
+          xcode: latest
     steps:
     - uses: actions/checkout@v2
         
