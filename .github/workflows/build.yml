@@ -26,13 +26,11 @@ jobs:
       run: |
         brew install sonar-scanner
         brew install swiftlint
-        gem install slather
         bundle install
 
     - name: Run Build
       run: |
         set -o pipefail
-        slather setup
         xcodebuild build-for-testing \
         -workspace SkeletonApp.xcworkspace \
         -scheme Skeleton \
@@ -53,14 +51,14 @@ jobs:
         
     - name: Run Slather
       env:
-        project: 'Skeleton.xcodeproj'
+        workspace: 'SkeletonApp.xcworkspacej'
         params: '--build-directory ./DerivedData
         --output-directory ./reports
         --scheme Skeleton
         --binary-basename Skeleton'
       run: |
-        slather coverage --sonarqube-xml ${params} ${project}
-        slather coverage --cobertura-xml ${params} ${project}
+        slather coverage --sonarqube-xml ${params} ${workspace}
+        slather coverage --cobertura-xml ${params} ${workspace}
          
     - name: Run SwiftLint
       run: |
