@@ -27,27 +27,40 @@ jobs:
         brew install sonar-scanner
         brew install swiftlint
         gem install slather
+        bundle install
 
-    - name: Run Build and Test
-      env:
-        project: 'Skeleton.xcodeproj'
-        params: '-derivedDataPath ./DerivedData -enableCodeCoverage YES'
-        scheme: ${{ matrix.scheme }}
-        destination: ${{ matrix.destination }}
-        DEVELOPER_DIR: ${{ matrix.xcode }}
+    - name: Run Build
       run: |
-        xcodebuild build test -workspace SkeletonApp.xcworkspace -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
+        set -o pipefail
+        slather setup
+        xcodebuild build-for-testing \
+        -workspace SkeletonApp.xcworkspace \
+        -scheme Skeleton \
+        -destination 'platform=iOS Simulator,name=iPhone 11' \
+        -derivedDataPath build \
+        | xcpretty
+
+    - name: Run Test
+      run: |
+        set -o pipefail
+        xcodebuild test-without-building \
+        -workspace SkeletonApp.xcworkspace \
+        -scheme Skeleton \
+        -destination 'platform=iOS Simulator,name=iPhone 11' \
+        -derivedDataPath build \
+        -enableCodeCoverage YES \
+        | xcpretty
         
     - name: Run Slather
-      run: |
-        slather coverage --sonarqube-xml ${params} ${project}
-        slather coverage --cobertura-xml ${params} ${project}
       env:
         project: 'Skeleton.xcodeproj'
         params: '--build-directory ./DerivedData
         --output-directory ./reports
         --scheme Skeleton
         --binary-basename Skeleton'
+      run: |
+        slather coverage --sonarqube-xml ${params} ${project}
+        slather coverage --cobertura-xml ${params} ${project}
          
     - name: Run SwiftLint
       run: |
