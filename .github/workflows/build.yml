@@ -45,6 +45,7 @@ jobs:
       run: |
         # brew install java
         brew install sonar-scanner
+        brew uninstall swiftlint
         brew install swiftlint
         gem install slather
               
