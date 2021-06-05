@@ -20,7 +20,11 @@ jobs:
           # xcode: latest
     steps:
     - uses: actions/checkout@v2
-                      
+
+    - name: Install Dependencies
+      run: |
+        brew link --overwrite swiftlint || brew install swiftlint || brew link --overwrite swiftlint
+
     - name: Build and Test
       run: |
         xcodebuild build test -workspace SkeletonApp.xcworkspace -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
