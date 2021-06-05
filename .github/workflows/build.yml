@@ -24,6 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         brew link --overwrite swiftlint || brew install swiftlint || brew link --overwrite swiftlint
+        swiftlint --fix
 
     - name: Build and Test
       run: |
@@ -50,6 +51,7 @@ jobs:
         # brew install java
         brew install sonar-scanner
         brew link --overwrite swiftlint || brew install swiftlint || brew link --overwrite swiftlint
+        swiftlint --fix
         gem install slather
               
     - name: Build and Test
