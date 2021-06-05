@@ -45,7 +45,7 @@ jobs:
       run: |
         # brew install java
         brew install sonar-scanner
-        brew install swiftlint
+        # brew install swiftlint
         gem install slather
               
     - name: Build and test
