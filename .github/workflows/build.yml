@@ -23,7 +23,6 @@ jobs:
                       
     - name: Build and Test
       run: |
-        xcode-select --install
         xcode-select -s /Applications/Xcode.app/Contents/Developers
         xcodebuild build test -workspace SkeletonApp.xcworkspace -scheme "${scheme}" -destination "${destination}" ${params} | xcpretty && exit ${PIPESTATUS[0]}
       env:
